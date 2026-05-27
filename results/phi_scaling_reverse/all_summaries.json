@@ -1,0 +1,1227 @@
+[
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s42",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 42,
+    "n_beats": 600,
+    "theta_baseline": 2.5565417972320734,
+    "theta_peak": 2.515831798811979,
+    "theta_final": 2.393971399414495,
+    "dr_ratio": 0.9840761459624207,
+    "recovery_profile": -2.9933776498830458,
+    "aos_g_mean": 3.7360727787017822,
+    "aos_g_peak": 8.607437133789062,
+    "per_organ_theta_baseline": {
+      "anima": 0.3928816000910223,
+      "eidolon": 0.3928816000910223,
+      "mneme": 0.387586401869212,
+      "nous": 0.06862897292289183,
+      "pneuma": 0.392881600085699
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3937936698284627,
+      "eidolon": 0.3937936698284627,
+      "mneme": 0.38848529352175126,
+      "nous": 0.057180617512039816,
+      "pneuma": 0.3937936698236396
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.39256436079604023,
+      "eidolon": 0.39256436079604023,
+      "mneme": 0.3872737481202665,
+      "nous": 0.026861002656131918,
+      "pneuma": 0.39256436079299495
+    },
+    "cascade_time_to_peak": {
+      "anima": 225,
+      "eidolon": 220,
+      "mneme": 222,
+      "nous": 246,
+      "pneuma": 240
+    },
+    "cascade_delay": 5,
+    "recovery_asymmetry": -26,
+    "adaptation_delta": -0.0003172392949820635,
+    "elapsed_s": 0.15785590978339314,
+    "organ_count": 1,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s42"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s43",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 43,
+    "n_beats": 600,
+    "theta_baseline": 2.4722391825314,
+    "theta_peak": 3.72178103261456,
+    "theta_final": 2.442881750875263,
+    "dr_ratio": 1.5054291910395647,
+    "recovery_profile": 1.0234945565482123,
+    "aos_g_mean": 0.0002838801883626729,
+    "aos_g_peak": 0.0004204506112728268,
+    "per_organ_theta_baseline": {
+      "anima": 0.392881595334795,
+      "eidolon": 0.392881595334795,
+      "mneme": 0.3875863986026236,
+      "nous": 0.047574382784621734,
+      "pneuma": 0.39288159533429623
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.39438814335631445,
+      "eidolon": 0.39438814335631445,
+      "mneme": 0.3888954251465031,
+      "nous": 0.36361914202055373,
+      "pneuma": 0.39438814335631445
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.392564361835234,
+      "eidolon": 0.392564361835234,
+      "mneme": 0.3872737488335173,
+      "nous": 0.039002786009373194,
+      "pneuma": 0.3925643618304488
+    },
+    "cascade_time_to_peak": {
+      "anima": 208,
+      "eidolon": 235,
+      "mneme": 220,
+      "nous": 215,
+      "pneuma": 246
+    },
+    "cascade_delay": -27,
+    "recovery_asymmetry": 20,
+    "adaptation_delta": -0.000317233499560976,
+    "elapsed_s": 0.15549847204238176,
+    "organ_count": 1,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s43"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s44",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 44,
+    "n_beats": 600,
+    "theta_baseline": 3.7661228992988467,
+    "theta_peak": 2.44737952955656,
+    "theta_final": 2.391170234927032,
+    "dr_ratio": 0.6498405907072756,
+    "recovery_profile": -0.042623376101229536,
+    "aos_g_mean": 4.256354331970215,
+    "aos_g_peak": 7.980217456817627,
+    "per_organ_theta_baseline": {
+      "anima": 0.39398698945577415,
+      "eidolon": 0.39398698945577415,
+      "mneme": 0.3883513051057449,
+      "nous": 0.3794726573472278,
+      "pneuma": 0.3939869894557734
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.393793667164932,
+      "eidolon": 0.393793667164932,
+      "mneme": 0.38848529169033647,
+      "nous": 0.04009429704158086,
+      "pneuma": 0.3937936671597646
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.3925643607444265,
+      "eidolon": 0.3925643607444265,
+      "mneme": 0.3872737480853021,
+      "nous": 0.026093973753382675,
+      "pneuma": 0.3925643607421366
+    },
+    "cascade_time_to_peak": {
+      "anima": 208,
+      "eidolon": 240,
+      "mneme": 205,
+      "nous": 218,
+      "pneuma": 207
+    },
+    "cascade_delay": -32,
+    "recovery_asymmetry": 22,
+    "adaptation_delta": -0.0014226287113476288,
+    "elapsed_s": 0.15637926710769534,
+    "organ_count": 1,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s44"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s45",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 45,
+    "n_beats": 600,
+    "theta_baseline": 2.4114159899287317,
+    "theta_peak": 3.7216603432386246,
+    "theta_final": 2.347889970641627,
+    "dr_ratio": 1.54335061174933,
+    "recovery_profile": 1.048484100791297,
+    "aos_g_mean": 4.324600696563721,
+    "aos_g_peak": 9.811981201171875,
+    "per_organ_theta_baseline": {
+      "anima": 0.3928815936257815,
+      "eidolon": 0.3928815936257815,
+      "mneme": 0.38758639742886636,
+      "nous": 0.03233629480888144,
+      "pneuma": 0.39288159362701675
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.39438814576842907,
+      "eidolon": 0.39438814576842907,
+      "mneme": 0.38889542681318207,
+      "nous": 0.363619250353909,
+      "pneuma": 0.39438814576373904
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.39256436015981233,
+      "eidolon": 0.39256436015981233,
+      "mneme": 0.38727374768449074,
+      "nous": 0.015202953466693508,
+      "pneuma": 0.3925643601591364
+    },
+    "cascade_time_to_peak": {
+      "anima": 220,
+      "eidolon": 242,
+      "mneme": 226,
+      "nous": 230,
+      "pneuma": 215
+    },
+    "cascade_delay": -22,
+    "recovery_asymmetry": 12,
+    "adaptation_delta": -0.00031723346596918,
+    "elapsed_s": 0.1561331688426435,
+    "organ_count": 1,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s45"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s46",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 46,
+    "n_beats": 600,
+    "theta_baseline": 2.380079023312861,
+    "theta_peak": 2.584359751204481,
+    "theta_final": 2.5027992345407544,
+    "dr_ratio": 1.085829388810494,
+    "recovery_profile": 0.3992570298016462,
+    "aos_g_mean": 4.263533592224121,
+    "aos_g_peak": 8.394229888916016,
+    "per_organ_theta_baseline": {
+      "anima": 0.39288159307100945,
+      "eidolon": 0.39288159307100945,
+      "mneme": 0.38758639704672415,
+      "nous": 0.024588191788000247,
+      "pneuma": 0.39288159307117143
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.39379367492969847,
+      "eidolon": 0.39379367492969847,
+      "mneme": 0.3884852970289694,
+      "nous": 0.07431514930428722,
+      "pneuma": 0.3937936749250461
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.3925643639830497,
+      "eidolon": 0.3925643639830497,
+      "mneme": 0.38727375031216604,
+      "nous": 0.053983186315830906,
+      "pneuma": 0.39256436398120786
+    },
+    "cascade_time_to_peak": {
+      "anima": 245,
+      "eidolon": 212,
+      "mneme": 201,
+      "nous": 236,
+      "pneuma": 203
+    },
+    "cascade_delay": 33,
+    "recovery_asymmetry": -24,
+    "adaptation_delta": -0.00031722908795972504,
+    "elapsed_s": 0.15464581991545856,
+    "organ_count": 1,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s46"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s42",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 42,
+    "n_beats": 600,
+    "theta_baseline": 1.5208294526583614,
+    "theta_peak": 1.5042420074923692,
+    "theta_final": 1.4069119180166552,
+    "dr_ratio": 0.9890931589094373,
+    "recovery_profile": -5.867696230596231,
+    "aos_g_mean": 4.301018714904785,
+    "aos_g_peak": 8.961612701416016,
+    "per_organ_theta_baseline": {
+      "anima": 0.39036661294602204,
+      "eidolon": 0.39036661294602204,
+      "mneme": 0.0704559184596755,
+      "nous": 0.10456301281880899,
+      "pneuma": 0.3903666129274136
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3912724199966518,
+      "eidolon": 0.3912724199966518,
+      "mneme": 0.11986032616719276,
+      "nous": 0.1535478377360953,
+      "pneuma": 0.3912724199975638
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.390051542031075,
+      "eidolon": 0.390051542031075,
+      "mneme": 0.14952393480866777,
+      "nous": 0.1668467386935107,
+      "pneuma": 0.39005154202602904
+    },
+    "cascade_time_to_peak": {
+      "anima": 225,
+      "eidolon": 220,
+      "mneme": 200,
+      "nous": 246,
+      "pneuma": 240
+    },
+    "cascade_delay": 5,
+    "recovery_asymmetry": -26,
+    "adaptation_delta": -0.00031507091494703543,
+    "elapsed_s": 0.15453553618863225,
+    "organ_count": 2,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s42"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s43",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 43,
+    "n_beats": 600,
+    "theta_baseline": 1.4739657324640087,
+    "theta_peak": 3.74569327114227,
+    "theta_final": 1.4698021440317244,
+    "dr_ratio": 2.541234974900431,
+    "recovery_profile": 1.0018327851211888,
+    "aos_g_mean": 0.00037359536509029567,
+    "aos_g_peak": 0.00042667874367907643,
+    "per_organ_theta_baseline": {
+      "anima": 0.39036660136985113,
+      "eidolon": 0.39036660136985113,
+      "mneme": 0.12554392383127022,
+      "nous": 0.15287553485472233,
+      "pneuma": 0.3903666013611079
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.39309749338091265,
+      "eidolon": 0.39309749338091265,
+      "mneme": 0.45817832682323206,
+      "nous": 0.45817826704735226,
+      "pneuma": 0.3930974933718124
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.39005154409084464,
+      "eidolon": 0.39005154409084464,
+      "mneme": 0.159963058731022,
+      "nous": 0.184323439033552,
+      "pneuma": 0.39005154408158893
+    },
+    "cascade_time_to_peak": {
+      "anima": 208,
+      "eidolon": 235,
+      "mneme": 249,
+      "nous": 215,
+      "pneuma": 246
+    },
+    "cascade_delay": -27,
+    "recovery_asymmetry": 20,
+    "adaptation_delta": -0.00031505727900649205,
+    "elapsed_s": 0.15557387401349843,
+    "organ_count": 2,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s43"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s44",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 44,
+    "n_beats": 600,
+    "theta_baseline": 2.418716077598789,
+    "theta_peak": 1.4552504964631259,
+    "theta_final": 1.5030820137441558,
+    "dr_ratio": 0.6016623901999462,
+    "recovery_profile": 0.04964527868722581,
+    "aos_g_mean": 4.837533950805664,
+    "aos_g_peak": 8.35289192199707,
+    "per_organ_theta_baseline": {
+      "anima": 0.39218714562144885,
+      "eidolon": 0.39218714562144885,
+      "mneme": 0.1126677173978272,
+      "nous": 0.47666006357142854,
+      "pneuma": 0.3921871456080685
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.39127242319085526,
+      "eidolon": 0.39127242319085526,
+      "mneme": 0.13265061262169886,
+      "nous": 0.1450990461957686,
+      "pneuma": 0.39127242318885463
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.3900515520886354,
+      "eidolon": 0.3900515520886354,
+      "mneme": 0.12037893220227612,
+      "nous": 0.08216563430151294,
+      "pneuma": 0.3900515520777439
+    },
+    "cascade_time_to_peak": {
+      "anima": 208,
+      "eidolon": 240,
+      "mneme": 207,
+      "nous": 218,
+      "pneuma": 207
+    },
+    "cascade_delay": -32,
+    "recovery_asymmetry": 22,
+    "adaptation_delta": -0.002135593532813451,
+    "elapsed_s": 0.154725959058851,
+    "organ_count": 2,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s44"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s45",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 45,
+    "n_beats": 600,
+    "theta_baseline": 1.3628678440900928,
+    "theta_peak": 3.659593308892641,
+    "theta_final": 1.3113008080790907,
+    "dr_ratio": 2.6852150960652663,
+    "recovery_profile": 1.0224524161904722,
+    "aos_g_mean": 5.189285755157471,
+    "aos_g_peak": 11.724193572998047,
+    "per_organ_theta_baseline": {
+      "anima": 0.39036660020896047,
+      "eidolon": 0.39036660020896047,
+      "mneme": 0.0884488777714607,
+      "nous": 0.10639883168857228,
+      "pneuma": 0.3903666002078625
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3930975244097994,
+      "eidolon": 0.3930975244097994,
+      "mneme": 0.37219713065202353,
+      "nous": 0.3721962680693011,
+      "pneuma": 0.3930975244011179
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.39005154091145955,
+      "eidolon": 0.39005154091145955,
+      "mneme": 0.09104700278551563,
+      "nous": 0.09742591229633016,
+      "pneuma": 0.39005154090427047
+    },
+    "cascade_time_to_peak": {
+      "anima": 220,
+      "eidolon": 242,
+      "mneme": 230,
+      "nous": 230,
+      "pneuma": 215
+    },
+    "cascade_delay": -22,
+    "recovery_asymmetry": 12,
+    "adaptation_delta": -0.0003150592975009192,
+    "elapsed_s": 0.1554840209428221,
+    "organ_count": 2,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s45"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s46",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 46,
+    "n_beats": 600,
+    "theta_baseline": 1.3596219514367092,
+    "theta_peak": 1.6136252309451224,
+    "theta_final": 1.577503559430151,
+    "dr_ratio": 1.1868190486627614,
+    "recovery_profile": 0.1422094690465405,
+    "aos_g_mean": 4.833168983459473,
+    "aos_g_peak": 9.547898292541504,
+    "per_organ_theta_baseline": {
+      "anima": 0.3903665979806188,
+      "eidolon": 0.3903665979806188,
+      "mneme": 0.12528402393012356,
+      "nous": 0.14271647614204122,
+      "pneuma": 0.39036659797879564
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3912724343055472,
+      "eidolon": 0.3912724343055472,
+      "mneme": 0.11727313111367368,
+      "nous": 0.14704020816445906,
+      "pneuma": 0.3912724343107725
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.3900515491983332,
+      "eidolon": 0.3900515491983332,
+      "mneme": 0.1515125944909665,
+      "nous": 0.1660922754462838,
+      "pneuma": 0.39005154919532087
+    },
+    "cascade_time_to_peak": {
+      "anima": 245,
+      "eidolon": 212,
+      "mneme": 230,
+      "nous": 236,
+      "pneuma": 203
+    },
+    "cascade_delay": 33,
+    "recovery_asymmetry": -24,
+    "adaptation_delta": -0.0003150487822856096,
+    "elapsed_s": 0.15558794606477022,
+    "organ_count": 2,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s46"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s42",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 42,
+    "n_beats": 600,
+    "theta_baseline": 1.0572262732787394,
+    "theta_peak": 1.1098046055992699,
+    "theta_final": 0.927660050233962,
+    "dr_ratio": 1.049732336066026,
+    "recovery_profile": 3.46425128615548,
+    "aos_g_mean": 1.8490800857543945,
+    "aos_g_peak": 4.155086040496826,
+    "per_organ_theta_baseline": {
+      "anima": 0.38277546123399564,
+      "eidolon": 0.23645583986094887,
+      "mneme": 0.1077107471124979,
+      "nous": 0.21995487704812308,
+      "pneuma": 0.3827754612300012
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3836623748219226,
+      "eidolon": 0.2675506400693574,
+      "mneme": 0.17925339983460964,
+      "nous": 0.2383442804762605,
+      "pneuma": 0.38366237482846816
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.38246690993959975,
+      "eidolon": 0.23442640756576075,
+      "mneme": 0.20564056185971688,
+      "nous": 0.2565332544555517,
+      "pneuma": 0.3824669099379119
+    },
+    "cascade_time_to_peak": {
+      "anima": 209,
+      "eidolon": 216,
+      "mneme": 204,
+      "nous": 214,
+      "pneuma": 215
+    },
+    "cascade_delay": -7,
+    "recovery_asymmetry": 2,
+    "adaptation_delta": -0.0020294322951881216,
+    "elapsed_s": 0.1529557581525296,
+    "organ_count": 3,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s42"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s43",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 43,
+    "n_beats": 600,
+    "theta_baseline": 0.8530500022544113,
+    "theta_peak": 2.565563894565294,
+    "theta_final": 0.9375188377554362,
+    "dr_ratio": 3.0075187712151803,
+    "recovery_profile": 0.9506755326889397,
+    "aos_g_mean": 2.86124849319458,
+    "aos_g_peak": 3.182859182357788,
+    "per_organ_theta_baseline": {
+      "anima": 0.3827754075552491,
+      "eidolon": 0.14764733514735792,
+      "mneme": 0.19114760992125268,
+      "nous": 0.1728886062221711,
+      "pneuma": 0.38277540754657075
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.38848531417006726,
+      "eidolon": 0.15724584822551313,
+      "mneme": 0.4837200262977333,
+      "nous": 0.49211310640968536,
+      "pneuma": 0.3884853141834245
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.3824669170224412,
+      "eidolon": 0.17560667462411514,
+      "mneme": 0.21190653219959585,
+      "nous": 0.22263150284137564,
+      "pneuma": 0.38246691702402863
+    },
+    "cascade_time_to_peak": {
+      "anima": 246,
+      "eidolon": 249,
+      "mneme": 249,
+      "nous": 249,
+      "pneuma": 246
+    },
+    "cascade_delay": -3,
+    "recovery_asymmetry": 0,
+    "adaptation_delta": 0.027959339476757217,
+    "elapsed_s": 0.153520992025733,
+    "organ_count": 3,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s43"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s44",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 44,
+    "n_beats": 600,
+    "theta_baseline": 1.5045837830800515,
+    "theta_peak": 0.9066703592920234,
+    "theta_final": 0.8737148037361627,
+    "dr_ratio": 0.6026054311418721,
+    "recovery_profile": -0.05511760439675979,
+    "aos_g_mean": 5.082967281341553,
+    "aos_g_peak": 8.824337005615234,
+    "per_organ_theta_baseline": {
+      "anima": 0.3875863992617206,
+      "eidolon": 0.1630023041111678,
+      "mneme": 0.18565794952470627,
+      "nous": 0.5194828073939839,
+      "pneuma": 0.387586399275017
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3836623518744716,
+      "eidolon": 0.20151855344116634,
+      "mneme": 0.21011624059602144,
+      "nous": 0.17324200062013562,
+      "pneuma": 0.38366235187512915
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.38246693944441146,
+      "eidolon": 0.14845226019179336,
+      "mneme": 0.16235218365229748,
+      "nous": 0.14481639370108812,
+      "pneuma": 0.3824669394430972
+    },
+    "cascade_time_to_peak": {
+      "anima": 208,
+      "eidolon": 219,
+      "mneme": 209,
+      "nous": 218,
+      "pneuma": 207
+    },
+    "cascade_delay": -11,
+    "recovery_asymmetry": 1,
+    "adaptation_delta": -0.01455004391937445,
+    "elapsed_s": 0.1527085779234767,
+    "organ_count": 3,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s44"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s45",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 45,
+    "n_beats": 600,
+    "theta_baseline": 0.8770646352696787,
+    "theta_peak": 2.652865906853503,
+    "theta_final": 0.8476646377858059,
+    "dr_ratio": 3.024709696609536,
+    "recovery_profile": 1.016555905187325,
+    "aos_g_mean": 2.771615505218506,
+    "aos_g_peak": 4.726252555847168,
+    "per_organ_theta_baseline": {
+      "anima": 0.38277540498944784,
+      "eidolon": 0.22236536897779846,
+      "mneme": 0.1638484319652065,
+      "nous": 0.16753230685857878,
+      "pneuma": 0.38277540499220775
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.3884854010236245,
+      "eidolon": 0.20017249216381208,
+      "mneme": 0.3937950729676797,
+      "nous": 0.45455979441229927,
+      "pneuma": 0.3884854010239587
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.38246691274451705,
+      "eidolon": 0.26528650079414695,
+      "mneme": 0.18520730002528257,
+      "nous": 0.19585649394885973,
+      "pneuma": 0.3824669127486425
+    },
+    "cascade_time_to_peak": {
+      "anima": 205,
+      "eidolon": 212,
+      "mneme": 226,
+      "nous": 214,
+      "pneuma": 215
+    },
+    "cascade_delay": -7,
+    "recovery_asymmetry": -2,
+    "adaptation_delta": 0.04292113181634849,
+    "elapsed_s": 0.15382714802399278,
+    "organ_count": 3,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s45"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s46",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 46,
+    "n_beats": 600,
+    "theta_baseline": 0.858236726522565,
+    "theta_peak": 1.173647771806322,
+    "theta_final": 1.1742487163545683,
+    "dr_ratio": 1.3675105428798777,
+    "recovery_profile": -0.0019052742674422936,
+    "aos_g_mean": 4.829961776733398,
+    "aos_g_peak": 9.635200500488281,
+    "per_organ_theta_baseline": {
+      "anima": 0.38277539942818606,
+      "eidolon": 0.2059559662890625,
+      "mneme": 0.14620651997082082,
+      "nous": 0.225356548426665,
+      "pneuma": 0.38277539942688
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.38366241369841736,
+      "eidolon": 0.23251499404463907,
+      "mneme": 0.15705520295808392,
+      "nous": 0.21633599350615101,
+      "pneuma": 0.3836624137029228
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.38246693884939476,
+      "eidolon": 0.2514971987645918,
+      "mneme": 0.21271362326250995,
+      "nous": 0.21853419193408752,
+      "pneuma": 0.382466938853346
+    },
+    "cascade_time_to_peak": {
+      "anima": 245,
+      "eidolon": 229,
+      "mneme": 230,
+      "nous": 236,
+      "pneuma": 203
+    },
+    "cascade_delay": 16,
+    "recovery_asymmetry": -7,
+    "adaptation_delta": 0.045541232475529325,
+    "elapsed_s": 0.15494002890773118,
+    "organ_count": 3,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s46"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s42",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 42,
+    "n_beats": 600,
+    "theta_baseline": 1.0122158102214402,
+    "theta_peak": 1.1223302656973884,
+    "theta_final": 0.932220038667884,
+    "dr_ratio": 1.1087855518200793,
+    "recovery_profile": 1.7264783829497243,
+    "aos_g_mean": 1.9154735803604126,
+    "aos_g_peak": 4.195633888244629,
+    "per_organ_theta_baseline": {
+      "anima": 0.3087273749455407,
+      "eidolon": 0.29708362938098576,
+      "mneme": 0.15931372226466387,
+      "nous": 0.2803531003226147,
+      "pneuma": 0.08998680769343846
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.27682271293881555,
+      "eidolon": 0.31462429335104697,
+      "mneme": 0.2232766200527195,
+      "nous": 0.2671553042650674,
+      "pneuma": 0.09103902245005231
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.2250820578817828,
+      "eidolon": 0.2650796743520231,
+      "mneme": 0.22323599315468198,
+      "nous": 0.2708902238957981,
+      "pneuma": 0.0411487401658802
+    },
+    "cascade_time_to_peak": {
+      "anima": 215,
+      "eidolon": 216,
+      "mneme": 204,
+      "nous": 214,
+      "pneuma": 215
+    },
+    "cascade_delay": -1,
+    "recovery_asymmetry": 2,
+    "adaptation_delta": -0.03200395502896264,
+    "elapsed_s": 0.1538178340997547,
+    "organ_count": 4,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s42"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s43",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 43,
+    "n_beats": 600,
+    "theta_baseline": 0.7836394778195737,
+    "theta_peak": 1.9434194454167757,
+    "theta_final": 0.735803615822788,
+    "dr_ratio": 2.4799917569546333,
+    "recovery_profile": 1.041245635666471,
+    "aos_g_mean": 2.91326904296875,
+    "aos_g_peak": 3.299569606781006,
+    "per_organ_theta_baseline": {
+      "anima": 0.26129767926203884,
+      "eidolon": 0.21823918531022435,
+      "mneme": 0.21862432865382928,
+      "nous": 0.19999339166834645,
+      "pneuma": 0.09715461886991164
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.2541460833611772,
+      "eidolon": 0.2439768806448817,
+      "mneme": 0.49286623364644583,
+      "nous": 0.5089016674540409,
+      "pneuma": 0.372936639368181
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.17518902733003774,
+      "eidolon": 0.2723918779656162,
+      "mneme": 0.22752727244116822,
+      "nous": 0.2330532819723256,
+      "pneuma": 0.04763205722320993
+    },
+    "cascade_time_to_peak": {
+      "anima": 248,
+      "eidolon": 249,
+      "mneme": 249,
+      "nous": 249,
+      "pneuma": 246
+    },
+    "cascade_delay": -1,
+    "recovery_asymmetry": 0,
+    "adaptation_delta": 0.054152692655391854,
+    "elapsed_s": 0.15324605000205338,
+    "organ_count": 4,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s43"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s44",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 44,
+    "n_beats": 600,
+    "theta_baseline": 1.2200157520771628,
+    "theta_peak": 0.9949488858703048,
+    "theta_final": 0.8858948204824917,
+    "dr_ratio": 0.8155213440288244,
+    "recovery_profile": -0.4845407377182833,
+    "aos_g_mean": 5.177942752838135,
+    "aos_g_peak": 8.956007957458496,
+    "per_organ_theta_baseline": {
+      "anima": 0.283171451156656,
+      "eidolon": 0.20798028579618477,
+      "mneme": 0.20717892902940171,
+      "nous": 0.5446791223394952,
+      "pneuma": 0.3720762457286457
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.2992299888529161,
+      "eidolon": 0.2749660628481402,
+      "mneme": 0.2347797195701842,
+      "nous": 0.19236117703253955,
+      "pneuma": 0.07582240432280375
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.28121781818346164,
+      "eidolon": 0.21007312646316983,
+      "mneme": 0.18311310168613534,
+      "nous": 0.1857878818148586,
+      "pneuma": 0.0662571509127236
+    },
+    "cascade_time_to_peak": {
+      "anima": 219,
+      "eidolon": 219,
+      "mneme": 209,
+      "nous": 218,
+      "pneuma": 207
+    },
+    "cascade_delay": 0,
+    "recovery_asymmetry": 1,
+    "adaptation_delta": 0.002092840666985063,
+    "elapsed_s": 0.15353788598440588,
+    "organ_count": 4,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s44"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s45",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 45,
+    "n_beats": 600,
+    "theta_baseline": 0.8606341533452913,
+    "theta_peak": 1.9765726958931937,
+    "theta_final": 0.908524291095077,
+    "dr_ratio": 2.296646825146598,
+    "recovery_profile": 0.9570853269030001,
+    "aos_g_mean": 2.831301212310791,
+    "aos_g_peak": 4.753818988800049,
+    "per_organ_theta_baseline": {
+      "anima": 0.26819004639512195,
+      "eidolon": 0.28676706316279993,
+      "mneme": 0.1712572112276355,
+      "nous": 0.22458463725053288,
+      "pneuma": 0.0793753386108025
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.272845844601901,
+      "eidolon": 0.26095822610662045,
+      "mneme": 0.40498420091397375,
+      "nous": 0.5279516518293452,
+      "pneuma": 0.3729371918755448
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.2631090924505387,
+      "eidolon": 0.29063719380337405,
+      "mneme": 0.21375984187989164,
+      "nous": 0.23553691734798565,
+      "pneuma": 0.04732693723250905
+    },
+    "cascade_time_to_peak": {
+      "anima": 226,
+      "eidolon": 212,
+      "mneme": 226,
+      "nous": 214,
+      "pneuma": 215
+    },
+    "cascade_delay": 14,
+    "recovery_asymmetry": -2,
+    "adaptation_delta": 0.003870130640574121,
+    "elapsed_s": 0.15250619710423052,
+    "organ_count": 4,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s45"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s46",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 46,
+    "n_beats": 600,
+    "theta_baseline": 0.8021559938691979,
+    "theta_peak": 1.28685057182139,
+    "theta_final": 0.9478186387149948,
+    "dr_ratio": 1.6042398008076568,
+    "recovery_profile": 0.6994753985876765,
+    "aos_g_mean": 4.955763816833496,
+    "aos_g_peak": 9.760137557983398,
+    "per_organ_theta_baseline": {
+      "anima": 0.2231775695467221,
+      "eidolon": 0.23180931588439077,
+      "mneme": 0.18153315925774924,
+      "nous": 0.2539463610149329,
+      "pneuma": 0.07396634365537662
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.4683297099766703,
+      "eidolon": 0.24694842559412492,
+      "mneme": 0.17460780112104718,
+      "nous": 0.2577380455896007,
+      "pneuma": 0.35942493582543705
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.16044999048244732,
+      "eidolon": 0.27950297933975665,
+      "mneme": 0.23246385807867304,
+      "nous": 0.264720323940156,
+      "pneuma": 0.06870621715015528
+    },
+    "cascade_time_to_peak": {
+      "anima": 217,
+      "eidolon": 229,
+      "mneme": 230,
+      "nous": 236,
+      "pneuma": 203
+    },
+    "cascade_delay": -12,
+    "recovery_asymmetry": -7,
+    "adaptation_delta": 0.04769366345536588,
+    "elapsed_s": 0.1508988479617983,
+    "organ_count": 4,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s46"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s42",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 42,
+    "n_beats": 600,
+    "theta_baseline": 1.3321881893586909,
+    "theta_peak": 1.5065437839681923,
+    "theta_final": 1.4164805518850225,
+    "dr_ratio": 1.1308791025188683,
+    "recovery_profile": 0.5165491378976481,
+    "aos_g_mean": 4.235304355621338,
+    "aos_g_peak": 9.230356216430664,
+    "per_organ_theta_baseline": {
+      "anima": 0.3235137443123286,
+      "eidolon": 0.3191239643414715,
+      "mneme": 0.1701667621453359,
+      "nous": 0.2955934598864759,
+      "pneuma": 0.25569235771043397
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.2912720744343207,
+      "eidolon": 0.3258393085336981,
+      "mneme": 0.23675227188333253,
+      "nous": 0.28673891386113187,
+      "pneuma": 0.2614087411515348
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.23127980789454602,
+      "eidolon": 0.2882815536222811,
+      "mneme": 0.23281348068893282,
+      "nous": 0.3071293926516038,
+      "pneuma": 0.2507543274261874
+    },
+    "cascade_time_to_peak": {
+      "anima": 246,
+      "eidolon": 246,
+      "mneme": 239,
+      "nous": 246,
+      "pneuma": 240
+    },
+    "cascade_delay": 0,
+    "recovery_asymmetry": 0,
+    "adaptation_delta": -0.030842410719190416,
+    "elapsed_s": 0.1498336677905172,
+    "organ_count": 5,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s42"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s43",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 43,
+    "n_beats": 600,
+    "theta_baseline": 1.2023500673756968,
+    "theta_peak": 1.8039325982686587,
+    "theta_final": 1.268242106531223,
+    "dr_ratio": 1.5003389172722408,
+    "recovery_profile": 0.8904688288442834,
+    "aos_g_mean": 3.2355473041534424,
+    "aos_g_peak": 3.442831516265869,
+    "per_organ_theta_baseline": {
+      "anima": 0.2570344613982566,
+      "eidolon": 0.3174872121003005,
+      "mneme": 0.21995294835105536,
+      "nous": 0.2020660560690881,
+      "pneuma": 0.30882822191838355
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.2992566785954274,
+      "eidolon": 0.2908735551823296,
+      "mneme": 0.507961413148029,
+      "nous": 0.5029215245545159,
+      "pneuma": 0.29763759994208383
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.18874265889952924,
+      "eidolon": 0.3224334669454591,
+      "mneme": 0.24769273109138876,
+      "nous": 0.2209612028081323,
+      "pneuma": 0.30764844664332786
+    },
+    "cascade_time_to_peak": {
+      "anima": 248,
+      "eidolon": 249,
+      "mneme": 249,
+      "nous": 246,
+      "pneuma": 248
+    },
+    "cascade_delay": -1,
+    "recovery_asymmetry": 3,
+    "adaptation_delta": 0.004946254845158593,
+    "elapsed_s": 0.15166353899985552,
+    "organ_count": 5,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s43"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s44",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 44,
+    "n_beats": 600,
+    "theta_baseline": 1.372172179376025,
+    "theta_peak": 1.3990470888458,
+    "theta_final": 1.19717306756019,
+    "dr_ratio": 1.0195856685288547,
+    "recovery_profile": 7.511616793077927,
+    "aos_g_mean": 4.974581241607666,
+    "aos_g_peak": 8.966443061828613,
+    "per_organ_theta_baseline": {
+      "anima": 0.29773152770066547,
+      "eidolon": 0.24616301247336775,
+      "mneme": 0.22247447132346107,
+      "nous": 0.26727857213645245,
+      "pneuma": 0.26865762440776797
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.32513846327674956,
+      "eidolon": 0.28867111334845313,
+      "mneme": 0.2722915081957841,
+      "nous": 0.24242959576854436,
+      "pneuma": 0.2739526295669833
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.31052242183658146,
+      "eidolon": 0.24166624267570552,
+      "mneme": 0.17577387632638264,
+      "nous": 0.2076664334768483,
+      "pneuma": 0.22044047777611814
+    },
+    "cascade_time_to_peak": {
+      "anima": 219,
+      "eidolon": 204,
+      "mneme": 207,
+      "nous": 219,
+      "pneuma": 205
+    },
+    "cascade_delay": 15,
+    "recovery_asymmetry": -15,
+    "adaptation_delta": -0.004496769797662226,
+    "elapsed_s": 0.15069253998808563,
+    "organ_count": 5,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s44"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s45",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 45,
+    "n_beats": 600,
+    "theta_baseline": 1.3146888961648862,
+    "theta_peak": 1.707938932696117,
+    "theta_final": 1.5188971478693045,
+    "dr_ratio": 1.29912022355889,
+    "recovery_profile": 0.4807165092578428,
+    "aos_g_mean": 5.1970038414001465,
+    "aos_g_peak": 11.303854942321777,
+    "per_organ_theta_baseline": {
+      "anima": 0.28615355980759993,
+      "eidolon": 0.33310598903917626,
+      "mneme": 0.18592731967880194,
+      "nous": 0.23896053656206803,
+      "pneuma": 0.2889717724351896
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.30000730941373005,
+      "eidolon": 0.2868482910955766,
+      "mneme": 0.39911707988552847,
+      "nous": 0.5480571394712789,
+      "pneuma": 0.2677446933844257
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.27502618148091407,
+      "eidolon": 0.3441042575618734,
+      "mneme": 0.21908346739717743,
+      "nous": 0.25008532640406417,
+      "pneuma": 0.30860320097364075
+    },
+    "cascade_time_to_peak": {
+      "anima": 231,
+      "eidolon": 247,
+      "mneme": 236,
+      "nous": 231,
+      "pneuma": 248
+    },
+    "cascade_delay": -16,
+    "recovery_asymmetry": 16,
+    "adaptation_delta": 0.010998268522697141,
+    "elapsed_s": 0.15241616312414408,
+    "organ_count": 5,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s45"
+  },
+  {
+    "trial_id": "phi_scale_reverse__baseline__m1.0__s46",
+    "mode": "phi_scale_reverse",
+    "perturbation_type": "baseline",
+    "magnitude": 1.0,
+    "seed": 46,
+    "n_beats": 600,
+    "theta_baseline": 1.241144554400876,
+    "theta_peak": 1.2407834572090415,
+    "theta_final": 1.191422292556845,
+    "dr_ratio": 0.999709061131877,
+    "recovery_profile": -136.69772506796934,
+    "aos_g_mean": 4.399479389190674,
+    "aos_g_peak": 9.498373985290527,
+    "per_organ_theta_baseline": {
+      "anima": 0.24570810030961573,
+      "eidolon": 0.26295512785041747,
+      "mneme": 0.1875191904082334,
+      "nous": 0.25793647640127093,
+      "pneuma": 0.24905811465105804
+    },
+    "per_organ_theta_peak": {
+      "anima": 0.2467735938076544,
+      "eidolon": 0.2756023257183381,
+      "mneme": 0.1840975864431885,
+      "nous": 0.31558816625238645,
+      "pneuma": 0.2521255825644828
+    },
+    "per_organ_theta_recovery": {
+      "anima": 0.21589241010713722,
+      "eidolon": 0.2896972287639083,
+      "mneme": 0.2350913572545427,
+      "nous": 0.27397163826104415,
+      "pneuma": 0.2131042092248621
+    },
+    "cascade_time_to_peak": {
+      "anima": 217,
+      "eidolon": 229,
+      "mneme": 230,
+      "nous": 236,
+      "pneuma": 217
+    },
+    "cascade_delay": -12,
+    "recovery_asymmetry": -7,
+    "adaptation_delta": 0.02674210091349083,
+    "elapsed_s": 0.15361609309911728,
+    "organ_count": 5,
+    "trial_dir": "/home/ubuntu/axioma/results/phi_scaling_reverse/trials/phi_scale_reverse__baseline__m1.0__s46"
+  }
+]

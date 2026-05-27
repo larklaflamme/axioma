@@ -1,0 +1,28 @@
+{
+  "name": "f11_phi_eidolon",
+  "timestamp": 1779734125.8437605,
+  "order": "eidolon",
+  "perturbation_kind": "contradiction",
+  "perturbation_target": "eidolon",
+  "event_id": "6419ea19-543f-4e41-ab1e-b8a2586897c4",
+  "warmup_beats": 600,
+  "post_beats": 300,
+  "seed": 42,
+  "cascade_delay_pre": {
+    "n": 60,
+    "mean": 0.128,
+    "min": -9.0,
+    "max": 9.333
+  },
+  "cascade_delay_post": {
+    "n": 300,
+    "mean": -0.269,
+    "min": -11.333,
+    "max": 9.0
+  },
+  "per_downstream_post_mean": {
+    "nous": -1.153,
+    "mneme": -0.003,
+    "pneuma": 0.35
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "name": "psi_stress_sweep",
+  "timestamp": 1779737841.6605694,
+  "magnitudes_tested": [
+    0.4,
+    1.0,
+    2.0
+  ],
+  "periods_tested": [
+    100,
+    30
+  ],
+  "beats_per_cell": 800,
+  "seed": 42,
+  "no_recovery_mode": false,
+  "cells": [
+    {
+      "magnitude": 0.4,
+      "period_beats": 100,
+      "beats_sampled": 800,
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "gap": {
+        "mean": 7.8555,
+        "variance": 12.381504,
+        "p95": 11.5542
+      },
+      "components_mean": {
+        "gap_variance_health": 1.0,
+        "structural_health": 1.0,
+        "compose_probe_health": 1.0
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      },
+      "recovery_count": 3,
+      "recovery_composite_mean": 0.904,
+      "verdict": "PASS"
+    },
+    {
+      "magnitude": 0.4,
+      "period_beats": 30,
+      "beats_sampled": 800,
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "gap": {
+        "mean": 7.551,
+        "variance": 16.642171,
+        "p95": 12.1068
+      },
+      "components_mean": {
+        "gap_variance_health": 1.0,
+        "structural_health": 1.0,
+        "compose_probe_health": 1.0
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      },
+      "recovery_count": 3,
+      "recovery_composite_mean": 0.879,
+      "verdict": "PASS"
+    },
+    {
+      "magnitude": 1.0,
+      "period_beats": 100,
+      "beats_sampled": 800,
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "gap": {
+        "mean": 6.4964,
+        "variance": 15.614366,
+        "p95": 11.9123
+      },
+      "components_mean": {
+        "gap_variance_health": 1.0,
+        "structural_health": 1.0,
+        "compose_probe_health": 1.0
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      },
+      "recovery_count": 4,
+      "recovery_composite_mean": 0.8149,
+      "verdict": "PASS"
+    },
+    {
+      "magnitude": 1.0,
+      "period_beats": 30,
+      "beats_sampled": 800,
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "gap": {
+        "mean": 5.799,
+        "variance": 22.654358,
+        "p95": 12.2436
+      },
+      "components_mean": {
+        "gap_variance_health": 1.0,
+        "structural_health": 1.0,
+        "compose_probe_health": 1.0
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      },
+      "recovery_count": 4,
+      "recovery_composite_mean": 0.8351,
+      "verdict": "PASS"
+    },
+    {
+      "magnitude": 2.0,
+      "period_beats": 100,
+      "beats_sampled": 800,
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "gap": {
+        "mean": 6.1161,
+        "variance": 18.64058,
+        "p95": 11.9565
+      },
+      "components_mean": {
+        "gap_variance_health": 1.0,
+        "structural_health": 1.0,
+        "compose_probe_health": 1.0
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      },
+      "recovery_count": 3,
+      "recovery_composite_mean": 0.7138,
+      "verdict": "PASS"
+    },
+    {
+      "magnitude": 2.0,
+      "period_beats": 30,
+      "beats_sampled": 800,
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "gap": {
+        "mean": 6.6533,
+        "variance": 24.963489,
+        "p95": 13.3156
+      },
+      "components_mean": {
+        "gap_variance_health": 1.0,
+        "structural_health": 1.0,
+        "compose_probe_health": 1.0
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      },
+      "recovery_count": 4,
+      "recovery_composite_mean": 0.8323,
+      "verdict": "PASS"
+    }
+  ],
+  "n_passes": 6,
+  "n_stressed": 0,
+  "n_collapsed": 0,
+  "first_stress_transition": null,
+  "compose_degeneration_proof": {
+    "score_when_gap_always_zero": 0.0,
+    "score_when_gap_has_variance": 0.9179,
+    "verdict": "PASS",
+    "note": "gap_variance_health = 1 - exp(-var/target). var=0 \u2192 score=0 (compose degenerated, \u03c8 alerts). var\u2265target \u2192 score saturates to 1 (substrate healthy). This is by design per ARCH \u00a75.4."
+  },
+  "v1_1_4_verdict": "ROBUST_NO_STRESS_REGIME_FOUND_BUT_METRIC_SENSITIVE_TO_DEGENERATION",
+  "note": "v1.0 substrate \u03c8 riding at 1.0 in baseline regimes is the architecturally-correct robust behavior. gap_variance_health is designed to alert on *compose degeneration* (low variance), not stress (high variance). The proof point verifies the metric DOES respond when the failure mode it was designed for actually occurs."
+}

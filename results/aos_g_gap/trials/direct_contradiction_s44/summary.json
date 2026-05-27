@@ -1,0 +1,53 @@
+{
+  "trial_id": "direct_contradiction_s44",
+  "condition": "direct_contradiction",
+  "seed": 44,
+  "n_beats": 600,
+  "baseline_mean_delta": 2.8538436889648438,
+  "baseline_std_delta": 1.6862519979476929,
+  "pre_pert_mean_delta": 3.6298136711120605,
+  "post_pert_mean_delta": 6.384713649749756,
+  "post_pre_ratio": 1.7589645385742188,
+  "peak_delta": 9.15219783782959,
+  "peak_beat": 211,
+  "recovery_half_life_beats": 12.0,
+  "theta_gap_correlation": -0.40870566699311356,
+  "cascade_per_organ": {
+    "anima": {
+      "peak_beat": 219,
+      "peak_z": 3.54262113571167
+    },
+    "eidolon": {
+      "peak_beat": 201,
+      "peak_z": 3.3245646953582764
+    },
+    "mneme": {
+      "peak_beat": 207,
+      "peak_z": 4.31596040725708
+    },
+    "nous": {
+      "peak_beat": 218,
+      "peak_z": 5.569713115692139
+    },
+    "pneuma": {
+      "peak_beat": 205,
+      "peak_z": 3.220791816711426
+    }
+  },
+  "cascade_order": [
+    "eidolon",
+    "pneuma",
+    "mneme",
+    "nous",
+    "anima"
+  ],
+  "cascade_delays": [
+    0,
+    4,
+    6,
+    17,
+    18
+  ],
+  "n_events": 80,
+  "elapsed_s": 0.15353621519170702
+}

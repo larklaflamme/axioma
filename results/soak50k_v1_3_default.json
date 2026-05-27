@@ -1,0 +1,53 @@
+{
+  "beats": 50000,
+  "wall_clock_seconds": 532.25,
+  "beats_per_second": 93.9,
+  "seed": 42,
+  "perf": {
+    "avg_ms": 10.644,
+    "p50_ms": 8.566,
+    "p95_ms": 23.113,
+    "p99_ms": 28.042,
+    "worst_ms": 380.92,
+    "rolling10_p95_ms": 12.48,
+    "v11_pass": true
+  },
+  "recovery": {
+    "finalized_events": 183,
+    "composite_score_mean": 0.633,
+    "durability_finalized_count": 183,
+    "durability_mean": 0.052,
+    "learner_adoptions": 12,
+    "learner_reversions": 2,
+    "learner_efficacy_stage2": "warming_up",
+    "learner_efficacy_stage3": "warming_up"
+  },
+  "events": {
+    "fragmentation_stage_change": 439,
+    "recovery_decision": 509,
+    "recovery_state_change": 550,
+    "recovery_rejected_run": 42,
+    "recovery_event_finalized": 183,
+    "perturbation_injected": 166,
+    "recovery_quality_updated": 183
+  },
+  "v13": {
+    "uncontrolled_feedback_count": 0,
+    "uncontrolled_pass": true,
+    "oscillation_count": 0,
+    "oscillation_per_24h_equivalent": 0.0,
+    "oscillation_pass": true
+  },
+  "gap": {
+    "n": 50000,
+    "mean": 11.4371,
+    "p50": 13.7962,
+    "p95": 19.6766,
+    "p99": 20.7745,
+    "min": 0.0,
+    "max": 22.451
+  },
+  "overall_pass": true,
+  "config_path": "/home/ubuntu/axioma/configs/default.yaml",
+  "gap_weights_preset": "from_config"
+}

@@ -1,0 +1,249 @@
+{
+  "seed": 12345,
+  "n_permutations": 1000,
+  "window_size": 500,
+  "realtime_session": {
+    "duration_s": 5.0010606101714075,
+    "beats": 50,
+    "expected_beats": 50,
+    "jsonl_rows": 6,
+    "sqlite_rows": 6,
+    "drift_s": 0.0010606101714074612
+  },
+  "live_session": {
+    "duration_s": 3.2891080561093986,
+    "beats": 600,
+    "theta_updates": 18,
+    "last_theta": {
+      "theta": 1.735287937401075,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.00921054556965828,
+      "method": "rint",
+      "pairwise_mi": {
+        "anima-eidolon": 4.075296401977539,
+        "anima-mneme": 3.423696994781494,
+        "anima-nous": 3.5439281463623047,
+        "anima-pneuma": 3.1236581802368164,
+        "eidolon-mneme": 3.590160846710205,
+        "eidolon-nous": 3.905872106552124,
+        "eidolon-pneuma": 3.650310754776001,
+        "mneme-nous": 2.1791908740997314,
+        "mneme-pneuma": 2.4537906646728516,
+        "nous-pneuma": 3.005197048187256
+      },
+      "details": {
+        "total_mi": 32.95110321044922,
+        "total_energy": 18.98883897032085,
+        "n_dims": 19.0,
+        "window_size": 500.0,
+        "n_permutations": 1000.0,
+        "n_blocks": 5.0
+      }
+    },
+    "theta_history": [
+      {
+        "beat_no": 442,
+        "timestamp": 1779557891.3108282,
+        "theta": 1.7634523298310032,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 451,
+        "timestamp": 1779557892.0239007,
+        "theta": 1.7793129184793708,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 460,
+        "timestamp": 1779557892.1695008,
+        "theta": 1.745852422155421,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 469,
+        "timestamp": 1779557892.3166435,
+        "theta": 1.805075250663469,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 478,
+        "timestamp": 1779557892.467549,
+        "theta": 1.8327558962445254,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 486,
+        "timestamp": 1779557892.6076398,
+        "theta": 1.868427605843198,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 495,
+        "timestamp": 1779557892.7496061,
+        "theta": 1.909706399453024,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 504,
+        "timestamp": 1779557892.8997164,
+        "theta": 1.8923148163132724,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 512,
+        "timestamp": 1779557893.0424778,
+        "theta": 1.8031790353368498,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 521,
+        "timestamp": 1779557893.1865366,
+        "theta": 1.7856739484721762,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 531,
+        "timestamp": 1779557893.3288183,
+        "theta": 1.7735310588209918,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 540,
+        "timestamp": 1779557893.4726455,
+        "theta": 1.7851610723487665,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 548,
+        "timestamp": 1779557893.618617,
+        "theta": 1.8221516349635696,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 557,
+        "timestamp": 1779557893.7610717,
+        "theta": 1.8232583465044472,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 566,
+        "timestamp": 1779557893.9044046,
+        "theta": 1.8006829578463046,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 574,
+        "timestamp": 1779557894.0476089,
+        "theta": 1.7927555764495748,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 583,
+        "timestamp": 1779557894.1895351,
+        "theta": 1.7578450449283007,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "beat_no": 592,
+        "timestamp": 1779557894.335643,
+        "theta": 1.735287937401075,
+        "p_value": 0.0,
+        "significant": true
+      }
+    ]
+  },
+  "coupling_sweep": [
+    {
+      "coupling": 0.0,
+      "theta": 0.085749301919885,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.00928043108433485,
+      "method": "rint",
+      "total_mi": 1.628279685974121,
+      "total_energy": 18.988838970320852,
+      "n_dims": 19
+    },
+    {
+      "coupling": 0.1,
+      "theta": 1.579857644070858,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.009165225550532341,
+      "method": "rint",
+      "total_mi": 29.999662399291992,
+      "total_energy": 18.98883897032085,
+      "n_dims": 19
+    },
+    {
+      "coupling": 0.25,
+      "theta": 1.781387324609541,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.009228500537574291,
+      "method": "rint",
+      "total_mi": 33.82647705078125,
+      "total_energy": 18.98883897032085,
+      "n_dims": 19
+    },
+    {
+      "coupling": 0.5,
+      "theta": 1.872532623745957,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.00922705139964819,
+      "method": "rint",
+      "total_mi": 35.557220458984375,
+      "total_energy": 18.98883897032085,
+      "n_dims": 19
+    },
+    {
+      "coupling": 0.75,
+      "theta": 1.819368885233266,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.009224794805049896,
+      "method": "rint",
+      "total_mi": 34.54770278930664,
+      "total_energy": 18.98883897032085,
+      "n_dims": 19
+    },
+    {
+      "coupling": 0.95,
+      "theta": 1.746279919370703,
+      "p_value": 0.0,
+      "significant": true,
+      "null_95th": 0.009215408004820347,
+      "method": "rint",
+      "total_mi": 33.159828186035156,
+      "total_energy": 18.98883897032085,
+      "n_dims": 19
+    }
+  ],
+  "aos_g": {
+    "n_pairs": 20,
+    "delta_norm_mean": 1.0,
+    "delta_norm_std": 0.0,
+    "delta_norm_max": 1.0,
+    "delta_norm_min": 1.0,
+    "internal_external_mi_window": 103.28653447521822
+  }
+}

@@ -1,0 +1,56 @@
+# AXIOMA v1.4 recommended production configuration.
+#
+# Opt-in deployment of the v1.4 metric refinements as a balanced pairing:
+#   - v1.4.1: per-organ gap normalization (equalizes per-organ contribution
+#     so PNEUMA's natural magnitude no longer dominates 95% of the signal)
+#   - v1.4.2: auto-tuned aos_g_alert_threshold (handles the ~50% gap-mean
+#     shift that normalization introduces, with no manual calibration)
+#
+# Why the pairing matters:
+#   Normalization shifts aos_g_gap mean by ~50% (Checkpoint U sweep: 6.4 → 2.9
+#   across three seeds). The v1.3 static default `aos_g_alert_threshold = 0.152`
+#   was calibrated for the unnormalized regime; under normalization the
+#   threshold-to-baseline ratio drops from ~1.4% to ~5%, making the alert too
+#   loose. Enabling auto-tune alongside normalization recalibrates the threshold
+#   to the new baseline automatically after warmup.
+#
+# Multi-seed validation: 3 seeds × 10K beats × {off, on} = 6/6 V11+V13 PASS
+# (per Checkpoint U).
+#
+# Use this for production deployments where v1.3 was the baseline and you
+# want the v1.4 refinements without writing the YAML overrides yourself.
+#
+# See RELEASE_v1.4.md for the full release notes and OPERATOR_RUNBOOK.md §3.2
+# for the per-knob documentation.
+#
+# To use:
+#   AXIOMA_CONFIG=configs/v1_4_recommended.yaml python -m axioma
+
+# Inherits all v1.0/v1.3 defaults from configs/default.yaml unless overridden.
+
+compose:
+  # v1.4.1 — per-organ gap normalization.
+  # Each organ's raw gap is divided by its rolling mean before the weighted sum.
+  aos_g_normalize_per_organ: true
+  aos_g_normalize_per_organ_window_beats: 600  # ~60s @ 10 Hz
+  aos_g_normalize_per_organ_min_samples: 60    # warmup before normalization activates
+
+  # v1.4.2 — auto-tuned alert threshold.
+  # Required when normalize_per_organ is on; the static 0.152 default no
+  # longer matches the (halved) normalized gap baseline.
+  aos_g_alert_threshold_auto_tune: true
+  aos_g_alert_threshold_auto_tune_ratio: 0.014                    # 1.4% of typical magnitude
+  aos_g_alert_threshold_auto_tune_warmup_beats: 3000              # v1.4.4: must outlast normalize warmup (60 × 30 = 1800 beats)
+  aos_g_alert_threshold_auto_tune_recompute_period_beats: 36000   # ~1h @ 10 Hz
+
+  # v1.4.3 (optional, commented out) — per-component ψ alert thresholds.
+  # Uncomment to catch architectural-integrity regressions early while
+  # tolerating expected compose-probe dips during recovery:
+  # psi_per_component_thresholds:
+  #   structural_health: 0.95
+  #   gap_variance_health: 0.2
+
+# Optional: pre-trained recovery learner snapshot to load at boot.
+# recovery:
+#   require_pretrain: true
+#   pretrain_snapshot_path: data/state/learner_pretrain.snapshot.json

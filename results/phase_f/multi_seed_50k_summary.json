@@ -1,0 +1,104 @@
+{
+  "presets": {
+    "pneuma_weighted": {
+      "n_seeds": 3,
+      "seeds": [
+        13,
+        42,
+        7
+      ],
+      "rolling10_p95_ms": {
+        "n": 3,
+        "mean": 17.329,
+        "median": 19.619,
+        "min": 12.619,
+        "max": 19.749
+      },
+      "finalized_events": {
+        "n": 3,
+        "mean": 190,
+        "median": 187,
+        "min": 183,
+        "max": 200
+      },
+      "composite_score": {
+        "n": 3,
+        "mean": 0.6197,
+        "median": 0.619,
+        "min": 0.607,
+        "max": 0.633
+      },
+      "learner_adoptions": {
+        "n": 3,
+        "mean": 9.6667,
+        "median": 9,
+        "min": 5,
+        "max": 15
+      },
+      "learner_reversions": {
+        "n": 3,
+        "mean": 2,
+        "median": 2,
+        "min": 2,
+        "max": 2
+      },
+      "v11_all_pass": true,
+      "v13_uncontrolled_all_pass": true,
+      "v13_oscillation_all_pass": true,
+      "overall_all_pass": true
+    },
+    "uniform": {
+      "n_seeds": 3,
+      "seeds": [
+        13,
+        42,
+        7
+      ],
+      "rolling10_p95_ms": {
+        "n": 3,
+        "mean": 17.3573,
+        "median": 19.592,
+        "min": 12.835,
+        "max": 19.645
+      },
+      "finalized_events": {
+        "n": 3,
+        "mean": 188.3333,
+        "median": 185,
+        "min": 180,
+        "max": 200
+      },
+      "composite_score": {
+        "n": 3,
+        "mean": 0.6217,
+        "median": 0.621,
+        "min": 0.609,
+        "max": 0.635
+      },
+      "learner_adoptions": {
+        "n": 3,
+        "mean": 5.3333,
+        "median": 6,
+        "min": 4,
+        "max": 6
+      },
+      "learner_reversions": {
+        "n": 3,
+        "mean": 2,
+        "median": 2,
+        "min": 2,
+        "max": 2
+      },
+      "v11_all_pass": true,
+      "v13_uncontrolled_all_pass": true,
+      "v13_oscillation_all_pass": true,
+      "overall_all_pass": true
+    }
+  },
+  "pneuma_vs_uniform": {
+    "adoptions_mean_uniform": 5.3333,
+    "adoptions_mean_pneuma_weighted": 9.6667,
+    "ratio": 1.81,
+    "reproduces_checkpoint_j_finding": true
+  }
+}

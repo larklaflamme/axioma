@@ -1,0 +1,38 @@
+# v1.5 migration path: restore v1.4 behavior (normalize off, static threshold).
+#
+# v1.5 flipped two ComposeConfig defaults ON (per Checkpoint Y's empirical
+# sweep — V11/V13 6/6 PASS, cross-seed CV=3.2%, first_set within 1.07-1.31×
+# of converged across 3 seeds × 50K beats):
+#
+#   aos_g_normalize_per_organ:      False → True
+#   aos_g_alert_threshold_auto_tune: False → True
+#
+# Operators with established v1.4 deployments who want exact behavioral
+# parity (unnormalized weighted L2 gap + static 0.152 alert threshold) load
+# this YAML to restore the prior defaults:
+#
+#   AXIOMA_CONFIG=configs/v1_4_backwards_compat.yaml python -m axioma
+#
+# Operators on v1.5+ deployments should use the default config — the new
+# defaults are a strict UX improvement (auto-calibrating threshold + balanced
+# per-organ contribution; no manual calibration step needed). Empirical
+# justification + per-seed data in RELEASE_v1.5.md.
+
+# Inherits all v1.3 + v1.4 defaults from configs/default.yaml unless
+# overridden below.
+
+compose:
+  # Restore v1.0..v1.4 unnormalized weighted L2 gap.
+  aos_g_normalize_per_organ: false
+
+  # Restore v1.0..v1.4 static alert threshold (the value calibrated for
+  # the v1.3 PNEUMA-weighted gap baseline). With normalize off and auto-tune
+  # off, this threshold stays at 0.152 for the lifetime of the deployment.
+  aos_g_alert_threshold_auto_tune: false
+
+substrate:
+  # v1.7 default-flip overrides — restore v1.4 substrate (MNEME compensations
+  # OFF). Without these, v1.4 operators upgrading to v1.7+ would get the new
+  # MNEME defaults on top of the AOS-G v1.4 regime they're trying to preserve.
+  mneme_compensation_2_enabled: false
+  mneme_compensation_3_enabled: false

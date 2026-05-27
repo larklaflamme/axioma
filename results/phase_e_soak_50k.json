@@ -1,0 +1,42 @@
+{
+  "beats": 50000,
+  "wall_clock_seconds": 544.1,
+  "beats_per_second": 91.9,
+  "seed": 42,
+  "perf": {
+    "avg_ms": 10.881,
+    "p50_ms": 8.814,
+    "p95_ms": 23.619,
+    "p99_ms": 28.671,
+    "worst_ms": 502.916,
+    "rolling10_p95_ms": 12.835,
+    "v11_pass": true
+  },
+  "recovery": {
+    "finalized_events": 180,
+    "composite_score_mean": 0.635,
+    "durability_finalized_count": 180,
+    "durability_mean": 0.055,
+    "learner_adoptions": 6,
+    "learner_reversions": 2,
+    "learner_efficacy_stage2": "warming_up",
+    "learner_efficacy_stage3": "warming_up"
+  },
+  "events": {
+    "fragmentation_stage_change": 437,
+    "recovery_decision": 504,
+    "recovery_state_change": 541,
+    "recovery_rejected_run": 42,
+    "recovery_event_finalized": 180,
+    "perturbation_injected": 166,
+    "recovery_quality_updated": 180
+  },
+  "v13": {
+    "uncontrolled_feedback_count": 0,
+    "uncontrolled_pass": true,
+    "oscillation_count": 0,
+    "oscillation_per_24h_equivalent": 0.0,
+    "oscillation_pass": true
+  },
+  "overall_pass": true
+}

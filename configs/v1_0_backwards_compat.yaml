@@ -1,0 +1,40 @@
+# v1.3 migration path: restore v1.0/v1.1/v1.2 uniform AOS-G defaults.
+#
+# v1.3 flipped the default `aos_g_gap_weights` to PNEUMA_WEIGHTED and
+# `aos_g_alert_threshold` to 0.152 (per Checkpoint L's +81% adoption finding).
+# Operators with established v1.0/v1.1/v1.2 deployments who want exact
+# behavioral parity load this YAML to restore the prior defaults:
+#
+#   AXIOMA_CONFIG=configs/v1_0_backwards_compat.yaml python -m axioma
+#
+# Operators on v1.3+ deployments should use the default config
+# (PNEUMA-weighted is now recommended; the empirical finding is in
+# RELEASE_v1.3.md).
+
+# Inherits all v1.3 defaults from configs/default.yaml unless overridden below.
+
+compose:
+  # Restore v1.0 uniform AOS-G gap (plain L2).
+  aos_g_gap_weights:
+    anima: 1.0
+    eidolon: 1.0
+    mneme: 1.0
+    nous: 1.0
+    pneuma: 1.0
+
+  # Restore v1.0 alert threshold matching uniform gap baseline.
+  aos_g_alert_threshold: 0.10
+
+  # v1.5 default-flip overrides — restore v1.0..v1.4 metric surface (no
+  # normalization, no auto-tune). Without these, v1.0 operators upgrading to
+  # v1.5+ would see the new defaults bleed in on top of the gap-weights and
+  # threshold overrides above.
+  aos_g_normalize_per_organ: false
+  aos_g_alert_threshold_auto_tune: false
+
+substrate:
+  # v1.7 default-flip overrides — restore v1.0..v1.6 substrate (MNEME
+  # compensations OFF). The promise of this YAML is "exact v1.0/v1.1/v1.2
+  # behavior" so the v1.7 substrate-amendment defaults are pinned off too.
+  mneme_compensation_2_enabled: false
+  mneme_compensation_3_enabled: false

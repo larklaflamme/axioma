@@ -1,0 +1,26 @@
+{
+  "name": "psi_sensitivity",
+  "timestamp": 1779734185.1470022,
+  "beats_sampled": 1500,
+  "seed": 42,
+  "gap_variance_health": {
+    "mean": 1.0,
+    "corr_with_psi": 0.0
+  },
+  "structural_health": {
+    "mean": 1.0,
+    "corr_with_psi": 0.0
+  },
+  "compose_probe_health": {
+    "mean": 1.0,
+    "corr_with_psi": 0.0
+  },
+  "psi": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "dominator_fractions": {
+    "gap_variance_health": 1.0
+  }
+}

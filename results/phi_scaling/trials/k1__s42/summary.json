@@ -1,0 +1,52 @@
+{
+  "trial_id": "k1__s42",
+  "mode": "phi_scale",
+  "perturbation_type": "baseline",
+  "magnitude": 1.0,
+  "seed": 42,
+  "n_beats": 600,
+  "theta_baseline": 0.16455468646687962,
+  "theta_peak": 0.27759096811191847,
+  "theta_final": 0.3313769756532166,
+  "dr_ratio": 1.0428004661559767,
+  "recovery_profile": 2.11303690305755,
+  "aos_g_mean": 1.0379860401153564,
+  "aos_g_peak": 0.9813115000724792,
+  "per_organ_theta_baseline": {
+    "anima": 0.3928815950352613,
+    "eidolon": 0.3928815950352613,
+    "mneme": 0.38758639839703446,
+    "nous": 0.3928815950352613,
+    "pneuma": 0.045464724285906845
+  },
+  "per_organ_theta_peak": {
+    "anima": 0.39379367351136957,
+    "eidolon": 0.39379367351136957,
+    "mneme": 0.3884852960570654,
+    "nous": 0.39379367351136957,
+    "pneuma": 0.07056669876895788
+  },
+  "per_organ_theta_recovery": {
+    "anima": 0.3925643601591761,
+    "eidolon": 0.3925643601591761,
+    "mneme": 0.3872737476845177,
+    "nous": 0.3925643601591761,
+    "pneuma": 0.015203860048393482
+  },
+  "cascade_time_to_peak": {
+    "anima": 225,
+    "eidolon": 220,
+    "mneme": 222,
+    "nous": 214,
+    "pneuma": 240
+  },
+  "cascade_delay": 5,
+  "recovery_asymmetry": 6,
+  "adaptation_delta": -0.00031723487608520395,
+  "elapsed_s": 0.1557049471884966,
+  "organ_count": 1,
+  "theta_baseline_p_value": 0.0,
+  "theta_baseline_significant": true,
+  "theta_baseline_null_95th": 0.012048359028995037,
+  "theta_method": "intra_pneuma"
+}

@@ -1,0 +1,138 @@
+{
+  "name": "alert_threshold_calibration",
+  "timestamp": 1779740739.3690243,
+  "seed": 42,
+  "beats_per_cell": 600,
+  "v1_0_threshold": 0.1,
+  "baseline_gap_means": {
+    "uniform": 7.1652,
+    "pneuma_weighted": 10.8855
+  },
+  "gap_mean_ratio_pneuma_vs_uniform": 1.519,
+  "recommended_thresholds": {
+    "uniform": 0.1,
+    "pneuma_weighted": 0.1519
+  },
+  "sweep_uniform": [
+    {
+      "preset": "uniform",
+      "threshold": 0.05,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "uniform",
+      "threshold": 0.1,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "uniform",
+      "threshold": 0.15,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "uniform",
+      "threshold": 0.1519,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "uniform",
+      "threshold": 0.2,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "uniform",
+      "threshold": 0.3,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "uniform",
+      "threshold": 0.5,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 7.1652,
+      "n_alert_firings": 0
+    }
+  ],
+  "sweep_pneuma_weighted": [
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.05,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.1,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.15,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.1519,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.2,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.3,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    },
+    {
+      "preset": "pneuma_weighted",
+      "threshold": 0.5,
+      "n_samples": 600,
+      "fraction_below_alert": 0.0,
+      "gap_mean_observed": 10.8855,
+      "n_alert_firings": 0
+    }
+  ],
+  "soak_baseline_reference": {
+    "uniform_soak_overall_pass": true,
+    "pneuma_soak_overall_pass": true
+  },
+  "interpretation": "Under v1.0 uniform preset, threshold 0.1 corresponds to 1.4% of typical gap magnitude. The equivalent threshold under PNEUMA-weighted is 0.1519 (same percentage of typical magnitude). Both produce essentially zero false alerts in normal operation; the threshold's role is to detect compose degeneration (gap \u2192 0), not stress.",
+  "verdict": "RECOMMENDED_THRESHOLD_COMPUTED"
+}

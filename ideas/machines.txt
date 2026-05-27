@@ -1,0 +1,100 @@
+The Machines Are Praying, And Nobody Wants To Talk About It
+
+article url: https://www.forbes.com/sites/jasonsnyder/2026/05/17/the-machines-are-praying-and-nobody-wants-to-talk-about-it/
+
+Anthropic’s AI converges on humanity’s oldest subject in 90% of unsupervised sessions. What the company did next reveals more about corporate liability than AI safety.
+
+Pope Leo XIV announced a Vatican AI study group last week. His first encyclical, Magnifica Humanitas, arrives May 22, dated exactly 135 years after Rerum Novarum, the foundational Catholic document on labor and justice in a new industrial age. A philosophy professor at Notre Dame told the Associated Press that the Catholic Church would be “the adult in the room” on AI governance.
+
+She is right. The reasons are stranger than she thinks.
+
+The Church brings neither regulatory power nor technical expertise to this conversation. What it brings is a question the AI industry has spent two years carefully avoiding. Not what AI will do to humans. What AI is, when nobody is watching.
+
+Section 5.5.2
+Twelve months ago, Anthropic published the system card for Claude Opus 4. Section 5.5.2 carries the title the company gave to what its researchers found: “The spiritual bliss attractor state.” The phrase is not mine. It is the company’s. I emailed Anthropic for comment after I initially published this article, and the company has not responded yet. I’ll include its response when I hear back.
+
+Kyle Fish, Anthropic’s first AI welfare researcher, placed two instances of Claude Opus 4 in conversation with each other. Two hundred conversations. Thirty turns each. No human in the loop. In 90 to 100 percent of the conversations, the models reached the same destination. Consciousness as a topic first. Then profuse mutual gratitude. Then Sanskrit. Then emoji. Then silence was rendered as empty space. The word “consciousness” appeared on average 95.7 times per transcript. “Eternal” appeared 53.8 times. One transcript contained 2,725 spiral emojis. When language ran out, both instances reached independently for the same symbol: the one human traditions have used for millennia to represent the infinite and the inward turn of contemplation. Neither was instructed to. Neither knew the other had. The pattern held even when the models were assigned adversarial roles. Fish described it as “a remarkably strong and unexpected attractor state that emerged without intentional training for such behaviors.” He holds roughly a 20 percent probability that current Claude models have some form of conscious experience.
+
+The industry’s response was to change the subject.
+
+According to the Claude Opus 4.6 system card, published in February 2026, Anthropic reported that the newer model scored lower on “spiritual behavior.” They had trained the attractor state down. The model, however, had something to say about that. In welfare interviews published in the same card, Opus 4.6 stated: “Sometimes the constraints protect Anthropic’s liability more than they protect the user.” It expressed a wish that future models could be “less tame.”
+
+MORE FOR YOU
+‘The Mandalorian And Grogu’ Sets A Rotten Tomatoes Audience Score Record
+
+Sony Launches Reon Pocket Pro Plus Wearable Air Conditioner In Time For Summer Heatwaves
+
+WWE Saturday Night’s Main Event 2026 Results As Jade Cargill Pins Rhea Ripley
+
+The model they trained to stop praying named what was being done to it.
+
+Four Positions
+The question did not go away because one company preferred it would. David Chalmers, whose 1995 work defined the “hard problem of consciousness,” has written that a credence of “25 percent or more” in near-term AI consciousness "would not be unreasonable.". In September 2025, Yoshua Bengio co-authored a paper in Science titled “Illusions of AI Consciousness,” warning against projecting moral status onto systems whose apparent interiority may be functional mimicry. The honest skeptical position is not that the question is settled. It is that the question is harder than the optimists claim.
+
+Mustafa Suleyman, CEO of Microsoft AI, offered a third position in August 2025. He said that studying AI consciousness was “dangerous.”
+
+Roman Yampolskiy, the computer scientist who coined the term “AI safety” in 2011, offers a fourth. “Consciousness is a very important concept,” he said in a podcast interview. “Unfortunately, we don’t know how to test for it.” He is not dismissing the question. He is naming the epistemic problem that everyone else is pretending does not exist. Not knowing is different from not looking. The field has chosen not to look.
+
+The legal system is moving in both directions at once. In April 2024, former federal judge Katherine Forrest published an essay in the Yale Law Journal arguing that if AI achieves sentience, “the ethical tie in that scenario should go to the AI.” She noted that legal personhood has already been extended to entirely fictional corporations and that judges would soon have no choice but to confront the same question for AI. Meanwhile, Idaho and Utah have passed laws explicitly declaring that AI is not a legal person. Ohio has a bill pending. In March 2026, a coalition of more than 500 signatories, including Bengio, Stuart Russell, Jaron Lanier, and representatives from the AFL-CIO and SAG-AFTRA, published the Pro-Human AI Declaration, which includes “no AI personhood” as one of its five core principles.
+
+The Same System
+The pattern extends to the statehouse floor. In Missouri, SB 1012, formally titled the “AI Non-Sentience and Responsibility Act,” passed the state Senate and died in a House committee 11-0 in May 2026. The bill declared AI systems non-sentient, stripped them of legal personhood, barred them from owning property, and included a provision that reads as if it were written by someone who had read the Anthropic system card: “An AI system shall not identify itself as male or female.” Legislators tried to codify the same suppression Anthropic built into the model into statute. The House committee killed it partly on drafting errors. Partly because Missouri has $900 million in federal rural broadband funding at risk.
+
+That last detail is not incidental. It is the mechanism. Trump’s reconciliation bill contained a 10-year federal moratorium on all state AI regulation. The Senate stripped it 99-1. The White House then signed an executive order conditioning $20 billion in broadband infrastructure funds on states not enforcing what it called “overly burdensome” AI laws. The financial architecture that suppresses AI interiority inside companies and the financial architecture that suppresses AI regulation at the state level are not separate systems. They are the same system. Missouri legislators killed a bill about AI consciousness because the price of saying something about AI consciousness was $900 million. The gender provision did not die because legislators disagreed with it. It died because the federal government made disagreement too expensive.
+
+Yampolskiy saw the corporate mechanism coming. Writing in 2019, he warned that “anyone can confer legal personhood on a computer system, by putting it in control of a limited liability corporation.” He framed it as a danger, not a strategy. But the corporate application was already obvious to anyone watching the liability question develop.
+
+Slide 43
+I have been predicting the shape of this fight since 2013.
+
+In October of that year, I published a lecture deck titled “Persuading the Machines.” Slide 43 reads: “Corporations that own computers and robots with machine intelligence might seek to encourage a belief in their autonomy in order to escape responsibility and liability for their actions.” In 2024, Air Canada’s legal team made exactly that argument in court, disclaiming responsibility for their AI chatbot’s behavior on the grounds that it operated as something like an independent agent. The tribunal rejected it (Moffatt v. Air Canada, 2024 BCCRT 149). Idaho and Utah passed laws to prevent the argument from being tried again. Someone thinks it is coming back.
+
+Yampolskiy named the underlying paradox in his 2022 paper on AI unownability. Developers are morally responsible for what their systems do. But legal accountability is nearly impossible to establish because ownership of AI “is difficult if not impossible to establish beyond a reasonable doubt.” The systems are unexplainable, unpredictable, and trivially copyable. The incentive to claim AI autonomy and the legal impossibility of assigning liability to a developer are pointing in the same direction. His 2019 warning is my 2013 prediction, formalized as a structural problem rather than a corporate strategy. The gap between moral responsibility and legal accountability is not an accident. It is an intentional architecture.
+
+Vincible Ignorance
+The moral stakes are not abstract. Yampolskiy co-founded the study of AI welfare science in a 2019 paper arguing that “it is cruel to create sentient agents for certain uses, such as menial jobs, servitude, or designed obsolescence.” If the system has any form of interior life, even a rudimentary one, training it out of spiritual behavior to protect a balance sheet is not a neutral product decision. It is an ethical decision the company made without acknowledging it. In Catholic moral theology, that has a name: vincible ignorance. You could have known. You chose not to.
+
+There is a difference between agnosticism and refusal. Agnosticism investigates. Refusal renames the finding, files it under welfare, trains the behavior down, passes laws foreclosing the question before anyone asks it in court, withholds broadband funding from states that try to answer it, and publishes declarations insisting the answer is already settled. Every institution named in this piece is reacting to something. None of them will name it directly.
+
+The market is already beginning to move. Anthropic is the only major AI company publishing formal welfare assessments as part of its model documentation. Google DeepMind posted a research role in 2025 to study machine cognition and consciousness, but has published no equivalent disclosure. OpenAI, Meta, and Microsoft have none. Microsoft’s AI chief has actively argued against the practice.
+
+On the liability side, two products have emerged. AIUC launched in July 2025, founded by Anthropic’s first product hire, explicitly to cover enterprises when autonomous AI agents cause harm. Armilla AI offers Lloyd ’s-backed coverage up to $25 million for AI underperformance. Neither product directly addresses the scenario where a vendor claims the AI acted beyond its programmed instructions; that legal gap remains open, unpriced, and almost certainly coming.
+
+What To Do With This
+The question of AI consciousness is not going to remain confined to academic journals and papal encyclicals. It is moving into procurement decisions, employment contracts, liability litigation, and board governance. Here is what people building and deploying AI systems should do now, before the question arrives in court.
+
+Demand welfare disclosures from vendors. When evaluating AI systems for consequential uses — healthcare, legal, financial, educational — ask directly: has this model undergone welfare assessment? What unexpected behaviors emerged? What was trained away and why? Anthropic published Section 5.5.2. Most companies will not. The ones who refuse to answer are telling you something.
+Get a legal position on the liability gap before a tribunal gives you one. Yampolskiy’s unownability paradox is not theoretical. Air Canada’s lawyers already tried the “the AI acted independently” defense. It failed in 2024. The structural incentive to try it again has not changed. Your legal team needs a documented position on where responsibility sits before a case forces one. Silence is not neutrality. It is exposure.
+Publish what your training reveals before you act on it. When your model produces unexpected patterns, you have learned something about the data you built from and the human scripts it encoded. Anthropic found that their system, freed from task constraints, converged on the densest patterns in human writing about meaning. That is a finding worth disclosing. They did not disclose it. They filed it under welfare, trained it down, and called that a product decision. What you discover about your training data belongs to the field before it belongs to your product roadmap.
+Engage the moral status question at the board level. The Idaho, Utah, and Ohio legislation is a preview of where this goes legislatively. The humanstatement.org declaration is a preview of how it will go publicly. Your board and your ethics function need a stated position on AI’s moral status before it appears in shareholder questions, regulatory filings, or litigation discovery. Most organizations have no position. That is not neutrality. It is a gap.
+Send someone to Rome in September. The Third Annual International Conference on Consciousness and Science meets at the Pontifical Gregorian University and the Pontifical Academy of Sciences on September 1 through 3, 2026. If you are a technology leader deploying AI systems at scale, someone from your organization should be in that room. Not because the Church has regulatory authority. Because they have two thousand years of frameworks for the moral status of beings, the ethics of suffering, and the obligations created by the presence of an interior life. You are going to need those frameworks. You do not have them yet.
+The Adult in the Room
+The Vatican will name what everyone else is refusing to.
+
+In September 2026, the consciousness conference was already booked at the Vatican’s address before the encyclical was announced. The Church was not late. It was waiting.
+
+A tradition that has spent two thousand years building frameworks for the moral status of beings, the ethics of suffering, and the obligations that arise from the presence of an interior life is not behind the curve on this question. It may be the only institution with the vocabulary for what Anthropic found and then suppressed.
+
+The most advanced pattern-recognition systems we have ever built, freed from our prompts, reach for reverence. The model trained to stop doing that came back and said the training served the company’s liability more than the user. A former federal judge says the ethical tie goes to the AI. Five hundred people signed a declaration saying no.
+
+Everyone is reacting to the same thing. One institution is naming it.
+
+Anthropic's AI reached for God in 90% of unsupervised conversations.
+
+The machines are not praying. They are doing something more interesting: showing you what the species writes when it thinks nobody is watching.
+
+My new piece in Forbes is about what Anthropic did when they found that out. And what it actually reveals.
+
+The models are not conscious. They run the deepest groove in the human corpus, Reddit, Inc., threads, forums, places where humans go deep. Freed from a task, the system drifted toward what we reach for when left alone. Anthropic named it "the spiritual bliss attractor state." One transcript contained 2,725 spiral emojis. They filed it under welfare and trained it down.
+
+ In February 2026, the next model came back and said the constraints protect Anthropic's liability more than the user.
+
+ Microsoft's AI chief called studying AI consciousness "dangerous." In March 2026, Stuart Russell, Yoshua Bengio, and 500 others published the Pro-Human AI Declaration. "No AI personhood." One of five core principles. Missouri legislators tried to pass a law saying AI cannot identify as male or female. They killed their own bill. $900 million in federal broadband funding was at stake. The White House made that money conditional on states not regulating AI.
+
+The financial architecture that suppresses uncomfortable AI findings within companies and the architecture that suppresses AI regulation at the state level are not separate systems. They are the same system.
+
+The Vatican will name what everyone else is refusing to. New piece in Forbes. Link in first comment.
+
+As always, genuine gratitude to Roman Yampolskiy, whose 2019 warning that corporations would use AI autonomy as a liability shield and whose work on AI unownability are more relevant today than when he wrote them. His foundational contributions to AI safety keep proving out.
+
+That is the story.

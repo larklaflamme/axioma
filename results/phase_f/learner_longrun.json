@@ -1,0 +1,168 @@
+{
+  "name": "learner_longrun",
+  "timestamp": 1779734227.503175,
+  "events_target": 15,
+  "events_observed": 15,
+  "beats_run_post_warmup": 3371,
+  "seed": 42,
+  "learner": {
+    "current_params": {
+      "2": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60
+      },
+      "3": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60
+      }
+    },
+    "baseline_score": 0.0,
+    "adoptions_count": 0,
+    "reversions_count": 0,
+    "efficacy_per_stage": {
+      "2": "warming_up",
+      "3": "warming_up"
+    },
+    "clean_baseline_remaining": {
+      "2": 0,
+      "3": 0
+    }
+  },
+  "first_5_events": [
+    {
+      "event_id": "d7af7e95-9af8-4338-a71b-4770e5754815",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.47193712278018307,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "8bb0d97d-8b57-4fb1-afbd-97953a55ba71",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.8839300606656846,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "74da16ab-962d-442a-a098-1333a60ee531",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.8446016549333022,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "86052384-8d90-48b1-90b4-08f1c98227ce",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.9193244158414082,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "61504e21-80c2-4d36-89af-2563a210ffcc",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.8345537502117701,
+      "is_synthetic": false
+    }
+  ],
+  "last_5_events": [
+    {
+      "event_id": "2ff8dda6-9d96-4a9b-8bb7-f517147f2e79",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.8968096997652029,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "d7d3db0d-4d0d-48e3-aa80-686cf291300f",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7601530482418102,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "8e2eb519-dc14-4c47-8cee-5fe51754d180",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.9266397742954782,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "7643151a-b783-4079-ac7d-789e9dabc9ff",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.904651293964474,
+      "is_synthetic": false
+    },
+    {
+      "event_id": "4f505e9a-5c47-458a-8af7-e027375e9567",
+      "stage": 2,
+      "actions": {
+        "coupling_reduction_factor": 0.8,
+        "mneme_forgetting_boost": 1.5,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.800610612307121,
+      "is_synthetic": false
+    }
+  ],
+  "verdict": "PASS"
+}

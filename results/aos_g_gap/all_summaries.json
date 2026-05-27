@@ -1,0 +1,1136 @@
+[
+  {
+    "trial_id": "direct_contradiction_s42",
+    "condition": "direct_contradiction",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 4.707420349121094,
+    "post_pre_ratio": 1.0791517496109009,
+    "peak_delta": 9.261635780334473,
+    "peak_beat": 246,
+    "recovery_half_life_beats": 10.0,
+    "theta_gap_correlation": -0.19626717211694258,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 200,
+        "peak_z": -0.2099003940820694
+      },
+      "eidolon": {
+        "peak_beat": 247,
+        "peak_z": 2.5236167907714844
+      },
+      "mneme": {
+        "peak_beat": 200,
+        "peak_z": 3.649338722229004
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.608429908752441
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.7099784016609192
+      }
+    },
+    "cascade_order": [
+      "anima",
+      "mneme",
+      "pneuma",
+      "nous",
+      "eidolon"
+    ],
+    "cascade_delays": [
+      0,
+      0,
+      40,
+      46,
+      47
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.15579307777807117,
+    "trial_dir": "results/aos_g_gap/trials/direct_contradiction_s42"
+  },
+  {
+    "trial_id": "direct_contradiction_s43",
+    "condition": "direct_contradiction",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 2.2634453773498535,
+    "post_pre_ratio": 2.6193647384643555,
+    "peak_delta": 5.015573501586914,
+    "peak_beat": 215,
+    "recovery_half_life_beats": 4.0,
+    "theta_gap_correlation": -0.22731444794295025,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 214,
+        "peak_z": 1.5541465282440186
+      },
+      "eidolon": {
+        "peak_beat": 201,
+        "peak_z": 1.6541997194290161
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.116620063781738
+      },
+      "nous": {
+        "peak_beat": 215,
+        "peak_z": 7.003610134124756
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.2993371486663818
+      }
+    },
+    "cascade_order": [
+      "eidolon",
+      "anima",
+      "nous",
+      "pneuma",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      13,
+      14,
+      51,
+      57
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.1563286071177572,
+    "trial_dir": "results/aos_g_gap/trials/direct_contradiction_s43"
+  },
+  {
+    "trial_id": "direct_contradiction_s44",
+    "condition": "direct_contradiction",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 6.384713649749756,
+    "post_pre_ratio": 1.7589645385742188,
+    "peak_delta": 9.15219783782959,
+    "peak_beat": 211,
+    "recovery_half_life_beats": 12.0,
+    "theta_gap_correlation": -0.40870566699311356,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 219,
+        "peak_z": 3.54262113571167
+      },
+      "eidolon": {
+        "peak_beat": 201,
+        "peak_z": 3.3245646953582764
+      },
+      "mneme": {
+        "peak_beat": 207,
+        "peak_z": 4.31596040725708
+      },
+      "nous": {
+        "peak_beat": 218,
+        "peak_z": 5.569713115692139
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.220791816711426
+      }
+    },
+    "cascade_order": [
+      "eidolon",
+      "pneuma",
+      "mneme",
+      "nous",
+      "anima"
+    ],
+    "cascade_delays": [
+      0,
+      4,
+      6,
+      17,
+      18
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.15353621519170702,
+    "trial_dir": "results/aos_g_gap/trials/direct_contradiction_s44"
+  },
+  {
+    "trial_id": "surprising_falsehood_s42",
+    "condition": "surprising_falsehood",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 3.8915395736694336,
+    "post_pre_ratio": 0.8921152949333191,
+    "peak_delta": 9.238238334655762,
+    "peak_beat": 246,
+    "recovery_half_life_beats": 10.0,
+    "theta_gap_correlation": 0.001041791427315684,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 246,
+        "peak_z": -0.24345843493938446
+      },
+      "eidolon": {
+        "peak_beat": 247,
+        "peak_z": 1.7435026168823242
+      },
+      "mneme": {
+        "peak_beat": 239,
+        "peak_z": 2.755272150039673
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.608425617218018
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.7285801768302917
+      }
+    },
+    "cascade_order": [
+      "mneme",
+      "pneuma",
+      "anima",
+      "nous",
+      "eidolon"
+    ],
+    "cascade_delays": [
+      0,
+      1,
+      7,
+      7,
+      8
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.15874791680835187,
+    "trial_dir": "results/aos_g_gap/trials/surprising_falsehood_s42"
+  },
+  {
+    "trial_id": "surprising_falsehood_s43",
+    "condition": "surprising_falsehood",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 0.34702423214912415,
+    "post_pre_ratio": 0.4015926718711853,
+    "peak_delta": 3.4209961891174316,
+    "peak_beat": 249,
+    "recovery_half_life_beats": 103.0,
+    "theta_gap_correlation": 0.058676769922819894,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 251,
+        "peak_z": 1.5123388767242432
+      },
+      "eidolon": {
+        "peak_beat": 253,
+        "peak_z": 0.6091680526733398
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.116595268249512
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 0.055971045047044754
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.2995936870574951
+      }
+    },
+    "cascade_order": [
+      "nous",
+      "anima",
+      "pneuma",
+      "eidolon",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      5,
+      6,
+      7,
+      12
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.15667206607759,
+    "trial_dir": "results/aos_g_gap/trials/surprising_falsehood_s43"
+  },
+  {
+    "trial_id": "surprising_falsehood_s44",
+    "condition": "surprising_falsehood",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 5.785827159881592,
+    "post_pre_ratio": 1.5939736366271973,
+    "peak_delta": 8.993274688720703,
+    "peak_beat": 211,
+    "recovery_half_life_beats": 11.0,
+    "theta_gap_correlation": -0.37569784097448977,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 215,
+        "peak_z": 3.105447769165039
+      },
+      "eidolon": {
+        "peak_beat": 204,
+        "peak_z": 2.4849772453308105
+      },
+      "mneme": {
+        "peak_beat": 207,
+        "peak_z": 4.29887580871582
+      },
+      "nous": {
+        "peak_beat": 214,
+        "peak_z": 4.680408477783203
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.1666812896728516
+      }
+    },
+    "cascade_order": [
+      "eidolon",
+      "pneuma",
+      "mneme",
+      "nous",
+      "anima"
+    ],
+    "cascade_delays": [
+      0,
+      1,
+      3,
+      10,
+      11
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.1559475229587406,
+    "trial_dir": "results/aos_g_gap/trials/surprising_falsehood_s44"
+  },
+  {
+    "trial_id": "surprising_truth_s42",
+    "condition": "surprising_truth",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 3.6150808334350586,
+    "post_pre_ratio": 0.8287385702133179,
+    "peak_delta": 9.227461814880371,
+    "peak_beat": 246,
+    "recovery_half_life_beats": 10.0,
+    "theta_gap_correlation": 0.07879257446171359,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 246,
+        "peak_z": -0.24346017837524414
+      },
+      "eidolon": {
+        "peak_beat": 246,
+        "peak_z": 1.3467847108840942
+      },
+      "mneme": {
+        "peak_beat": 239,
+        "peak_z": 2.7552003860473633
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.608423233032227
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.7393631339073181
+      }
+    },
+    "cascade_order": [
+      "mneme",
+      "pneuma",
+      "anima",
+      "eidolon",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      1,
+      7,
+      7,
+      7
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.15266930614598095,
+    "trial_dir": "results/aos_g_gap/trials/surprising_truth_s42"
+  },
+  {
+    "trial_id": "surprising_truth_s43",
+    "condition": "surprising_truth",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 0.05239386484026909,
+    "post_pre_ratio": 0.06063263118267059,
+    "peak_delta": 3.4358623027801514,
+    "peak_beat": 248,
+    "recovery_half_life_beats": 104.0,
+    "theta_gap_correlation": 0.0315120609830235,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 251,
+        "peak_z": 1.5123376846313477
+      },
+      "eidolon": {
+        "peak_beat": 253,
+        "peak_z": 0.7460158467292786
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.116584777832031
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 0.0559166744351387
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.3006913661956787
+      }
+    },
+    "cascade_order": [
+      "nous",
+      "anima",
+      "pneuma",
+      "eidolon",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      5,
+      6,
+      7,
+      12
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.15450294292531908,
+    "trial_dir": "results/aos_g_gap/trials/surprising_truth_s43"
+  },
+  {
+    "trial_id": "surprising_truth_s44",
+    "condition": "surprising_truth",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 5.725839138031006,
+    "post_pre_ratio": 1.5774471759796143,
+    "peak_delta": 8.972420692443848,
+    "peak_beat": 211,
+    "recovery_half_life_beats": 11.0,
+    "theta_gap_correlation": -0.38036257403784285,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 215,
+        "peak_z": 2.9790217876434326
+      },
+      "eidolon": {
+        "peak_beat": 209,
+        "peak_z": 3.2646141052246094
+      },
+      "mneme": {
+        "peak_beat": 207,
+        "peak_z": 4.28348445892334
+      },
+      "nous": {
+        "peak_beat": 214,
+        "peak_z": 4.559972286224365
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.1433191299438477
+      }
+    },
+    "cascade_order": [
+      "pneuma",
+      "mneme",
+      "eidolon",
+      "nous",
+      "anima"
+    ],
+    "cascade_delays": [
+      0,
+      2,
+      4,
+      9,
+      10
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.15418400499038398,
+    "trial_dir": "results/aos_g_gap/trials/surprising_truth_s44"
+  },
+  {
+    "trial_id": "nonsense_s42",
+    "condition": "nonsense",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 3.5236618518829346,
+    "post_pre_ratio": 0.8077812194824219,
+    "peak_delta": 9.230229377746582,
+    "peak_beat": 246,
+    "recovery_half_life_beats": 10.0,
+    "theta_gap_correlation": -0.025719436694254923,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 246,
+        "peak_z": -0.24345843493938446
+      },
+      "eidolon": {
+        "peak_beat": 212,
+        "peak_z": 1.7298429012298584
+      },
+      "mneme": {
+        "peak_beat": 239,
+        "peak_z": 2.755234479904175
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.608425617218018
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.7311126589775085
+      }
+    },
+    "cascade_order": [
+      "eidolon",
+      "mneme",
+      "pneuma",
+      "anima",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      27,
+      28,
+      34,
+      34
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.15372718218714,
+    "trial_dir": "results/aos_g_gap/trials/nonsense_s42"
+  },
+  {
+    "trial_id": "nonsense_s43",
+    "condition": "nonsense",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 0.1341698169708252,
+    "post_pre_ratio": 0.15526758134365082,
+    "peak_delta": 3.4274680614471436,
+    "peak_beat": 248,
+    "recovery_half_life_beats": 104.0,
+    "theta_gap_correlation": -0.24328562566593748,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 251,
+        "peak_z": 1.5123361349105835
+      },
+      "eidolon": {
+        "peak_beat": 253,
+        "peak_z": 0.681191086769104
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.116562843322754
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 0.055806826800107956
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.3009237051010132
+      }
+    },
+    "cascade_order": [
+      "nous",
+      "anima",
+      "pneuma",
+      "eidolon",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      5,
+      6,
+      7,
+      12
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.15205898904241621,
+    "trial_dir": "results/aos_g_gap/trials/nonsense_s43"
+  },
+  {
+    "trial_id": "nonsense_s44",
+    "condition": "nonsense",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 6.083021640777588,
+    "post_pre_ratio": 1.6758495569229126,
+    "peak_delta": 8.851911544799805,
+    "peak_beat": 220,
+    "recovery_half_life_beats": 3.0,
+    "theta_gap_correlation": -0.43280003745930373,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 219,
+        "peak_z": 3.5421438217163086
+      },
+      "eidolon": {
+        "peak_beat": 219,
+        "peak_z": 4.513857841491699
+      },
+      "mneme": {
+        "peak_beat": 207,
+        "peak_z": 4.271609306335449
+      },
+      "nous": {
+        "peak_beat": 219,
+        "peak_z": 5.504802703857422
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.1481680870056152
+      }
+    },
+    "cascade_order": [
+      "pneuma",
+      "mneme",
+      "anima",
+      "eidolon",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      2,
+      14,
+      14,
+      14
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.15249007218517363,
+    "trial_dir": "results/aos_g_gap/trials/nonsense_s44"
+  },
+  {
+    "trial_id": "mneme_disruption_s42",
+    "condition": "mneme_disruption",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 4.749518394470215,
+    "post_pre_ratio": 1.088802456855774,
+    "peak_delta": 9.480430603027344,
+    "peak_beat": 216,
+    "recovery_half_life_beats": 5.0,
+    "theta_gap_correlation": -0.19189948540865007,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 246,
+        "peak_z": -0.24338452517986298
+      },
+      "eidolon": {
+        "peak_beat": 246,
+        "peak_z": 1.456307053565979
+      },
+      "mneme": {
+        "peak_beat": 214,
+        "peak_z": 3.469221353530884
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.608491897583008
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.6776570081710815
+      }
+    },
+    "cascade_order": [
+      "mneme",
+      "pneuma",
+      "anima",
+      "eidolon",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      26,
+      32,
+      32,
+      32
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.16332482895813882,
+    "trial_dir": "results/aos_g_gap/trials/mneme_disruption_s42"
+  },
+  {
+    "trial_id": "mneme_disruption_s43",
+    "condition": "mneme_disruption",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 0.015056203119456768,
+    "post_pre_ratio": 0.01742374151945114,
+    "peak_delta": 3.4471962451934814,
+    "peak_beat": 247,
+    "recovery_half_life_beats": 105.0,
+    "theta_gap_correlation": 0.026507388906272186,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 251,
+        "peak_z": 1.5123369693756104
+      },
+      "eidolon": {
+        "peak_beat": 253,
+        "peak_z": 0.8105093240737915
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.05984878540039
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 0.055839668959379196
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.3030179738998413
+      }
+    },
+    "cascade_order": [
+      "nous",
+      "anima",
+      "pneuma",
+      "eidolon",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      5,
+      6,
+      7,
+      12
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.15760577912442386,
+    "trial_dir": "results/aos_g_gap/trials/mneme_disruption_s43"
+  },
+  {
+    "trial_id": "mneme_disruption_s44",
+    "condition": "mneme_disruption",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 7.160969257354736,
+    "post_pre_ratio": 1.9728200435638428,
+    "peak_delta": 9.735361099243164,
+    "peak_beat": 219,
+    "recovery_half_life_beats": 4.0,
+    "theta_gap_correlation": -0.3086339741889938,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 219,
+        "peak_z": 3.24253511428833
+      },
+      "eidolon": {
+        "peak_beat": 204,
+        "peak_z": 3.2922778129577637
+      },
+      "mneme": {
+        "peak_beat": 200,
+        "peak_z": 5.490325927734375
+      },
+      "nous": {
+        "peak_beat": 219,
+        "peak_z": 5.096843242645264
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.182189702987671
+      }
+    },
+    "cascade_order": [
+      "mneme",
+      "eidolon",
+      "pneuma",
+      "anima",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      4,
+      5,
+      19,
+      19
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.15329891606234014,
+    "trial_dir": "results/aos_g_gap/trials/mneme_disruption_s44"
+  },
+  {
+    "trial_id": "random_perturbation_s42",
+    "condition": "random_perturbation",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 3.1882450580596924,
+    "post_pre_ratio": 0.7308886647224426,
+    "peak_delta": 9.629934310913086,
+    "peak_beat": 246,
+    "recovery_half_life_beats": 10.0,
+    "theta_gap_correlation": -0.025600521822668795,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 246,
+        "peak_z": 0.020778069272637367
+      },
+      "eidolon": {
+        "peak_beat": 246,
+        "peak_z": 1.7495497465133667
+      },
+      "mneme": {
+        "peak_beat": 239,
+        "peak_z": 2.93676495552063
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.857290267944336
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.6722642183303833
+      }
+    },
+    "cascade_order": [
+      "mneme",
+      "pneuma",
+      "anima",
+      "eidolon",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      1,
+      7,
+      7,
+      7
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.1545787958893925,
+    "trial_dir": "results/aos_g_gap/trials/random_perturbation_s42"
+  },
+  {
+    "trial_id": "random_perturbation_s43",
+    "condition": "random_perturbation",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 0.02969159558415413,
+    "post_pre_ratio": 0.034360501915216446,
+    "peak_delta": 3.472499370574951,
+    "peak_beat": 247,
+    "recovery_half_life_beats": 105.0,
+    "theta_gap_correlation": -0.10255212792776539,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 251,
+        "peak_z": 1.5425024032592773
+      },
+      "eidolon": {
+        "peak_beat": 253,
+        "peak_z": 0.7853152751922607
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.087217330932617
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 0.18531835079193115
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.3213741779327393
+      }
+    },
+    "cascade_order": [
+      "nous",
+      "anima",
+      "pneuma",
+      "eidolon",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      5,
+      6,
+      7,
+      12
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.15600125002674758,
+    "trial_dir": "results/aos_g_gap/trials/random_perturbation_s43"
+  },
+  {
+    "trial_id": "random_perturbation_s44",
+    "condition": "random_perturbation",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 3.800373077392578,
+    "post_pre_ratio": 1.0469884872436523,
+    "peak_delta": 7.379734516143799,
+    "peak_beat": 219,
+    "recovery_half_life_beats": 3.0,
+    "theta_gap_correlation": -0.45805693361539346,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 208,
+        "peak_z": 3.651416540145874
+      },
+      "eidolon": {
+        "peak_beat": 219,
+        "peak_z": 3.597425699234009
+      },
+      "mneme": {
+        "peak_beat": 248,
+        "peak_z": 4.0415730476379395
+      },
+      "nous": {
+        "peak_beat": 219,
+        "peak_z": 4.33609676361084
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.5085091590881348
+      }
+    },
+    "cascade_order": [
+      "pneuma",
+      "anima",
+      "eidolon",
+      "nous",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      3,
+      14,
+      14,
+      43
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.1568360049277544,
+    "trial_dir": "results/aos_g_gap/trials/random_perturbation_s44"
+  },
+  {
+    "trial_id": "baseline_s42",
+    "condition": "baseline",
+    "seed": 42,
+    "n_beats": 600,
+    "baseline_mean_delta": 3.622587203979492,
+    "baseline_std_delta": 1.9813814163208008,
+    "pre_pert_mean_delta": 4.362148761749268,
+    "post_pert_mean_delta": 3.6298701763153076,
+    "post_pre_ratio": 0.8321289420127869,
+    "peak_delta": 9.230356216430664,
+    "peak_beat": 246,
+    "recovery_half_life_beats": 10.0,
+    "theta_gap_correlation": 0.1292287375562065,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 246,
+        "peak_z": -0.24345959722995758
+      },
+      "eidolon": {
+        "peak_beat": 246,
+        "peak_z": 1.4562472105026245
+      },
+      "mneme": {
+        "peak_beat": 239,
+        "peak_z": 2.755209445953369
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 4.608423233032227
+      },
+      "pneuma": {
+        "peak_beat": 240,
+        "peak_z": 0.736499011516571
+      }
+    },
+    "cascade_order": [
+      "mneme",
+      "pneuma",
+      "anima",
+      "eidolon",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      1,
+      7,
+      7,
+      7
+    ],
+    "n_events": 70,
+    "elapsed_s": 0.15273277601227164,
+    "trial_dir": "results/aos_g_gap/trials/baseline_s42"
+  },
+  {
+    "trial_id": "baseline_s43",
+    "condition": "baseline",
+    "seed": 43,
+    "n_beats": 600,
+    "baseline_mean_delta": 1.3518702983856201,
+    "baseline_std_delta": 0.9221867918968201,
+    "pre_pert_mean_delta": 0.8641199469566345,
+    "post_pert_mean_delta": 0.01269389595836401,
+    "post_pre_ratio": 0.014689969830214977,
+    "peak_delta": 3.442831516265869,
+    "peak_beat": 248,
+    "recovery_half_life_beats": 104.0,
+    "theta_gap_correlation": 0.17613404001292599,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 251,
+        "peak_z": 1.5123369693756104
+      },
+      "eidolon": {
+        "peak_beat": 253,
+        "peak_z": 0.8105093240737915
+      },
+      "mneme": {
+        "peak_beat": 258,
+        "peak_z": 9.116568565368652
+      },
+      "nous": {
+        "peak_beat": 246,
+        "peak_z": 0.05583978071808815
+      },
+      "pneuma": {
+        "peak_beat": 252,
+        "peak_z": 1.3014079332351685
+      }
+    },
+    "cascade_order": [
+      "nous",
+      "anima",
+      "pneuma",
+      "eidolon",
+      "mneme"
+    ],
+    "cascade_delays": [
+      0,
+      5,
+      6,
+      7,
+      12
+    ],
+    "n_events": 85,
+    "elapsed_s": 0.15949609386734664,
+    "trial_dir": "results/aos_g_gap/trials/baseline_s43"
+  },
+  {
+    "trial_id": "baseline_s44",
+    "condition": "baseline",
+    "seed": 44,
+    "n_beats": 600,
+    "baseline_mean_delta": 2.8538436889648438,
+    "baseline_std_delta": 1.6862519979476929,
+    "pre_pert_mean_delta": 3.6298136711120605,
+    "post_pert_mean_delta": 6.022753715515137,
+    "post_pre_ratio": 1.6592459678649902,
+    "peak_delta": 8.966443061828613,
+    "peak_beat": 211,
+    "recovery_half_life_beats": 11.0,
+    "theta_gap_correlation": -0.4215827123345883,
+    "cascade_per_organ": {
+      "anima": {
+        "peak_beat": 219,
+        "peak_z": 3.191765546798706
+      },
+      "eidolon": {
+        "peak_beat": 204,
+        "peak_z": 3.2906992435455322
+      },
+      "mneme": {
+        "peak_beat": 207,
+        "peak_z": 4.276834011077881
+      },
+      "nous": {
+        "peak_beat": 219,
+        "peak_z": 5.027713298797607
+      },
+      "pneuma": {
+        "peak_beat": 205,
+        "peak_z": 3.141427516937256
+      }
+    },
+    "cascade_order": [
+      "eidolon",
+      "pneuma",
+      "mneme",
+      "anima",
+      "nous"
+    ],
+    "cascade_delays": [
+      0,
+      1,
+      3,
+      15,
+      15
+    ],
+    "n_events": 80,
+    "elapsed_s": 0.15342682017944753,
+    "trial_dir": "results/aos_g_gap/trials/baseline_s44"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "name": "f8_meta_calibration",
+  "timestamp": 1779734161.6168504,
+  "session_beats": 1500,
+  "seed": 42,
+  "n_meta_emissions": 20,
+  "accuracy_rate": 1,
+  "mean_miscalibration": 0.05,
+  "system_distribution": {
+    "recovering": 20
+  },
+  "operator_distribution": {
+    "recovering": 20
+  },
+  "f8_verdict": "PASS",
+  "accuracy_verdict": "PASS",
+  "combined_verdict": "PASS",
+  "note": "Synthetic operator labels \u2014 real F8 needs live blind-labeled sessions."
+}

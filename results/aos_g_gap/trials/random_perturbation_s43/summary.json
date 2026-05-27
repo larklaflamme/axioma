@@ -1,0 +1,53 @@
+{
+  "trial_id": "random_perturbation_s43",
+  "condition": "random_perturbation",
+  "seed": 43,
+  "n_beats": 600,
+  "baseline_mean_delta": 1.3518702983856201,
+  "baseline_std_delta": 0.9221867918968201,
+  "pre_pert_mean_delta": 0.8641199469566345,
+  "post_pert_mean_delta": 0.02969159558415413,
+  "post_pre_ratio": 0.034360501915216446,
+  "peak_delta": 3.472499370574951,
+  "peak_beat": 247,
+  "recovery_half_life_beats": 105.0,
+  "theta_gap_correlation": -0.10255212792776539,
+  "cascade_per_organ": {
+    "anima": {
+      "peak_beat": 251,
+      "peak_z": 1.5425024032592773
+    },
+    "eidolon": {
+      "peak_beat": 253,
+      "peak_z": 0.7853152751922607
+    },
+    "mneme": {
+      "peak_beat": 258,
+      "peak_z": 9.087217330932617
+    },
+    "nous": {
+      "peak_beat": 246,
+      "peak_z": 0.18531835079193115
+    },
+    "pneuma": {
+      "peak_beat": 252,
+      "peak_z": 1.3213741779327393
+    }
+  },
+  "cascade_order": [
+    "nous",
+    "anima",
+    "pneuma",
+    "eidolon",
+    "mneme"
+  ],
+  "cascade_delays": [
+    0,
+    5,
+    6,
+    7,
+    12
+  ],
+  "n_events": 85,
+  "elapsed_s": 0.15600125002674758
+}

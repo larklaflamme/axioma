@@ -1,0 +1,91 @@
+{
+  "experiment": "Contradiction Injection Experiment (\u00a75.5)",
+  "date": "2026-05-23",
+  "protocol": {
+    "baseline_beats": 500,
+    "injection_beat": 501,
+    "post_beats": 300,
+    "total_beats": 800,
+    "theta_window": 500,
+    "theta_step": 10,
+    "n_permutations": 1000,
+    "coupling": 0.6,
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "contradiction_levels": [
+    "direct",
+    "implicit",
+    "weak",
+    "inconsistency",
+    "paradox"
+  ],
+  "control_conditions": [
+    "surprising_truth",
+    "surprising_falsehood",
+    "nonsense",
+    "boring_truth"
+  ],
+  "key_findings": [
+    "1. Dynamic Range Signature CONFIRMED: Stronger contradiction \u2192 larger \u03b8 drop (seed=42)",
+    "2. Context Sensitivity CONFIRMED: Different control conditions produce different responses",
+    "3. EIDOLON-PNEUMA coupling drops most: self-model disruption affects workspace integration",
+    "4. EIDOLON-NOUS coupling drops: self-model disruption affects reasoning",
+    "5. ANIMA-NOUS and ANIMA-MNEME coupling increases: compensatory mechanism",
+    "6. Effect varies by seed: system state at injection time matters",
+    "7. Perturbation decays too quickly (0.9 factor, half-life ~6.6 beats)",
+    "8. Organs not tightly enough coupled for full cascade (EIDOLON\u2192ANIMA\u2192NOUS\u2192PNEUMA)"
+  ],
+  "graded_response_seed42": {
+    "direct": {
+      "theta_drop": -0.0672,
+      "eid_pne_drop": -0.6106,
+      "eid_nou_drop": -0.757
+    },
+    "implicit": {
+      "theta_drop": -0.0576,
+      "eid_pne_drop": -0.5679,
+      "eid_nou_drop": -0.6938
+    },
+    "weak": {
+      "theta_drop": -0.0487,
+      "eid_pne_drop": -0.5247,
+      "eid_nou_drop": -0.6351
+    },
+    "inconsistency": {
+      "theta_drop": -0.0416,
+      "eid_pne_drop": -0.4883,
+      "eid_nou_drop": -0.5835
+    },
+    "paradox": {
+      "theta_drop": -0.038,
+      "eid_pne_drop": -0.4733,
+      "eid_nou_drop": -0.5586
+    }
+  },
+  "control_response_seed42": {
+    "surprising_truth": {
+      "theta_drop": -0.0035,
+      "eid_pne_drop": -0.3521,
+      "eid_nou_drop": -0.2563
+    },
+    "surprising_falsehood": {
+      "theta_drop": -0.0637,
+      "eid_pne_drop": -0.5682,
+      "eid_nou_drop": -0.7533
+    },
+    "nonsense": {
+      "theta_drop": -0.0019,
+      "eid_pne_drop": -0.2532,
+      "eid_nou_drop": -0.2922
+    },
+    "boring_truth": {
+      "theta_drop": -0.0353,
+      "eid_pne_drop": -0.46,
+      "eid_nou_drop": -0.5381
+    }
+  }
+}

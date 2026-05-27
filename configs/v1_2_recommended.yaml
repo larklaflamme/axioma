@@ -1,0 +1,44 @@
+# AXIOMA v1.2 recommended production configuration.
+#
+# Opt-in deployment of v1.2.4's PNEUMA-weighted AOS-G finding:
+#   "+81% mean recovery-learner adoptions at 50K beats across 3 seeds,
+#    with ALL V11/V13 ship-gate criteria preserved."
+#
+# Use this for production deployments running >= 1.4 hours (50K+ beats).
+# Short-lived processes (< 33 min) should stick with configs/default.yaml.
+#
+# See RELEASE_v1.2.md for the full empirical justification and
+# scripts/phase_f/run_multi_seed_sweep.py for the reproducer.
+#
+# To use:
+#   AXIOMA_CONFIG=configs/v1_2_recommended.yaml python -m axioma
+#
+# Or load programmatically:
+#   from axioma.config import load_config
+#   cfg = load_config(extra_paths=["configs/v1_2_recommended.yaml"])
+
+# Inherits all v1.0 defaults from configs/default.yaml unless overridden below.
+
+compose:
+  # v1.1.6 — AOS-G per-organ Weighted Euclidean.
+  # PNEUMA-weighted preset (per Checkpoint I/L): amplifies the dominant
+  # gap-contributing organ (PNEUMA), which gives the recovery learner
+  # richer per-event signal for parameter exploration.
+  aos_g_gap_weights:
+    anima: 0.5
+    eidolon: 0.75
+    mneme: 0.75
+    nous: 0.5
+    pneuma: 2.5
+
+  # v1.2.2 — recalibrated alert threshold matching PNEUMA-weighted's
+  # ~1.52× larger gap baseline. This preserves the same architectural
+  # "1.4% of typical magnitude" sensitivity that v1.0's 0.10 threshold
+  # gave under uniform.
+  aos_g_alert_threshold: 0.152
+
+# Optional: pre-trained recovery learner snapshot to load at boot.
+# Generate with: python scripts/phase_e_pretrain.py --scorer substrate -n 50
+# recovery:
+#   require_pretrain: true
+#   pretrain_snapshot_path: data/state/recovery_learner_pretrain.json

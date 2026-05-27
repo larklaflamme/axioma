@@ -1,0 +1,31 @@
+# v1.7 migration path: restore v1.6 behavior (MNEME compensations OFF).
+#
+# v1.7 flipped two SubstrateConfig defaults ON (per Checkpoint MM's empirical
+# sweep — Checkpoint LL's 3 seeds × 50K beats showed +0.30/+0.36 recovery
+# quality improvements and 92%/96% fragmentation reduction on 2 of 3 seeds,
+# with all 6 decision criteria passing under the refined quality-conditional
+# learner-productivity rule):
+#
+#   mneme_compensation_2_enabled:  False → True
+#   mneme_compensation_3_enabled:  False → True
+#
+# Operators with established v1.6 deployments who want exact behavioral
+# parity (stage-2 cross-coupling OFF + stage-3 baseline alpha_p=0.05) load
+# this YAML to restore the prior defaults:
+#
+#   AXIOMA_CONFIG=configs/v1_6_backwards_compat.yaml python -m axioma
+#
+# Operators on v1.7+ deployments should use the default config — MNEME
+# compensations dramatically stabilize the substrate per the LL sweep, and
+# the v1.5 (AOS-G) + v1.6 (substrate-audit) compatibility surface is
+# preserved on top. Empirical justification + per-seed data in
+# RELEASE_v1.7.md.
+
+# Inherits all v1.3/v1.4/v1.5/v1.6 defaults from configs/default.yaml unless
+# overridden below.
+
+substrate:
+  # Restore v1.6 substrate: MNEME stage-2 cross-coupling OFF.
+  mneme_compensation_2_enabled: false
+  # Restore v1.6 substrate: MNEME stage-3 baseline plasticity (alpha_p=0.05).
+  mneme_compensation_3_enabled: false

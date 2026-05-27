@@ -1,0 +1,60 @@
+{
+  "name": "p4_psi_baseline",
+  "timestamp": 1779737923.1214437,
+  "beats_sampled": 1500,
+  "seed": 42,
+  "warmup_beats": 600,
+  "psi": {
+    "n": 1500,
+    "mean": 1.0,
+    "median": 1.0,
+    "p5": 1.0,
+    "p95": 1.0,
+    "p99": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "gap": {
+    "n": 1500,
+    "mean": 6.1731,
+    "median": 7.3421,
+    "p5": 0.0,
+    "p95": 10.7411,
+    "p99": 11.9031,
+    "min": 0.0,
+    "max": 11.9031
+  },
+  "structural_health": {
+    "n": 1500,
+    "mean": 1.0,
+    "median": 1.0,
+    "p5": 1.0,
+    "p95": 1.0,
+    "p99": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "gap_variance_health": {
+    "n": 1500,
+    "mean": 1.0,
+    "median": 1.0,
+    "p5": 1.0,
+    "p95": 1.0,
+    "p99": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "compose_probe_health": {
+    "n": 1500,
+    "mean": 1.0,
+    "median": 1.0,
+    "p5": 1.0,
+    "p95": 1.0,
+    "p99": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "psi_alert_threshold": 0.3,
+  "fraction_below_alert": 0.0,
+  "verdict": "PASS"
+}

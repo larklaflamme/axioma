@@ -1,0 +1,87 @@
+# AXIOMA v1.3 default configuration.
+# All keys are optional; pydantic defaults in src/axioma/config/schema.py
+# fill in the rest. Override per-host in configs/local.yaml (gitignored).
+#
+# v1.3 changes vs v1.0/v1.1/v1.2 defaults:
+#   - compose.aos_g_gap_weights: now PNEUMA-weighted (was None/uniform)
+#   - compose.aos_g_alert_threshold: now 0.152 (was 0.10)
+#   Empirical justification: +81% recovery-learner adoptions across 3 seeds at
+#   50K beats, ALL V11/V13 ship-gates PASS. See RELEASE_v1.3.md.
+#
+# v1.0/v1.1/v1.2 backwards compat:
+#   AXIOMA_CONFIG=configs/v1_0_backwards_compat.yaml python -m axioma
+
+substrate:
+  n_iter: 3
+  drive_dim: 16
+
+measurement:
+  theta_short_window: 30
+  theta_long_window: 500
+  meta_cognition_trajectory_window: 1000
+
+compose:
+  baseline_period_beats: 30
+  perturbation_period_beats: 5
+  recovery_period_beats: 60
+  # v1.3 default-flip: pydantic ComposeConfig schema defaults provide
+  # aos_g_gap_weights=PNEUMA_WEIGHTED + aos_g_alert_threshold=0.152.
+  # Leaving them unset here so the schema defaults apply uniformly.
+  psi_alert_threshold: 0.3
+
+recovery:
+  min_recovery_stage: 2
+  require_pretrain: true
+  rejection_escalation_consecutive: 3
+
+meta_cognition:
+  enabled: true
+  observer_mode: observer_only
+  suggestion_confidence_threshold: 0.7
+  divergence_warning_threshold: 5
+
+runtime:
+  heartbeat_hz: 10
+  warmup_beats: 100
+
+persistence:
+  snapshot_period_beats: 600
+  snapshot_root: data/state
+  jsonl_root: data/jsonl
+  sqlite_path: data/state/axioma.sqlite
+
+retention:
+  jsonl_retention_days: 7
+  sqlite_aggregated_retention_days: 30
+  snapshot_rolling_count: 24
+  snapshot_daily_retention_days: 30
+
+observability:
+  log_level: INFO
+  log_json: true
+
+interface:
+  ws_host: 127.0.0.1
+  ws_port: 8820
+  http_host: 127.0.0.1
+  http_port: 8821
+
+infra:
+  ollama:
+    url: http://localhost:11434
+    chat_model: deepseek-v4-flash:cloud
+    embed_model: nomic-embed-text-v2-moe
+    embed_dim: 768
+  qdrant:
+    url: http://localhost:6333
+    collection_prefix: axioma_
+  redis:
+    url: redis://localhost:6379
+    key_prefix: "axioma:"
+  gpu:
+    prefer_device: cuda
+    require_cuda: false
+
+release:
+  recovery_learner_enabled: true
+  coherence_scheduler_full_features: true

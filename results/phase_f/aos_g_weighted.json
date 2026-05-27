@@ -1,0 +1,137 @@
+{
+  "name": "aos_g_weighted",
+  "timestamp": 1779738742.674127,
+  "beats_per_preset": 1200,
+  "magnitude": 0.5,
+  "period_beats": 100,
+  "seed": 42,
+  "presets": {
+    "uniform": {
+      "preset": "uniform",
+      "weights": {
+        "anima": 1.0,
+        "eidolon": 1.0,
+        "mneme": 1.0,
+        "nous": 1.0,
+        "pneuma": 1.0
+      },
+      "magnitude": 0.5,
+      "period_beats": 100,
+      "beats_sampled": 1200,
+      "gap": {
+        "mean": 7.5241,
+        "p50": 9.0503,
+        "p95": 11.3621,
+        "max": 11.8653,
+        "variance": 12.922818
+      },
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "per_organ_gap_mean": {
+        "anima": 0.0359,
+        "eidolon": 0.0548,
+        "mneme": 0.1649,
+        "nous": 1.6625,
+        "pneuma": 7.2545
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      }
+    },
+    "eidolon_weighted": {
+      "preset": "eidolon_weighted",
+      "weights": {
+        "anima": 0.5,
+        "eidolon": 2.5,
+        "mneme": 0.75,
+        "nous": 0.75,
+        "pneuma": 0.5
+      },
+      "magnitude": 0.5,
+      "period_beats": 100,
+      "beats_sampled": 1200,
+      "gap": {
+        "mean": 5.4105,
+        "p50": 6.5041,
+        "p95": 8.4752,
+        "max": 8.6829,
+        "variance": 6.753914
+      },
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "per_organ_gap_mean": {
+        "anima": 0.0359,
+        "eidolon": 0.0548,
+        "mneme": 0.1649,
+        "nous": 1.6625,
+        "pneuma": 7.2545
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      }
+    },
+    "pneuma_weighted": {
+      "preset": "pneuma_weighted",
+      "weights": {
+        "anima": 0.5,
+        "eidolon": 0.75,
+        "mneme": 0.75,
+        "nous": 0.5,
+        "pneuma": 2.5
+      },
+      "magnitude": 0.5,
+      "period_beats": 100,
+      "beats_sampled": 1200,
+      "gap": {
+        "mean": 11.5593,
+        "p50": 13.1163,
+        "p95": 17.4114,
+        "max": 18.4542,
+        "variance": 30.210266
+      },
+      "psi": {
+        "mean": 1.0,
+        "p5": 1.0,
+        "min": 1.0,
+        "fraction_below_alert": 0.0,
+        "alert_threshold": 0.3
+      },
+      "per_organ_gap_mean": {
+        "anima": 0.0359,
+        "eidolon": 0.0548,
+        "mneme": 0.1649,
+        "nous": 1.6625,
+        "pneuma": 7.2545
+      },
+      "dominator_fractions": {
+        "gap_variance_health": 1.0
+      }
+    }
+  },
+  "comparisons": {
+    "eidolon_weighted": {
+      "gap_mean_ratio_vs_uniform": 0.719,
+      "psi_mean_delta_vs_uniform": 0.0,
+      "below_alert_delta_vs_uniform": 0.0,
+      "interpretation": "attenuates gap"
+    },
+    "pneuma_weighted": {
+      "gap_mean_ratio_vs_uniform": 1.536,
+      "psi_mean_delta_vs_uniform": 0.0,
+      "below_alert_delta_vs_uniform": 0.0,
+      "interpretation": "amplifies gap"
+    }
+  },
+  "verdict": "MEANINGFUL_DIFFERENCE",
+  "note": "Compares per-organ gap weighting variants (uniform vs eidolon-weighted vs pneuma-weighted) against the v1.0 baseline. With robust substrate, \u03c8 deltas are small; gap magnitude ratios show how each weighting would alert earlier IF the substrate entered a stress regime."
+}

@@ -1,0 +1,14 @@
+{
+  "thresholds": {
+    "flow_theta_min": 0.7,
+    "flow_cascade_max": 20.0,
+    "focus_theta_min": 0.5,
+    "focus_cascade_max": 20.0,
+    "idle_theta_max": 0.5,
+    "idle_delta_s1_max": 0.05,
+    "recovering_exit_beats": 50
+  },
+  "source": "zone_threshold_sweep.py (synthetic operator)",
+  "verdict": "SOFT_FAIL (no candidate hit min \u03ba \u2265 0.3 \u2014 needs live F6 sessions)",
+  "note": "Synthetic-operator calibration. Real F6 sessions (v1.1.1) override."
+}

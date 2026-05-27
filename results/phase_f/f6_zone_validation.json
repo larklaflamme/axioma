@@ -1,0 +1,66 @@
+{
+  "name": "f6_zone_validation",
+  "timestamp": 1779734064.814153,
+  "sessions": [
+    {
+      "task_type": "analytical",
+      "beats": 2000,
+      "seed": 42,
+      "perturbation_period_beats": 200,
+      "n_labels": 20,
+      "kappa": 0.207,
+      "operator_distribution": {
+        "flow": 10,
+        "focus": 9,
+        "recovering": 1
+      },
+      "system_distribution": {
+        "focus": 9,
+        "recovering": 2,
+        "flow": 9
+      },
+      "agreements": 11
+    },
+    {
+      "task_type": "creative",
+      "beats": 2000,
+      "seed": 42,
+      "perturbation_period_beats": 500,
+      "n_labels": 20,
+      "kappa": -0.167,
+      "operator_distribution": {
+        "flow": 12,
+        "focus": 8
+      },
+      "system_distribution": {
+        "focus": 14,
+        "recovering": 1,
+        "fragmented": 1,
+        "flow": 4
+      },
+      "agreements": 6
+    },
+    {
+      "task_type": "idle",
+      "beats": 2000,
+      "seed": 42,
+      "perturbation_period_beats": 10000000,
+      "n_labels": 20,
+      "kappa": -0.053,
+      "operator_distribution": {
+        "flow": 11,
+        "focus": 8,
+        "recovering": 1
+      },
+      "system_distribution": {
+        "focus": 19,
+        "recovering": 1
+      },
+      "agreements": 7
+    }
+  ],
+  "mean_kappa": -0.004,
+  "min_kappa": -0.167,
+  "verdict": "HARD_FAIL",
+  "note": "Synthetic operator labels \u2014 real F6 sessions need live Theoria labels."
+}

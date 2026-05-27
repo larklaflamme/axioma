@@ -1,0 +1,171 @@
+{
+  "per_run": [
+    {
+      "n_iter": 1,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.10389898597604508,
+      "drive_variance": 0.023333479282331107,
+      "max_latent_observed": 6.855475464550297,
+      "drive_max_observed": 0.6672596797042794,
+      "drive_std_per_dim_mean": 0.14978251891180858,
+      "seed": 42
+    },
+    {
+      "n_iter": 1,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.14907091491933194,
+      "drive_variance": 0.024659626395735414,
+      "max_latent_observed": 6.171534093493232,
+      "drive_max_observed": 0.5750951010026188,
+      "drive_std_per_dim_mean": 0.15193082814757375,
+      "seed": 137
+    },
+    {
+      "n_iter": 1,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.09026806375720696,
+      "drive_variance": 0.022318596640993373,
+      "max_latent_observed": 5.225019789934941,
+      "drive_max_observed": 0.6456737258230685,
+      "drive_std_per_dim_mean": 0.14482544739942593,
+      "seed": 999
+    },
+    {
+      "n_iter": 3,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.10200052420471614,
+      "drive_variance": 0.023883374575265015,
+      "max_latent_observed": 5.9424121214897525,
+      "drive_max_observed": 0.6286612552993179,
+      "drive_std_per_dim_mean": 0.1483883942373782,
+      "seed": 42
+    },
+    {
+      "n_iter": 3,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.08873891105628089,
+      "drive_variance": 0.020718853682466468,
+      "max_latent_observed": 4.78897648204888,
+      "drive_max_observed": 0.5709160554096866,
+      "drive_std_per_dim_mean": 0.1394743369755745,
+      "seed": 137
+    },
+    {
+      "n_iter": 3,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.09746158140478284,
+      "drive_variance": 0.022663526708549257,
+      "max_latent_observed": 5.8563424913261315,
+      "drive_max_observed": 0.677317760975595,
+      "drive_std_per_dim_mean": 0.14655966660969583,
+      "seed": 999
+    },
+    {
+      "n_iter": 5,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.09876487486159383,
+      "drive_variance": 0.02645926087690358,
+      "max_latent_observed": 6.328340479901452,
+      "drive_max_observed": 0.652553007049997,
+      "drive_std_per_dim_mean": 0.15745876841878498,
+      "seed": 42
+    },
+    {
+      "n_iter": 5,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.08941437588677384,
+      "drive_variance": 0.021199940057548394,
+      "max_latent_observed": 4.913825919557905,
+      "drive_max_observed": 0.5692651002338984,
+      "drive_std_per_dim_mean": 0.13944940581256213,
+      "seed": 137
+    },
+    {
+      "n_iter": 5,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.1070243393831358,
+      "drive_variance": 0.020753290323517585,
+      "max_latent_observed": 4.773576346444237,
+      "drive_max_observed": 0.548127512517314,
+      "drive_std_per_dim_mean": 0.14109655452840403,
+      "seed": 999
+    },
+    {
+      "n_iter": 10,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.102608218194893,
+      "drive_variance": 0.026297059835948145,
+      "max_latent_observed": 7.210484808715725,
+      "drive_max_observed": 0.6086509032508322,
+      "drive_std_per_dim_mean": 0.15409114415002054,
+      "seed": 42
+    },
+    {
+      "n_iter": 10,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.07522321304390964,
+      "drive_variance": 0.021647011968144666,
+      "max_latent_observed": 5.928350577898217,
+      "drive_max_observed": 0.5806440126696322,
+      "drive_std_per_dim_mean": 0.13382633711152442,
+      "seed": 137
+    },
+    {
+      "n_iter": 10,
+      "n_beats_measured": 1000,
+      "mc_corr": 0.08738333709482438,
+      "drive_variance": 0.020108733104549286,
+      "max_latent_observed": 5.478337885696376,
+      "drive_max_observed": 0.596786842488229,
+      "drive_std_per_dim_mean": 0.13471043897088988,
+      "seed": 999
+    }
+  ],
+  "summary": {
+    "1": {
+      "mc_corr_mean": 0.11441265488419466,
+      "mc_corr_std": 0.025130947079002007,
+      "drive_variance_mean": 0.0234372341063533,
+      "max_latent_mean": 6.08400978265949,
+      "drive_variance_rel_to_n_iter_1": 1.0,
+      "variance_invariance_pass": true
+    },
+    "3": {
+      "mc_corr_mean": 0.09606700555525995,
+      "mc_corr_std": 0.005503103801476767,
+      "drive_variance_mean": 0.022421918322093577,
+      "max_latent_mean": 5.529243698288255,
+      "drive_variance_rel_to_n_iter_1": 0.9566793684078748,
+      "variance_invariance_pass": true
+    },
+    "5": {
+      "mc_corr_mean": 0.09840119671050114,
+      "mc_corr_std": 0.007193835320790842,
+      "drive_variance_mean": 0.02280416375265652,
+      "max_latent_mean": 5.338580915301198,
+      "drive_variance_rel_to_n_iter_1": 0.9729886918045005,
+      "variance_invariance_pass": true
+    },
+    "10": {
+      "mc_corr_mean": 0.08840492277787566,
+      "mc_corr_std": 0.01120319462655505,
+      "drive_variance_mean": 0.0226842683028807,
+      "max_latent_mean": 6.2057244241034395,
+      "drive_variance_rel_to_n_iter_1": 0.9678730945786608,
+      "variance_invariance_pass": true
+    }
+  },
+  "chosen_n_iter": null,
+  "n_beats": 1000,
+  "seeds": [
+    42,
+    137,
+    999
+  ],
+  "n_iters": [
+    1,
+    3,
+    5,
+    10
+  ]
+}

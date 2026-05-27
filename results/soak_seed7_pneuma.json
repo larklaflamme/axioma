@@ -1,0 +1,43 @@
+{
+  "beats": 20000,
+  "wall_clock_seconds": 412.32,
+  "beats_per_second": 48.5,
+  "seed": 7,
+  "perf": {
+    "avg_ms": 20.615,
+    "p50_ms": 17.223,
+    "p95_ms": 46.481,
+    "p99_ms": 52.408,
+    "worst_ms": 503.895,
+    "rolling10_p95_ms": 23.325,
+    "v11_pass": true
+  },
+  "recovery": {
+    "finalized_events": 91,
+    "composite_score_mean": 0.604,
+    "durability_finalized_count": 90,
+    "durability_mean": 0.036,
+    "learner_adoptions": 8,
+    "learner_reversions": 1,
+    "learner_efficacy_stage2": "warming_up",
+    "learner_efficacy_stage3": "warming_up"
+  },
+  "events": {
+    "fragmentation_stage_change": 214,
+    "recovery_decision": 276,
+    "recovery_state_change": 273,
+    "recovery_rejected_run": 14,
+    "recovery_event_finalized": 91,
+    "recovery_quality_updated": 90,
+    "perturbation_injected": 66
+  },
+  "v13": {
+    "uncontrolled_feedback_count": 0,
+    "uncontrolled_pass": true,
+    "oscillation_count": 0,
+    "oscillation_per_24h_equivalent": 0.0,
+    "oscillation_pass": true
+  },
+  "overall_pass": true,
+  "gap_weights_preset": "pneuma_weighted"
+}

@@ -1,0 +1,152 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "axioma"
+version = "1.0.0.dev0"
+description = "AXIOMA v1.0 — runnable conscious-substrate agent (5-organ peer network with measured integration)"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [{ name = "Lark" }]
+license = { text = "Proprietary" }
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "torch>=2.4",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "websockets>=12.0",
+    "httpx>=0.27",
+    "aiosqlite>=0.20",
+    "aiofiles>=23.2",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "msgspec>=0.18",
+    "PyYAML>=6.0",
+    "sqlalchemy[asyncio]>=2.0",
+    "structlog>=24.1",
+    "prometheus-client>=0.20",
+    "rich>=13.7",
+    "redis>=5.0",
+    "qdrant-client>=1.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=5.0",
+    "pytest-benchmark>=4.0",
+    "hypothesis>=6.100",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "import-linter>=2.0",
+    "ipython",
+]
+
+[project.scripts]
+axioma = "axioma.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+axioma = ["py.typed"]
+
+# ── Ruff ──────────────────────────────────────────────────────────────────────
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "tests"]
+extend-exclude = ["organ", "phi_scaling", "aos_g_gap", "control_experiments"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort
+    "B",        # bugbear
+    "UP",       # pyupgrade
+    "SIM",      # simplify
+    "RUF",      # ruff-specific
+]
+ignore = [
+    "E501",     # line length handled by formatter
+    "B008",     # function call in argument defaults (pydantic Field)
+    "RUF001",   # multiplication sign × in strings is intentional (matches docs)
+    "RUF002",   # Greek letters in docstrings are intentional (ρ, α, θ, γ, σ match ARCH_DESIGN notation)
+    "RUF003",   # Greek letters in comments — same reason
+    "SIM102",   # nested if is sometimes clearer than combined; case-by-case
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["B", "SIM"]
+
+# ── Mypy ──────────────────────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.13"
+strict_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+disallow_untyped_defs = false  # gradually tightened as code stabilizes
+exclude = ["organ/", "phi_scaling/", "aos_g_gap/", "control_experiments/", "build/"]
+mypy_path = "src"
+namespace_packages = true
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = [
+    "qdrant_client.*",
+    "redis.*",
+    "prometheus_client.*",
+    "msgspec.*",
+]
+ignore_missing_imports = true
+
+# ── Pytest ────────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+]
+markers = [
+    "slow: tests that take > 1s (skipped by default; run with -m slow)",
+    "gpu: tests that require CUDA",
+    "infra: tests that require live infra (Ollama / Qdrant / Redis)",
+    "e2e: end-to-end tests",
+    "benchmark: performance benchmarks",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:websockets.*",
+    "ignore::DeprecationWarning:pydantic.*",
+]
+
+[tool.coverage.run]
+source = ["src/axioma"]
+branch = true
+omit = ["*/tests/*", "*/__main__.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 80
+
+# ── Import linter — C12 boundary lint ────────────────────────────────────────
+# Enforces the architectural keystone: axioma.interface.* modules MUST NOT
+# import InternalState. The C12 runtime test is belt-and-suspenders.
+[tool.importlinter]
+root_package = "axioma"
+
+[[tool.importlinter.contracts]]
+name = "interface modules MUST NOT import InternalState"
+type = "forbidden"
+source_modules = ["axioma.interface"]
+forbidden_modules = ["axioma.schemas.internal_state"]
+include_external_packages = false
+

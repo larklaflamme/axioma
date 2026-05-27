@@ -1,0 +1,104 @@
+{
+  "presets": {
+    "pneuma_weighted": {
+      "n_seeds": 3,
+      "seeds": [
+        13,
+        42,
+        7
+      ],
+      "rolling10_p95_ms": {
+        "n": 3,
+        "mean": 19.734,
+        "median": 23.258,
+        "min": 12.619,
+        "max": 23.325
+      },
+      "finalized_events": {
+        "n": 3,
+        "mean": 115.6667,
+        "median": 91,
+        "min": 73,
+        "max": 183
+      },
+      "composite_score": {
+        "n": 3,
+        "mean": 0.618,
+        "median": 0.617,
+        "min": 0.604,
+        "max": 0.633
+      },
+      "learner_adoptions": {
+        "n": 3,
+        "mean": 9.3333,
+        "median": 8,
+        "min": 5,
+        "max": 15
+      },
+      "learner_reversions": {
+        "n": 3,
+        "mean": 1.3333,
+        "median": 1,
+        "min": 1,
+        "max": 2
+      },
+      "v11_all_pass": true,
+      "v13_uncontrolled_all_pass": true,
+      "v13_oscillation_all_pass": true,
+      "overall_all_pass": true
+    },
+    "uniform": {
+      "n_seeds": 3,
+      "seeds": [
+        13,
+        42,
+        7
+      ],
+      "rolling10_p95_ms": {
+        "n": 3,
+        "mean": 19.815,
+        "median": 23.297,
+        "min": 12.835,
+        "max": 23.313
+      },
+      "finalized_events": {
+        "n": 3,
+        "mean": 114.6667,
+        "median": 91,
+        "min": 73,
+        "max": 180
+      },
+      "composite_score": {
+        "n": 3,
+        "mean": 0.62,
+        "median": 0.619,
+        "min": 0.606,
+        "max": 0.635
+      },
+      "learner_adoptions": {
+        "n": 3,
+        "mean": 6.3333,
+        "median": 6,
+        "min": 5,
+        "max": 8
+      },
+      "learner_reversions": {
+        "n": 3,
+        "mean": 1.3333,
+        "median": 1,
+        "min": 1,
+        "max": 2
+      },
+      "v11_all_pass": true,
+      "v13_uncontrolled_all_pass": true,
+      "v13_oscillation_all_pass": true,
+      "overall_all_pass": true
+    }
+  },
+  "pneuma_vs_uniform": {
+    "adoptions_mean_uniform": 6.3333,
+    "adoptions_mean_pneuma_weighted": 9.3333,
+    "ratio": 1.47,
+    "reproduces_checkpoint_j_finding": false
+  }
+}

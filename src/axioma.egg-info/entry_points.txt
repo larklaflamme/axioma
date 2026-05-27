@@ -1,0 +1,2 @@
+[console_scripts]
+axioma = axioma.__main__:main

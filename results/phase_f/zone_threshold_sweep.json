@@ -1,0 +1,360 @@
+{
+  "name": "zone_threshold_sweep",
+  "timestamp": 1779736794.2835221,
+  "n_candidates": 12,
+  "n_passing_v1_1_gate": 0,
+  "candidates": [
+    {
+      "flow_theta_min": 0.7,
+      "flow_cascade_max": 10.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.0,
+          "agreements": 2
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.107,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 0.7,
+      "flow_cascade_max": 20.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.182,
+          "agreements": 3
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.047,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 0.7,
+      "flow_cascade_max": 30.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.182,
+          "agreements": 3
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.047,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 0.85,
+      "flow_cascade_max": 10.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.0,
+          "agreements": 2
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.107,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 0.85,
+      "flow_cascade_max": 20.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.182,
+          "agreements": 3
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.047,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 0.85,
+      "flow_cascade_max": 30.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.182,
+          "agreements": 3
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.047,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 1.0,
+      "flow_cascade_max": 10.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.0,
+          "agreements": 2
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.107,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 1.0,
+      "flow_cascade_max": 20.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.0,
+          "agreements": 2
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.107,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 1.0,
+      "flow_cascade_max": 30.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": 0.0,
+          "agreements": 2
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.107,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 1.15,
+      "flow_cascade_max": 10.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": -0.154,
+          "agreements": 1
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.159,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 1.15,
+      "flow_cascade_max": 20.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": -0.154,
+          "agreements": 1
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.159,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    },
+    {
+      "flow_theta_min": 1.15,
+      "flow_cascade_max": 30.0,
+      "task_results": [
+        {
+          "task": "analytical",
+          "n": 6,
+          "kappa": -0.154,
+          "agreements": 1
+        },
+        {
+          "task": "creative",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        },
+        {
+          "task": "idle",
+          "n": 6,
+          "kappa": -0.161,
+          "agreements": 0
+        }
+      ],
+      "mean_kappa": -0.159,
+      "min_kappa": -0.161,
+      "passes_v1_1_gate": false
+    }
+  ],
+  "best": {
+    "flow_theta_min": 0.7,
+    "flow_cascade_max": 20.0,
+    "task_results": [
+      {
+        "task": "analytical",
+        "n": 6,
+        "kappa": 0.182,
+        "agreements": 3
+      },
+      {
+        "task": "creative",
+        "n": 6,
+        "kappa": -0.161,
+        "agreements": 0
+      },
+      {
+        "task": "idle",
+        "n": 6,
+        "kappa": -0.161,
+        "agreements": 0
+      }
+    ],
+    "mean_kappa": -0.047,
+    "min_kappa": -0.161,
+    "passes_v1_1_gate": false
+  },
+  "verdict": "SOFT_FAIL (no candidate hit min \u03ba \u2265 0.3 \u2014 needs live F6 sessions)"
+}
