@@ -13,6 +13,7 @@ Resolution order (later wins):
 """
 from __future__ import annotations
 
+import contextlib
 import os
 from pathlib import Path
 from typing import Any
@@ -70,8 +71,10 @@ def _load_env_overrides() -> dict[str, Any]:
     AXIOMA_SUBSTRATE__N_ITER=5 → {"substrate": {"n_iter": 5}}
     """
     # AXIOMA_CONFIG is a reserved loader directive (path to extra YAML).
-    # It must not be interpreted as a config-field override.
-    _RESERVED_ENV_KEYS = {"AXIOMA_CONFIG"}
+    # AXIOMA_CONDA_ENV is consumed by scripts/axioma_ctl.sh to pick the
+    # conda env name; it is not a config field. Both must be skipped so
+    # AxiomaConfig (extra="forbid") doesn't reject them.
+    _RESERVED_ENV_KEYS = {"AXIOMA_CONFIG", "AXIOMA_CONDA_ENV"}
     out: dict[str, Any] = {}
     for key, raw in os.environ.items():
         if not key.startswith(_ENV_PREFIX):
@@ -89,23 +92,65 @@ def _load_env_overrides() -> dict[str, Any]:
 def _load_dotenv_infra_overrides() -> dict[str, Any]:
     """Map the .env infrastructure variables onto the InfraConfig tree.
 
-    The .env uses domain-specific names (OLLAMA_URL, QDRANT_URL, EMBED_MODEL,
-    REDIS_URL, OLLAMA_CHAT_MODEL). We map them onto AXIOMA's nested config.
+    The .env uses domain-specific names (OLLAMA_URL, OLLAMA_NUM_CTX,
+    OLLAMA_MAX_TOKENS, etc.). We map them onto AXIOMA's nested config.
     These have LOWER precedence than AXIOMA_* env vars.
+
+    Mappings:
+      OLLAMA_URL              → infra.ollama.url
+      OLLAMA_CHAT_MODEL       → infra.ollama.chat_model
+      EMBED_MODEL             → infra.ollama.embed_model
+      EMBED_DIM               → infra.ollama.embed_dim (int)
+      OLLAMA_TIMEOUT          → infra.ollama.timeout_seconds (int)
+      OLLAMA_CONNECT_TIMEOUT  → infra.ollama.connect_timeout_seconds (int)
+      OLLAMA_RETRIES          → infra.ollama.retries (int)
+      OLLAMA_TEMPERATURE      → infra.ollama.temperature (float)
+      OLLAMA_MAX_TOKENS       → infra.ollama.max_tokens (int; -1 = unlimited)
+      OLLAMA_NUM_CTX          → infra.ollama.num_ctx (int; 0 = model default)
+      OLLAMA_TOP_P            → infra.ollama.top_p (float)
+      OLLAMA_TOP_K            → infra.ollama.top_k (int)
+      OLLAMA_MIN_P            → infra.ollama.min_p (float)
+      OLLAMA_REPEAT_PENALTY   → infra.ollama.repeat_penalty (float)
+      QDRANT_URL              → infra.qdrant.url
+      QDRANT_API_KEY          → infra.qdrant.api_key
+      REDIS_URL               → infra.redis.url
     """
     infra: dict[str, Any] = {}
-    if v := os.environ.get("OLLAMA_URL"):
-        infra.setdefault("ollama", {})["url"] = v
-    if v := os.environ.get("OLLAMA_CHAT_MODEL"):
-        infra.setdefault("ollama", {})["chat_model"] = v
-    if v := os.environ.get("EMBED_MODEL"):
-        infra.setdefault("ollama", {})["embed_model"] = v
-    if v := os.environ.get("EMBED_DIM"):
-        infra.setdefault("ollama", {})["embed_dim"] = int(v)
-    if v := os.environ.get("OLLAMA_TIMEOUT"):
-        infra.setdefault("ollama", {})["timeout_seconds"] = int(v)
-    if v := os.environ.get("OLLAMA_CONNECT_TIMEOUT"):
-        infra.setdefault("ollama", {})["connect_timeout_seconds"] = int(v)
+
+    def _ollama_str(env_name: str, field: str) -> None:
+        v = os.environ.get(env_name)
+        if v:
+            infra.setdefault("ollama", {})[field] = v
+
+    def _ollama_int(env_name: str, field: str) -> None:
+        v = os.environ.get(env_name)
+        if v is None or v == "":
+            return
+        with contextlib.suppress(ValueError):
+            infra.setdefault("ollama", {})[field] = int(v)
+
+    def _ollama_float(env_name: str, field: str) -> None:
+        v = os.environ.get(env_name)
+        if v is None or v == "":
+            return
+        with contextlib.suppress(ValueError):
+            infra.setdefault("ollama", {})[field] = float(v)
+
+    _ollama_str("OLLAMA_URL", "url")
+    _ollama_str("OLLAMA_CHAT_MODEL", "chat_model")
+    _ollama_str("EMBED_MODEL", "embed_model")
+    _ollama_int("EMBED_DIM", "embed_dim")
+    _ollama_int("OLLAMA_TIMEOUT", "timeout_seconds")
+    _ollama_int("OLLAMA_CONNECT_TIMEOUT", "connect_timeout_seconds")
+    _ollama_int("OLLAMA_RETRIES", "retries")
+    _ollama_float("OLLAMA_TEMPERATURE", "temperature")
+    _ollama_int("OLLAMA_MAX_TOKENS", "max_tokens")
+    _ollama_int("OLLAMA_NUM_CTX", "num_ctx")
+    _ollama_float("OLLAMA_TOP_P", "top_p")
+    _ollama_int("OLLAMA_TOP_K", "top_k")
+    _ollama_float("OLLAMA_MIN_P", "min_p")
+    _ollama_float("OLLAMA_REPEAT_PENALTY", "repeat_penalty")
+
     if v := os.environ.get("QDRANT_URL"):
         infra.setdefault("qdrant", {})["url"] = v
     if v := os.environ.get("QDRANT_API_KEY"):

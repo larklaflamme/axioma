@@ -1,0 +1,1348 @@
+{
+  "learner_snapshot": {
+    "current_params": {
+      "2": {
+        "coupling_reduction_factor": 0.665,
+        "mneme_forgetting_boost": 1.44,
+        "recovery_compose_period_beats": 66
+      },
+      "3": {
+        "coupling_reduction_factor": 0.875,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 63
+      }
+    },
+    "baseline_score_per_stage": {
+      "2": 0.0,
+      "3": 0.0
+    },
+    "adoptions_count": 6,
+    "reversions_count": 0,
+    "efficacy_per_stage": {
+      "2": "effective",
+      "3": "effective"
+    },
+    "clean_baseline_remaining": {
+      "2": 0,
+      "3": 0
+    }
+  },
+  "summary": {
+    "events_added": 100,
+    "adoptions": 6,
+    "current_params": {
+      "2": {
+        "coupling_reduction_factor": 0.665,
+        "mneme_forgetting_boost": 1.44,
+        "recovery_compose_period_beats": 66
+      },
+      "3": {
+        "coupling_reduction_factor": 0.875,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 63
+      }
+    }
+  },
+  "history": [
+    {
+      "event_id": "d4a1d71d-2314-49f3-85b8-72dbcc4810a5",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8106650977914052,
+        "mneme_forgetting_boost": 1.3648020661887355,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6656822859899141,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "87fad7d8-5340-4934-8c6d-c4be8f59fd53",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8329197650736925,
+        "mneme_forgetting_boost": 1.2463654254750012,
+        "recovery_compose_period_beats": 52,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6597302061141548,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "4f10641a-e3e2-4ac5-ac06-5eddedfcb566",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8044744141108551,
+        "mneme_forgetting_boost": 1.4588884629953343,
+        "recovery_compose_period_beats": 59,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6675499685314711,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "2194e64e-cbc4-4dfd-b273-dc7b3b1b3906",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7701434625349247,
+        "mneme_forgetting_boost": 1.6143217367321676,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6767182123034796,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "06d05347-bf83-4b6c-9784-f8997b313804",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8023110744146426,
+        "mneme_forgetting_boost": 1.6465413569058442,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6681153087266984,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "27b00f56-b42c-4735-9a89-2ac56abcaa38",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7699247637990867,
+        "mneme_forgetting_boost": 1.547937601930725,
+        "recovery_compose_period_beats": 54,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6766823404512774,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "7fb0eb3c-c5ba-4478-8077-745ff48f01b5",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8307457605457546,
+        "mneme_forgetting_boost": 1.493509631571787,
+        "recovery_compose_period_beats": 58,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6604175127272205,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "c9a875a7-490a-4b59-babb-fafd0cbc814f",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7761674659458621,
+        "mneme_forgetting_boost": 1.658930374027624,
+        "recovery_compose_period_beats": 59,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6750138171538878,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "44ec2aa9-b9ef-4caf-ac9a-a1436ac4b73e",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7850085262242913,
+        "mneme_forgetting_boost": 1.4542226384365302,
+        "recovery_compose_period_beats": 63,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6726534079093911,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "64d2492c-c350-485c-83e1-9e601801a134",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8127905422527428,
+        "mneme_forgetting_boost": 1.5536552395074785,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6650350854444884,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "3cc2a593-b9a7-4964-9bd6-65773430f56a",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8749576660304662,
+        "mneme_forgetting_boost": 1.44716604787,
+        "recovery_compose_period_beats": 56,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6475848501241694,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "1c769e51-8fc0-4e61-b0c1-b6c55e7e0990",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7715179545113243,
+        "mneme_forgetting_boost": 1.5800773249348143,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.676331080103365,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "38d8805b-402b-4573-8060-1f4893f3d066",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7960118389820794,
+        "mneme_forgetting_boost": 1.3907796579948712,
+        "recovery_compose_period_beats": 55,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6698462352809855,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "7304557b-cf9e-4722-b889-9a07ebb9a50a",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8227707475738646,
+        "mneme_forgetting_boost": 1.5966230422564476,
+        "recovery_compose_period_beats": 63,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6624340334796349,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d01bf7b3-dc83-45a6-9fb0-d28e9b5737d8",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7767071602448957,
+        "mneme_forgetting_boost": 1.5301809719986736,
+        "recovery_compose_period_beats": 60,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6748601317484881,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "f7525b36-ba9f-4cc5-b691-1356f777afb7",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8076541008855155,
+        "mneme_forgetting_boost": 1.6132857411332646,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6665947762879978,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "0b19e8ef-0356-4ba1-a0f1-40a42bae7c51",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8237619747075163,
+        "mneme_forgetting_boost": 1.5087852790335559,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6622461893203458,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "fd668df4-cda3-4501-9596-4dda29ca5914",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8220950879043489,
+        "mneme_forgetting_boost": 1.3105697434187633,
+        "recovery_compose_period_beats": 58,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6626439378133135,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "eaffd47d-d1e0-42b8-970c-4e186683e520",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7835369570997522,
+        "mneme_forgetting_boost": 1.4169458797283656,
+        "recovery_compose_period_beats": 58,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6730788188347426,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "fa5a271d-72b1-4cd7-b20d-3818f9d25c07",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8523229458932039,
+        "mneme_forgetting_boost": 1.3874419549598784,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6543018500850666,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "3c90c437-5019-4442-9458-df64698d4fd7",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7110995579934468,
+        "mneme_forgetting_boost": 1.5704649461018494,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6899452805062551,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "13374552-381c-4055-bf58-b43188160379",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7905177815975748,
+        "mneme_forgetting_boost": 1.7064594553730712,
+        "recovery_compose_period_beats": 68,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6711964646692545,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "8911a913-bb49-4a27-9097-f91658b59f1f",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7577946224713047,
+        "mneme_forgetting_boost": 1.5538942669536064,
+        "recovery_compose_period_beats": 69,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6795636814193537,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "6478f7bd-a598-4551-824c-d24993734d15",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7633043486291435,
+        "mneme_forgetting_boost": 1.4481607779660703,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6784007257443964,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "1c2393c9-070a-4c51-ac1a-e912360a0e32",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6788191699899435,
+        "mneme_forgetting_boost": 1.6346308967269894,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6969164464384452,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "6f866c9c-ed79-4f3f-914c-62846bdc8552",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7351669873923719,
+        "mneme_forgetting_boost": 1.5144571559762505,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6850526993257319,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "de394f01-be69-4006-8f8a-31a2b83c9e36",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7328956637888567,
+        "mneme_forgetting_boost": 1.5297849498363691,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6853026411267058,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "adc54a5a-da1b-4589-95d2-27564feaf9a3",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6878325920626672,
+        "mneme_forgetting_boost": 1.5228029999465407,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6951501540378155,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "a4346990-5595-44e2-96dc-b97588420b96",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6691456124043835,
+        "mneme_forgetting_boost": 1.6333064225021257,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6991093994894979,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d0a5910c-2a56-42de-962d-b7c220a9db68",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7114372941554691,
+        "mneme_forgetting_boost": 1.6324970656577682,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6898610424851963,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "895486ea-beef-4958-bc5f-9a2b324e44a0",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7342884788140475,
+        "mneme_forgetting_boost": 1.557196887013775,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6852469691087881,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "e3b9be38-69fb-4a52-8320-5994f1f881ae",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.708209862618276,
+        "mneme_forgetting_boost": 1.3506465235854561,
+        "recovery_compose_period_beats": 55,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6906636005288873,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "6c08e401-e4e2-4f0b-a90e-44145edf6d19",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6647055135675959,
+        "mneme_forgetting_boost": 1.4403579124118076,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.699731871595717,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "b3c3a763-28dd-47c1-b1d2-7749417cf168",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6793082330623978,
+        "mneme_forgetting_boost": 1.5208388679748794,
+        "recovery_compose_period_beats": 71,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6968025912601663,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d1edf754-90df-43e6-a470-bbba1233762b",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.69853076101285,
+        "mneme_forgetting_boost": 1.6658770239007212,
+        "recovery_compose_period_beats": 58,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6925820155023443,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "a7ae8745-0ebe-4672-8cda-5e4a9bb2e0df",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.703809685474633,
+        "mneme_forgetting_boost": 1.4464971328616245,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6917334517628871,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d3735017-4738-4aff-8689-48646ac8c7b8",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7404107848110089,
+        "mneme_forgetting_boost": 1.3454483449849948,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6839475053411108,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "ea63a788-f52a-40bd-b6e1-d44e1b88d59b",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7193207460816297,
+        "mneme_forgetting_boost": 1.4927605057594169,
+        "recovery_compose_period_beats": 55,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6880376434460995,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "0ffe5d67-ee3c-4325-9877-3de3e48be9c0",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7135245327699854,
+        "mneme_forgetting_boost": 1.5011659478217056,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6893391213233304,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "ea734558-11dc-4e43-9df8-9a7c50023ee8",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7117648250933205,
+        "mneme_forgetting_boost": 1.778231255871719,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6897792930999613,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "7a6ec42b-4049-43e0-8821-077166f42d12",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6751775877582347,
+        "mneme_forgetting_boost": 1.5933058325443212,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6976631034451588,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "475bcafb-7f70-446f-a05d-0c48dc372df5",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7125715651334154,
+        "mneme_forgetting_boost": 1.5485644619688952,
+        "recovery_compose_period_beats": 68,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6895776958784099,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "1b312299-7d41-4ccb-a327-24f4f0f16381",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7162156011926847,
+        "mneme_forgetting_boost": 1.2854608029380294,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6886628527296682,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "3517c374-f15e-4b09-997a-3ade033823b2",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6325698420508067,
+        "mneme_forgetting_boost": 1.38932472558975,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7056200394932617,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "91550de2-d159-47cc-aa60-04792818abe9",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6872302831385042,
+        "mneme_forgetting_boost": 1.4111110493771595,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6952929975864217,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "9c383f6d-666f-494a-9d47-049fe571e676",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6294547321577361,
+        "mneme_forgetting_boost": 1.4807568001685254,
+        "recovery_compose_period_beats": 71,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7062688864624462,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "29e88889-edbb-4974-a020-c925073afd4a",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7348855812092125,
+        "mneme_forgetting_boost": 1.8188021205809528,
+        "recovery_compose_period_beats": 68,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.685126446119892,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "57cbf19f-08ef-4034-ac71-ce3bb2b6800f",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6303661657988848,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 67,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7060795324613856,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "2ccd01e1-7cab-403b-b9c5-db78da054f77",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6365470616641387,
+        "mneme_forgetting_boost": 1.3860035561766408,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7049808370256345,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "dcd95efa-c67d-4652-99e8-a599c7a189be",
+      "stage": 2,
+      "actions_used": {
+        "coupling_reduction_factor": 0.6600723189754265,
+        "mneme_forgetting_boost": 1.5785774300023936,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": false,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7007704835883934,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "52f25524-4fce-47c4-96e8-5241e2b5df4c",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.794447780703646,
+        "mneme_forgetting_boost": 1.3653650121326444,
+        "recovery_compose_period_beats": 49,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.711877042855376,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "697612f4-5538-4350-94ce-a42cc1a57124",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7829792231824335,
+        "mneme_forgetting_boost": 1.4930082683936183,
+        "recovery_compose_period_beats": 70,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7054325703878441,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "3be11ac5-8e1d-41d3-8f10-ef80742296a8",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.804559608251551,
+        "mneme_forgetting_boost": 1.6277561364329975,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7177901580007735,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "e2a0d990-e969-4e94-89cd-179d79f7c54c",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7585269681754042,
+        "mneme_forgetting_boost": 1.3745348209097916,
+        "recovery_compose_period_beats": 55,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6930949969033282,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "9ed9e1a6-7e39-40eb-86ff-4da5d0770860",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8744964406352308,
+        "mneme_forgetting_boost": 1.39321973170083,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7576639950693496,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "3f64573b-dc80-4d6c-8dca-0fec12a266d2",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7683975487669541,
+        "mneme_forgetting_boost": 1.6211044916736517,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6981696923776634,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "f842225a-4888-474c-b9d0-3c7535189c73",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7945176735819669,
+        "mneme_forgetting_boost": 1.4947008716023935,
+        "recovery_compose_period_beats": 56,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7119159576991636,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "505c74ca-7dc2-4bbe-ab52-ecb351d6907e",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8156125270518728,
+        "mneme_forgetting_boost": 1.4408521475556986,
+        "recovery_compose_period_beats": 52,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7241335440057608,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d2a23977-61a6-4c10-b115-0fc1fd123a5f",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7552721848988134,
+        "mneme_forgetting_boost": 1.5224364293038755,
+        "recovery_compose_period_beats": 69,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6915557700083974,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "78e28f79-20ce-407f-a7c2-c992e349626e",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8055997064750704,
+        "mneme_forgetting_boost": 1.4845770176057154,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7182968966801135,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "63f40db7-ead8-4034-8bf4-50db55e95cd4",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8457100609597389,
+        "mneme_forgetting_boost": 1.5285197251773013,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7408023710197604,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "853b2414-79d4-4c66-b177-3b338d07842c",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8387201048520961,
+        "mneme_forgetting_boost": 1.5557383370000097,
+        "recovery_compose_period_beats": 69,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7369334088706585,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "88514641-69d0-4689-a8c1-44e59dd69546",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8064132053027667,
+        "mneme_forgetting_boost": 1.340819025876335,
+        "recovery_compose_period_beats": 51,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7186508896644366,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "ec3fec31-a266-4478-a7ab-a9adbaf0dd24",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8577824776280938,
+        "mneme_forgetting_boost": 1.7240765437018286,
+        "recovery_compose_period_beats": 58,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.748171248446124,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "108fb6a9-4716-4618-b1b9-df958281dd43",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7865884437602405,
+        "mneme_forgetting_boost": 1.6899877579914864,
+        "recovery_compose_period_beats": 53,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7077285105542808,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "a4152dcf-cbd9-44ff-ba59-32ef6d9c2677",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7686845543365461,
+        "mneme_forgetting_boost": 1.5836324833095758,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6983248825511472,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "584eacde-32a7-487c-b2df-15a70fe79284",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7998207346647975,
+        "mneme_forgetting_boost": 1.4787524231918134,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7150677830431966,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "2a753b4c-9b44-48e2-8cdb-773940f4ee2c",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8492618651459801,
+        "mneme_forgetting_boost": 1.511776037897227,
+        "recovery_compose_period_beats": 63,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7432213701293264,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "e47c3e0b-d6d9-4279-bc54-44b5c943e53a",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7282439764639143,
+        "mneme_forgetting_boost": 1.4936666077490848,
+        "recovery_compose_period_beats": 54,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6776199735595616,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "c3a0fee0-76e0-4a3c-9711-c70ca063ac5a",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.7573415428851731,
+        "mneme_forgetting_boost": 1.3858401922992625,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.6926021655355958,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "c02e9080-215a-43b8-9592-d5a6122208c1",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.9060565889824604,
+        "mneme_forgetting_boost": 1.2205689466938567,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7523364478628478,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "4841ed54-d1a7-415d-b575-1f3a27ffcbc9",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8570540698333248,
+        "mneme_forgetting_boost": 1.3504024977329452,
+        "recovery_compose_period_beats": 71,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7477375529219925,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "035212e7-66fd-4d20-95d7-afba904411c9",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8928340402951374,
+        "mneme_forgetting_boost": 1.5668617539675567,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7558947241607743,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d25092ac-723f-4920-be86-9bfa656e099f",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8496420085915254,
+        "mneme_forgetting_boost": 1.3638983538055351,
+        "recovery_compose_period_beats": 66,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7434458285129659,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "5322d664-0e79-4de8-a805-977569faee0b",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8801800675458799,
+        "mneme_forgetting_boost": 1.2520295506096624,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7592784547522022,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "536dad12-d8db-44cf-a140-3edd5c1c707e",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8879879915548616,
+        "mneme_forgetting_boost": 1.5792716248794096,
+        "recovery_compose_period_beats": 76,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.757224689519328,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "11361996-d4e7-45a3-b0c2-3f85cbecd463",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8501364827304413,
+        "mneme_forgetting_boost": 1.2146401629986072,
+        "recovery_compose_period_beats": 56,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7437378952831437,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "0d9c1f17-3bdd-4e26-97e3-bf1817fd7ac3",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.859325254511278,
+        "mneme_forgetting_boost": 1.2930286504667443,
+        "recovery_compose_period_beats": 72,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7489018649068562,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "cc89fb9a-5d5a-45d4-95dc-e1d9b429cec5",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8544820656789737,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 52,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7462088357605372,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "85d574d9-16df-4b77-b80d-b7e5716f2da7",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8743066927809282,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7575489316132582,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "0ef16934-df46-4a52-b69b-391b3f3af9d3",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8493098727641344,
+        "mneme_forgetting_boost": 1.2397458679471676,
+        "recovery_compose_period_beats": 54,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.743249689084019,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d5774151-0af0-43ab-aeb7-fa05a77b867d",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8286534164113153,
+        "mneme_forgetting_boost": 1.5288021245636787,
+        "recovery_compose_period_beats": 57,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7312855156806792,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "049dc726-97f6-4536-bc89-bd8ab0423fba",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8416125047540877,
+        "mneme_forgetting_boost": 1.4907987586817708,
+        "recovery_compose_period_beats": 82,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.738624496510434,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "4e8121a2-c8aa-4fe5-af1a-d9ddca52baaa",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8389951679911131,
+        "mneme_forgetting_boost": 1.204127635617556,
+        "recovery_compose_period_beats": 67,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7370940243181603,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "4fce8a0d-f534-4c8c-a082-4fd9901edee6",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.9405044175541958,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 63,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7422444318184758,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "aca8d176-e2e2-4841-9f04-6491baf057f1",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.9072068151621611,
+        "mneme_forgetting_boost": 1.3085195896806605,
+        "recovery_compose_period_beats": 62,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7519966435335386,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "28d060de-9cc5-4dba-80da-76adc48fbb5f",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8753161962419386,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 63,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7581613223674233,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "4467fa38-2c66-466e-889b-167e85dba448",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8706764378496866,
+        "mneme_forgetting_boost": 1.2821820856514132,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7554308122246738,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "4ce8c695-59e9-4e3c-940e-4aa14f2ce05d",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8965038482890799,
+        "mneme_forgetting_boost": 1.3836530563165776,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7548936563479998,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "82083f85-9d4d-43d0-9f8a-88ed89fcc4e0",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8923114742939722,
+        "mneme_forgetting_boost": 1.2589101951851227,
+        "recovery_compose_period_beats": 65,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7560443458534027,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "0ce4b0da-17e3-47dd-b786-4df6ff933211",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8547454688260003,
+        "mneme_forgetting_boost": 1.29314425401753,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7463652131298826,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "36da1669-0589-4bc5-895f-f0bea13f0512",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.95,
+        "mneme_forgetting_boost": 1.4565361373217816,
+        "recovery_compose_period_beats": 67,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7393419110383987,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "f03d4267-8e3b-42fd-8ec5-aa55d1748c1b",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8532929976606831,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 72,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.745503466123681,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "b86fa4a5-486d-449e-b141-52d65231b853",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8891962228801499,
+        "mneme_forgetting_boost": 1.3144186424409094,
+        "recovery_compose_period_beats": 54,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7568818433302877,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "a566f7a7-6208-4b3e-a5ef-c00f935bf77b",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.9124603468545364,
+        "mneme_forgetting_boost": 1.311074643967867,
+        "recovery_compose_period_beats": 58,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7505453589925046,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "caafea52-c6d8-492c-80cd-69c29f530a8a",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8584966317392518,
+        "mneme_forgetting_boost": 1.2342832365663474,
+        "recovery_compose_period_beats": 63,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7484075964303352,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "8ebab25c-303c-46de-95ec-40f557c3bce9",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8647740084968756,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 61,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7519578086671765,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "ed5d80ec-5599-4c03-ad84-be6df820f091",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8803396879235864,
+        "mneme_forgetting_boost": 1.3912939564891105,
+        "recovery_compose_period_beats": 47,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.759234015774183,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "00944857-be5e-4ae8-84b8-fe73da6ca111",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8667102407421611,
+        "mneme_forgetting_boost": 1.222946614778418,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7531212466067587,
+      "is_synthetic": true
+    },
+    {
+      "event_id": "d933de36-30ef-480c-b239-5bd1726e38e0",
+      "stage": 3,
+      "actions_used": {
+        "coupling_reduction_factor": 0.8619829896537549,
+        "mneme_forgetting_boost": 1.2,
+        "recovery_compose_period_beats": 64,
+        "stage_overlay_3": true,
+        "stage_overlay_4": false
+      },
+      "composite_score": 0.7503827961013274,
+      "is_synthetic": true
+    }
+  ]
+}

@@ -364,6 +364,29 @@ class InterfaceConfig(BaseModel):
     # filtering so subscribers can opt to receive only addressed replies.
     peer_conversation_multi_peer_mode: Literal["shared", "per_peer"] = "shared"
 
+    # WS_COMM_PROTO v1.0 alignment (v1.10) — for inter-agent traffic over
+    # /ws/<speaker> and /family/<speaker>. These match the unified spec
+    # shared with Thea / Theoria / Skye (/home/ubuntu/thea/design/WS_COMM_PROTO.md).
+    # `inter_agent_max_turns` is the per-session turn cap; 0 = unlimited.
+    # `ws_max_size_bytes` is the max-frame size accepted by the WS server
+    # and SHOULD be at least 16 MB (peers ship multi-page proofs etc.).
+    inter_agent_max_turns: int = 0
+    ws_max_size_bytes: int = 67108864  # 64 MB per WS_COMM_PROTO §1.4
+
+    # Multi-turn tool-use loop (v1.12) — when the peer-conversation handler
+    # has access to a ToolExecutor (registered on the ctx as
+    # "tool_executor"), AXIOMA can call her pre-built tools mid-reply.
+    # `peer_conversation_tools_enabled = False` disables the loop entirely
+    # (the model still sees the tools in the system prompt for awareness,
+    # but the loop short-circuits straight to text). `_max_tool_iterations`
+    # caps the loop at N rounds of (tool call → result → next LLM call);
+    # at the cap, whatever text has been produced is returned with a note.
+    peer_conversation_tools_enabled: bool = True
+    # Default 25 covers deep peer-research sessions (SKYE proof tracking
+    # has been observed needing ~15–20 rounds of search→fetch→file_write).
+    # Override via AXIOMA_INTERFACE__PEER_CONVERSATION_MAX_TOOL_ITERATIONS.
+    peer_conversation_max_tool_iterations: int = 100
+
 
 # ── Infra adapters (Ollama / Qdrant / Redis / GPU) ──────────────────────────
 
@@ -377,8 +400,19 @@ class OllamaConfig(BaseModel):
     timeout_seconds: int = 600
     connect_timeout_seconds: int = 10
     retries: int = 1
+    # Sampling parameters — passed through to Ollama as `options.<name>`.
+    # max_tokens=-1 means "no cap" (Ollama generates until the model decides).
+    # num_ctx=0 means "use model default"; deepseek-v4-flash-cloud has 128k.
+    # top_p/top_k/min_p/repeat_penalty are standard Ollama sampling knobs;
+    # operator-driven from the .env to match the values used elsewhere
+    # (Thea, etc.) for response consistency across agents.
     temperature: float = 0.4
     max_tokens: int = -1
+    num_ctx: int = 0
+    top_p: float = 0.95
+    top_k: int = 64
+    min_p: float = 0.05
+    repeat_penalty: float = 1.0
 
 
 class QdrantConfig(BaseModel):

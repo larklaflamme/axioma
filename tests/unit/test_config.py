@@ -109,6 +109,53 @@ def test_load_config_dotenv_infra_mapping(monkeypatch) -> None:
     assert cfg.infra.redis.url == "redis://test-redis:6379"
 
 
+def test_load_config_ollama_sampling_env_mapping(monkeypatch) -> None:
+    """OLLAMA_{NUM_CTX,MAX_TOKENS,TEMPERATURE,TOP_P,TOP_K,MIN_P,REPEAT_PENALTY,
+    RETRIES} from .env map onto OllamaConfig sampling fields. This is the
+    fix for the truncation issue — without env-var mapping the Python
+    defaults (max_tokens=-1, num_ctx=0, etc.) win regardless of what's
+    in .env."""
+    monkeypatch.setenv("OLLAMA_NUM_CTX",        "131072")
+    monkeypatch.setenv("OLLAMA_MAX_TOKENS",     "-1")
+    monkeypatch.setenv("OLLAMA_TEMPERATURE",    "0.4")
+    monkeypatch.setenv("OLLAMA_TOP_P",          "0.95")
+    monkeypatch.setenv("OLLAMA_TOP_K",          "64")
+    monkeypatch.setenv("OLLAMA_MIN_P",          "0.05")
+    monkeypatch.setenv("OLLAMA_REPEAT_PENALTY", "1.0")
+    monkeypatch.setenv("OLLAMA_RETRIES",        "3")
+    for k in list(os.environ):
+        if k.startswith("AXIOMA_"):
+            monkeypatch.delenv(k, raising=False)
+    cfg = load_config(
+        default_yaml=Path("/nonexistent"),
+        local_yaml=Path("/nonexistent"),
+    )
+    assert cfg.infra.ollama.num_ctx == 131072
+    assert cfg.infra.ollama.max_tokens == -1
+    assert cfg.infra.ollama.temperature == 0.4
+    assert cfg.infra.ollama.top_p == 0.95
+    assert cfg.infra.ollama.top_k == 64
+    assert cfg.infra.ollama.min_p == 0.05
+    assert cfg.infra.ollama.repeat_penalty == 1.0
+    assert cfg.infra.ollama.retries == 3
+
+
+def test_load_config_ollama_sampling_unparseable_env_is_ignored(monkeypatch) -> None:
+    """Malformed env values fall back to the schema default instead of crashing."""
+    monkeypatch.setenv("OLLAMA_NUM_CTX",     "not-a-number")
+    monkeypatch.setenv("OLLAMA_TEMPERATURE", "not-a-float")
+    for k in list(os.environ):
+        if k.startswith("AXIOMA_"):
+            monkeypatch.delenv(k, raising=False)
+    cfg = load_config(
+        default_yaml=Path("/nonexistent"),
+        local_yaml=Path("/nonexistent"),
+    )
+    # Default values (per schema.py) — not the malformed env values
+    assert cfg.infra.ollama.num_ctx == 0  # schema default
+    assert cfg.infra.ollama.temperature == 0.4  # schema default
+
+
 def test_load_config_axioma_env_overrides_dotenv(monkeypatch) -> None:
     """AXIOMA_INFRA__OLLAMA__URL beats OLLAMA_URL."""
     monkeypatch.setenv("OLLAMA_URL", "http://from-dotenv")
@@ -118,6 +165,19 @@ def test_load_config_axioma_env_overrides_dotenv(monkeypatch) -> None:
         local_yaml=Path("/nonexistent"),
     )
     assert cfg.infra.ollama.url == "http://from-axioma-env"
+
+
+def test_load_config_axioma_conda_env_is_reserved(monkeypatch) -> None:
+    """AXIOMA_CONDA_ENV is consumed by scripts/axioma_ctl.sh to select the
+    conda env; it must NOT leak into AxiomaConfig as a `conda_env` field
+    (which would be rejected by extra="forbid")."""
+    monkeypatch.setenv("AXIOMA_CONDA_ENV", "axioma")
+    cfg = load_config(
+        default_yaml=Path("/nonexistent"),
+        local_yaml=Path("/nonexistent"),
+    )
+    assert cfg is not None
+    assert not hasattr(cfg, "conda_env")
 
 
 def test_load_config_env_value_coercion(monkeypatch) -> None:

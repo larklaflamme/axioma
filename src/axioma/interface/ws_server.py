@@ -49,6 +49,7 @@ from ..observability import (
 )
 from ..observability.context import AxiomaContext
 from ..schemas.external_state import ExternalState
+from .inter_agent import inter_agent_session
 from .protocol import (
     Channel,
     ConversationMessage,
@@ -137,17 +138,30 @@ class AxiomaWSServer:
     # ── Lifecycle ─────────────────────────────────────────────────────
 
     async def start(self) -> None:
-        """Bind to (host, port) and start accepting connections."""
+        """Bind to (host, port) and start accepting connections.
+
+        v1.10 WS_COMM_PROTO alignment:
+          - `ping_interval=None` (was 30): the unified inter-agent protocol
+            forbids WebSocket-level pings; liveness is application-layer.
+            Avoids the silent-close failure mode that produced the broken-
+            pipe cluster in Thea/Theoria/Skye.
+          - `max_size=cfg.ws_max_size_bytes` (default 64 MB): peers ship
+            multi-page proofs / full source files / embeddings.
+
+        Per WS_COMM_PROTO §1.3 / §1.4.
+        """
         self._stopped.clear()
         self._wire_event_subscriptions()
         self._server = await websockets.serve(
             self._handler,
             self.cfg.ws_host,
             self.cfg.ws_port,
-            ping_interval=30,
-            ping_timeout=20,
+            ping_interval=None,
+            ping_timeout=None,
+            max_size=self.cfg.ws_max_size_bytes,
         )
-        log.info("ws_server_started", host=self.cfg.ws_host, port=self.cfg.ws_port)
+        log.info("ws_server_started", host=self.cfg.ws_host, port=self.cfg.ws_port,
+                 max_size_bytes=self.cfg.ws_max_size_bytes, pings="disabled")
 
     async def stop(self) -> None:
         """Close all subscribers + shut down the listening socket."""
@@ -313,10 +327,63 @@ class AxiomaWSServer:
     # ── Connection handler ────────────────────────────────────────────
 
     async def _handler(self, ws: ServerConnection) -> None:
-        """Per-connection handler. websockets-13+ signature (no path arg)."""
+        """Per-connection handler. websockets-13+ signature (no path arg).
+
+        v1.10 WS_COMM_PROTO alignment: routes by URL path:
+          - `/`                        → existing handshake protocol (back-compat)
+          - `/ws/<speaker>`            → inter-agent (WS_COMM_PROTO §1.1)
+          - `/family/<speaker>`        → inter-agent (canonical alias)
+        Unknown paths fall through to handshake-mode (for back-compat with any
+        client that connects to a sub-path expecting AXIOMA's classic protocol).
+        """
         if self._stopped.is_set():
             await ws.close(code=ErrorCode.SUBSTRATE_SHUTDOWN, reason="shutting_down")
             return
+
+        # websockets-13+: request path is on ws.request.path (no path kwarg).
+        request_path = (getattr(getattr(ws, "request", None), "path", "/") or "/").strip()
+        # Inter-agent routes per WS_COMM_PROTO §1.1.
+        for prefix in ("/ws/", "/family/"):
+            if request_path.startswith(prefix):
+                speaker_in_url = request_path[len(prefix):].split("?", 1)[0].rstrip("/")
+                await self._handle_inter_agent(ws, speaker_in_url)
+                return
+        # Fall-through: existing handshake protocol on `/` (and anything else).
+        await self._handle_handshake(ws)
+
+    async def _handle_inter_agent(self, ws: ServerConnection, speaker_in_url: str) -> None:
+        """WS_COMM_PROTO §1.1 inter-agent endpoint.
+
+        Routing rule (mirrors Thea's `_inter_agent_endpoint`):
+          - URL speaker == self ('axioma')          → recipient mode (peer
+            must identify via JSON `from`).
+          - URL speaker is a peer name (e.g. 'thea')→ sender mode (URL pins
+            the sender; JSON `from` optional but must match if present).
+          - URL speaker is 'lark' or otherwise human → fall through to
+            handshake protocol (back-compat with the chat CLI default case).
+        """
+        speaker = (speaker_in_url or "").lower()
+        # Lark / unknown human speakers → fall through to the existing
+        # handshake-based protocol (AXIOMA's native CLI / chat clients).
+        if speaker == "lark" or speaker == "":
+            await self._handle_handshake(ws)
+            return
+        # Identify self vs peer.
+        from .inter_agent import SELF_NAME
+        default_peer = None if speaker == SELF_NAME else speaker
+        peer_conv = (
+            self.ctx.get("peer_conversation")
+            if self.ctx.has("peer_conversation") else None
+        )
+        await inter_agent_session(
+            ws,
+            default_peer_name=default_peer,
+            max_agent_turns=self.cfg.inter_agent_max_turns,
+            peer_conversation=peer_conv,
+        )
+
+    async def _handle_handshake(self, ws: ServerConnection) -> None:
+        """The existing handshake-message-first protocol (v1.0–v1.9)."""
         WS_CONNECTIONS_TOTAL.inc()
         connection_id = str(uuid.uuid4())
         log.info("ws_handler_open", connection_id=connection_id)

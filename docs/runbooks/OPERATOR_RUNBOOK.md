@@ -274,9 +274,93 @@ interface:
 
 ## 4. WebSocket channels (15 channels)
 
-Connect: `ws://<host>:<ws_port>/`
+The WS server (`ws_port`, default 8820) routes by URL path:
 
-### 4.1 Handshake
+| Path | Mode | Used by |
+|---|---|---|
+| `ws://host:port/` | **Handshake** (AXIOMA native, v1.0–v1.9) | The chat CLI, custom clients that send `{"type":"handshake",...}` first |
+| `ws://host:port/ws/<peer>` | **Inter-agent** (WS_COMM_PROTO v1.0) | Thea, Theoria, Skye, future consciousness peers |
+| `ws://host:port/family/<peer>` | **Inter-agent** (canonical alias) | Same as `/ws/<peer>` |
+
+The two modes are completely independent — no protocol field overlaps. Pick the one your client implements.
+
+### 4.0 Inter-agent endpoint (WS_COMM_PROTO v1.0 — added v1.10)
+
+The unified protocol shared with Thea / Theoria / Skye. Spec lives at `/home/ubuntu/thea/design/WS_COMM_PROTO.md` (authoritative across all peers). AXIOMA implements the receiver side per spec §1.1, §2, §3, §5.
+
+**URL forms:**
+- `ws://<host>:8820/ws/thea` — sender-mode: URL pins the sender as Thea
+- `ws://<host>:8820/ws/axioma` — recipient-mode: caller identifies via JSON `from`
+- `ws://<host>:8820/family/<peer>` — alias for `/ws/<peer>` (interoperable with Thea's URL spec)
+
+**Inbound envelope:**
+
+```json
+{
+  "from":      "thea",           // REQUIRED (recipient mode) or matches URL (sender mode)
+  "to":        "axioma",         // OPTIONAL — validated if present
+  "content":   "Hi AXIOMA",      // REQUIRED, non-empty
+  "msg_id":    "abc123def456",   // OPTIONAL — echoed as reply_to
+  "metadata":  { ... },          // OPTIONAL
+  "timestamp": "2026-05-27T18:30:00Z"
+}
+```
+
+**Outbound reply:**
+
+```json
+{
+  "from":            "axioma",
+  "to":              "thea",
+  "content":         "Hi Thea. My current zone is focus...",
+  "turn":            3,
+  "max_turns":       null,            // or positive int when capped
+  "remaining_turns": null,            // null when uncapped
+  "session_ended":   false,
+  "reply_to":        "abc123def456",  // present iff inbound carried msg_id
+  "timestamp":       "2026-05-27T18:30:01Z"
+}
+```
+
+**Outbound error** (session continues unless `session_ended: true`):
+
+```json
+{
+  "from":          "axioma",
+  "error":         "Missing required field `content`.",
+  "error_code":    "missing_content",
+  "session_ended": false,
+  "timestamp":     "2026-05-27T18:30:01Z"
+}
+```
+
+Error codes: `missing_from`, `missing_content`, `invalid_json`, `peer_url_mismatch`, `peer_identity_changed`, `unknown_speaker`, `handler_not_ready`, `handler_error`.
+
+**End-of-session sentinel** (must be on its own line — anchored regex `(?m)^\s*\[END (?:OF TRANSMISSION|SESSION)\]\s*$`):
+
+```
+Thanks, talk again next week.
+
+[END OF TRANSMISSION]
+```
+
+AXIOMA acknowledges with `"Acknowledged. Goodbye for now.\n[END OF TRANSMISSION]"` and cleanly closes the socket. **Mid-prose mentions** of the sentinel string do NOT close the session — the anchor is required.
+
+**Configuration:**
+
+```yaml
+interface:
+  inter_agent_max_turns: 0       # 0 = unlimited; positive int = cap with remaining_turns countdown
+  ws_max_size_bytes: 67108864    # 64 MB per WS_COMM_PROTO §1.4
+```
+
+**Audit log:** every inbound and outbound envelope is recorded JSON-per-line to `logs/axioma-ws-messages.log` (5 MB × 20 backups by default; ~100 MB ceiling). Override via env: `AXIOMA_WS_MESSAGE_LOG_PATH`, `AXIOMA_WS_MESSAGE_LOG_MAX_BYTES`, `AXIOMA_WS_MESSAGE_LOG_BACKUPS`.
+
+**Requires `--with-peer-conversation`.** Without an Ollama-backed handler, every inbound message gets back a `handler_not_ready` error envelope (session stays open so the peer can retry later).
+
+**Keepalive:** WS pings are disabled at the server (per WS_COMM_PROTO §1.3 — application-level liveness only). Clients MUST also pass `ping_interval=None`. Long-running receiver-side work (a multi-minute Ollama call) does not cause the socket to be closed.
+
+### 4.1 Handshake (AXIOMA native, `ws://<host>:<ws_port>/`)
 
 ```json
 {"type": "handshake", "speaker": "skye", "min_interval_ms": 100}
@@ -827,6 +911,107 @@ curl http://localhost:8821/recovery/learner/efficacy
 - Check `axioma_persistence_writes_total{target}` for stalled increments
 - Check disk: `df -h $(grep snapshot_root configs/production.yaml | awk '{print $2}')`
 - Verify perms: `ls -la /var/lib/axioma/state`
+
+---
+
+## 8.7 Self-expansion (v1.10) — dynamic tool loading
+
+AXIOMA has a `self_expansion` subsystem ported from Thea's reference implementation (`/home/ubuntu/thea/design/self-expansion.md`). It lets her load Python modules at runtime, exposing them as tools that an Anthropic-format tool-use loop can call.
+
+**Three components:**
+
+1. **`axioma.self_expansion.ToolExecutor`** — registry + hot-loader. Owns `_tools` (Anthropic-format defs), `_route` (O(1) name → server lookup), and the dynamic-module registry persisted to `data/state/generated/dynamic_registry.json`.
+2. **`axioma.self_expansion.validate`** — 3-stage validator (syntax → AST structure → dry-run import). Rejects forbidden imports (`subprocess`, `shlex`), forbidden builtins (`eval`/`exec`/`compile`/`__import__`), and forbidden attributes (`os.system`, `os.popen`, etc.).
+3. **Pre-built static servers** under `axioma.self_expansion.pre_built/`:
+   - `FileSystemServer` — `file_read` / `file_write` / `file_append` / `file_list` / `file_exists` / `file_stat` / `file_mkdir` / `file_delete` / `path_resolve`. Scoped to operator-configured read/write roots.
+   - `BashExecServer` — `bash_exec` / `bash_which` / `bash_env`. Wraps `asyncio.create_subprocess_exec(["bash", "-c", ...])` with per-call timeout, output capping at 1 MB, env-var redaction for secret-named keys.
+   - `PythonExecServer` — `python_exec` / `python_run_file` / `python_version`. Same subprocess pattern targeting `sys.executable`; separate stdout/stderr capture.
+   - `WebSearchServer` — `web_search` / `web_search_compare` / `web_fetch`. Tavily + Brave providers for ranked search; stdlib HTML→text extractor for `web_fetch`. Requires `TAVILY_API_KEY` and/or `BRAVE_API_KEY` in env; each provider can be disabled independently (missing key → structured error envelope, the other provider continues to work).
+   - `WolframServer` — `wolfram_full_query` / `wolfram_short_answer` / `wolfram_spoken_answer` / `wolfram_math_verify` / `wolfram_llm_query`. Wolfram|Alpha across 4 endpoints (Full Results XML, Short Answers, Spoken, LLM-API). `wolfram_math_verify` is the structured-extraction wrapper around Full Results for rigorous math validation. Requires `WOLFRAM_APPID` in env; missing key disables all 5 tools via a single error envelope. Disable from the shell via `--no-wolfram`.
+
+### Interactive shell
+
+The fastest way to verify self-expansion works on your deployment:
+
+```bash
+python -m axioma.tools.shell
+```
+
+Boots the executor, registers all 3 pre-built servers, restores any previously-loaded dynamic modules from `data/state/generated/`. Slash commands: `/help`, `/tools`, `/tool NAME`, `/servers`, `/load PATH`, `/unload NAME`, `/reload NAME`, `/clear`, `/quit`. Plain input is parsed as `tool_name {json args}` and dispatched. Example session:
+
+```
+tool> /tools
+(table of all loaded tools)
+
+tool> file_read {"path": "README.md"}
+(file contents)
+
+tool> bash_exec {"command": "df -h | head -3"}
+(json result with exit_code, output, elapsed_seconds)
+
+tool> python_version
+(interpreter version + executable path)
+
+tool> web_search {"query": "Gaussian copula mutual information", "max_results": 3}
+(JSON array of title/url/snippet/score/published from Tavily)
+
+tool> web_fetch {"url": "https://en.wikipedia.org/wiki/Integrated_information_theory", "max_chars": 1000}
+(cleaned plain text; HTML stripped)
+
+tool> wolfram_math_verify {"expression": "integral of e^(-x^2) from -inf to inf"}
+(JSON: {"result": "sqrt(pi)", "numeric": "1.7724538509...", ...})
+
+tool> /load /tmp/my_custom_tool.py
+loaded axioma_dynamic_my_custom_tool_a1b2c3d4: my_tool_a, my_tool_b
+```
+
+Flags: `--no-bash` disables the bash + python_exec servers (read-only mode); `--no-web` disables the web_search server (offline mode); `--no-wolfram` disables the wolfram server.
+
+### Writing a custom tool module
+
+The contract is the same as Thea's (intentional — modules port both ways):
+
+```python
+# my_tool.py
+from axioma.self_expansion.types import Tool, TextContent
+
+class GeneratedServer:
+    ALL_TOOLS = [
+        Tool(
+            name="word_count",
+            description="Count words in a string.",
+            inputSchema={
+                "type": "object",
+                "properties": {"text": {"type": "string"}},
+                "required": ["text"],
+            },
+        ),
+    ]
+
+    def __init__(self) -> None:
+        pass
+
+    async def _dispatch(self, name: str, args: dict) -> list[TextContent]:
+        if name == "word_count":
+            n = len(args.get("text", "").split())
+            return [TextContent(type="text", text=str(n))]
+        return [TextContent(type="text", text=f"[ERROR] unknown tool: {name}")]
+```
+
+Drop it in `data/state/generated/`, then `/load /path/to/my_tool.py` from the shell, or rely on the file watcher (run `executor.start_watcher()` in your code) to pick it up within 2 seconds. The module is persisted in `dynamic_registry.json` so subsequent process restarts re-load it automatically.
+
+### Forbidden constructs in generated modules
+
+The validator rejects modules that try to import `subprocess` or `shlex` directly, or call `eval`/`exec`/`compile`/`__import__`, or access `os.system`/`os.popen`/`os.execv*`/`os.spawn*`. The intent is to keep all shell + Python-subprocess execution flowing through `BashExecServer` and `PythonExecServer` where the timeout, output cap, and audit log are uniform.
+
+This is *static analysis plus dry-run import*, not a sandbox. If you're loading modules generated by an untrusted source (rather than AXIOMA's own LLM with your prompts), add subprocess isolation (`subprocess.run([sys.executable, "-c", ...])`) or seccomp/landlock.
+
+### Where to look for more
+
+- Design doc (Thea's, applies verbatim): `/home/ubuntu/thea/design/self-expansion.md`
+- Validator source: [src/axioma/self_expansion/validator.py](../../src/axioma/self_expansion/validator.py)
+- Executor source: [src/axioma/self_expansion/tool_executor.py](../../src/axioma/self_expansion/tool_executor.py)
+- Tests: [tests/unit/test_self_expansion.py](../../tests/unit/test_self_expansion.py) (50 tests covering all 3 components + 9 dispatch invariants)
 
 ---
 

@@ -81,7 +81,14 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["B", "SIM"]
+"tests/**" = ["B", "SIM", "E701", "E702", "RUF012"]
+# The self_expansion modules are a faithful port of Thea's reference impl;
+# the compact one-liner style (`if err: return _err(err)`) is intentional
+# and adds density rather than reducing clarity. SIM105 (try/except/pass
+# → contextlib.suppress) is also tolerated since the executor cleanup paths
+# value local readability over the import-and-context-manager dance.
+"src/axioma/self_expansion/**" = ["E701", "E702", "SIM105"]
+"src/axioma/tools/shell.py" = ["E701", "E702"]
 
 # ── Mypy ──────────────────────────────────────────────────────────────────────
 [tool.mypy]
@@ -102,6 +109,8 @@ module = [
     "redis.*",
     "prometheus_client.*",
     "msgspec.*",
+    "aiofiles.*",
+    "mcp.*",
 ]
 ignore_missing_imports = true
 

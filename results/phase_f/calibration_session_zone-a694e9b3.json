@@ -1,0 +1,26 @@
+{
+  "session_id": "zone-a694e9b3",
+  "kind": "zone",
+  "task_type": "x",
+  "n_pairs": 1,
+  "agreements": 1,
+  "operator_distribution": {
+    "focus": 1
+  },
+  "system_distribution": {
+    "focus": 1
+  },
+  "kappa": 1.0,
+  "verdict": "PASS",
+  "duration_minutes": 60,
+  "started_at": 1779911755.7906797,
+  "started_at_beat": 100,
+  "pairs": [
+    {
+      "beat_no": 100,
+      "operator": "focus",
+      "system": "focus",
+      "confidence": null
+    }
+  ]
+}

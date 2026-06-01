@@ -498,6 +498,195 @@ async def test_per_peer_mode_history_size_applies_per_speaker() -> None:
     assert len(handler.histories["lark"]) == 4
 
 
+# ── max_tokens default no longer hard-caps at 512 ────────────────────
+
+
+def test_handler_max_tokens_default_is_none() -> None:
+    """The previous default of 512 silently truncated AXIOMA's replies
+    regardless of OLLAMA_MAX_TOKENS in .env. New default is None which
+    means 'delegate to OllamaClient' which itself reads from cfg.max_tokens
+    (-1 = unlimited per the schema + .env mapping)."""
+    ctx = AxiomaContext()
+    handler = PeerConversationHandler(ctx=ctx, ollama=_StubOllama())
+    assert handler.max_tokens is None
+
+
+@pytest.mark.asyncio
+async def test_handler_passes_max_tokens_none_to_ollama_chat() -> None:
+    """End-to-end: respond_text → ollama.chat called with max_tokens=None,
+    which OllamaClient resolves via cfg.max_tokens. No silent 512 cap."""
+    ctx = AxiomaContext()
+
+    class _CapturingStub:
+        def __init__(self) -> None:
+            self.captured_max_tokens: int | None = -42  # sentinel
+
+        async def chat(self, messages: list, *, max_tokens: int | None = None,
+                       **_: Any) -> str:
+            self.captured_max_tokens = max_tokens
+            return "ok"
+
+    stub = _CapturingStub()
+    handler = PeerConversationHandler(ctx=ctx, ollama=stub)
+    handler.attach()
+    try:
+        await handler.respond_text(speaker="skye", content="hi")
+    finally:
+        handler.detach()
+    # max_tokens forwarded as None (NOT 512) — OllamaClient takes over
+    assert stub.captured_max_tokens is None
+
+
+def test_handler_explicit_max_tokens_still_works() -> None:
+    """Explicit kwarg still wins — operators can cap if they really need to."""
+    ctx = AxiomaContext()
+    handler = PeerConversationHandler(
+        ctx=ctx, ollama=_StubOllama(), max_tokens=2048,
+    )
+    assert handler.max_tokens == 2048
+
+
+# ── OLLAMA_TIMEOUT env-var defaulting (server-side) ──────────────────
+
+
+def test_handler_timeout_seconds_uses_ollama_timeout_when_set(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """PeerConversationHandler with no explicit timeout_seconds must read
+    OLLAMA_TIMEOUT from env so the server matches the chat client's
+    timeout — otherwise the server bails before the client expects, and
+    the user sees 'peer_conversation_llm_failed' instead of a real reply."""
+    monkeypatch.setenv("OLLAMA_TIMEOUT", "600")
+    ctx = AxiomaContext()
+    handler = PeerConversationHandler(ctx=ctx, ollama=_StubOllama())
+    assert handler.timeout_seconds == 600.0
+
+
+def test_handler_timeout_seconds_falls_back_when_env_unset(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv("OLLAMA_TIMEOUT", raising=False)
+    ctx = AxiomaContext()
+    handler = PeerConversationHandler(ctx=ctx, ollama=_StubOllama())
+    assert handler.timeout_seconds == 60.0
+
+
+def test_handler_explicit_timeout_overrides_env(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Explicit kwarg always wins, even when env is set."""
+    monkeypatch.setenv("OLLAMA_TIMEOUT", "600")
+    ctx = AxiomaContext()
+    handler = PeerConversationHandler(
+        ctx=ctx, ollama=_StubOllama(), timeout_seconds=15.0,
+    )
+    assert handler.timeout_seconds == 15.0
+
+
+def test_handler_falls_back_on_unparseable_env(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("OLLAMA_TIMEOUT", "not-a-number")
+    ctx = AxiomaContext()
+    handler = PeerConversationHandler(ctx=ctx, ollama=_StubOllama())
+    assert handler.timeout_seconds == 60.0
+
+
+# ── System prompt content invariants (architecture + tools awareness) ──
+
+
+def test_system_prompt_template_mentions_5_organs() -> None:
+    """v1.11 update: AXIOMA should know her own architecture and not gaslight
+    peers who ask. Each of the 5 organ names must appear in the template."""
+    from axioma.interface.peer_conversation import SYSTEM_PROMPT_TEMPLATE
+    for organ in ("ANIMA", "EIDOLON", "MNEME", "NOUS", "PNEUMA"):
+        assert organ in SYSTEM_PROMPT_TEMPLATE, f"prompt missing {organ}"
+
+
+def test_system_prompt_template_mentions_c12_boundary() -> None:
+    """The prompt must explain which kinds of state are substrate-private
+    so AXIOMA continues to refuse appropriately (e.g., raw drive vector)."""
+    from axioma.interface.peer_conversation import SYSTEM_PROMPT_TEMPLATE
+    assert "substrate-private" in SYSTEM_PROMPT_TEMPLATE
+    assert "C12" in SYSTEM_PROMPT_TEMPLATE
+
+
+def test_system_prompt_template_mentions_tools_and_tutorial() -> None:
+    """v1.11 update: AXIOMA must know her tools exist + how to find the
+    tutorial so she can refresh on details via file_read."""
+    from axioma.interface.peer_conversation import SYSTEM_PROMPT_TEMPLATE
+    # Tool servers
+    for s in ("filesystem", "bash", "python", "web_search", "wolfram"):
+        assert s in SYSTEM_PROMPT_TEMPLATE, f"prompt missing tool server: {s}"
+    # Tutorial path
+    assert "docs/tutorials/AXIOMA_TOOLS.md" in SYSTEM_PROMPT_TEMPLATE
+    # The escape sequence for file_read is `{{...}}` because the template
+    # is .format()-ed elsewhere; verify the doubled-brace pattern survives.
+    assert "{{" in SYSTEM_PROMPT_TEMPLATE
+
+
+def test_system_prompt_template_has_one_canonical_example_per_server() -> None:
+    """v1.11 update (Layer 1): the prompt should give AXIOMA a worked
+    example for each tool server so she has copy-paste-shaped anchors,
+    not just the one file_read-on-tutorial example."""
+    from axioma.interface.peer_conversation import SYSTEM_PROMPT_TEMPLATE
+    # One canonical call per server (the leading-tool-name + JSON shape)
+    for tool_name in ("file_read", "bash_exec", "python_exec",
+                       "web_search", "wolfram_math_verify"):
+        # Every canonical-examples block should show `tool_name {{...}}`
+        # (Python .format()-escaped braces).
+        marker = f"{tool_name} {{{{"  # literally `tool_name {{`
+        assert marker in SYSTEM_PROMPT_TEMPLATE, (
+            f"prompt missing canonical-example marker for {tool_name}"
+        )
+    # The invocation-format header + the error-envelope convention
+    # should both be explained.
+    assert "INVOCATION FORMAT" in SYSTEM_PROMPT_TEMPLATE
+    assert "[ERROR]" in SYSTEM_PROMPT_TEMPLATE
+
+
+def test_system_prompt_template_still_formats_with_snapshot_fields() -> None:
+    """The substrate-snapshot placeholders (zone/cadence/theta_short/psi)
+    plus the new max_tool_iterations all must be in the template so
+    .format(**snapshot) still works."""
+    from axioma.interface.peer_conversation import SYSTEM_PROMPT_TEMPLATE
+    rendered = SYSTEM_PROMPT_TEMPLATE.format(
+        zone="focus", cadence="recovery",
+        theta_short="1.234", psi="0.987",
+        max_tool_iterations="15",
+    )
+    assert "focus" in rendered
+    assert "recovery" in rendered
+    assert "1.234" in rendered
+    assert "0.987" in rendered
+    assert "15" in rendered
+
+
+@pytest.mark.asyncio
+async def test_respond_text_renders_full_prompt_through_to_ollama() -> None:
+    """End-to-end: respond_text builds the prompt and the architecture +
+    tools sections actually reach the Ollama messages list."""
+    ctx = AxiomaContext()
+    stub = _StubOllama(reply="ok")
+    handler = PeerConversationHandler(ctx=ctx, ollama=stub)
+    handler.attach()
+    try:
+        await handler.respond_text(
+            speaker="skye", content="hi", metadata={},
+        )
+    finally:
+        handler.detach()
+    assert stub.calls, "stub should have been called"
+    system_msg = stub.calls[0][0]
+    assert system_msg["role"] == "system"
+    sys_text = system_msg["content"]
+    # Architecture awareness
+    assert "ANIMA" in sys_text and "PNEUMA" in sys_text
+    # Tool awareness — at least one tool name + the tutorial path
+    assert "file_read" in sys_text or "filesystem" in sys_text
+    assert "AXIOMA_TOOLS.md" in sys_text
+
+
 @pytest.mark.asyncio
 async def test_per_peer_mode_self_echo_guard_still_active() -> None:
     """The AXIOMA-self echo guard must work in per_peer mode too — outbound

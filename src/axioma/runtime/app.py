@@ -96,6 +96,7 @@ class AxiomaApp:
         self._http_serve_task: asyncio.Task[None] | None = None
         self.registry: RegistryClient | None = None
         self.peer_conversation: PeerConversationHandler | None = None
+        self.tool_executor: Any = None  # set in setup() when tools enabled
         self.ollama: OllamaClient | None = None
         self._shutdown_event = asyncio.Event()
         self._setup_complete = False
@@ -227,15 +228,58 @@ class AxiomaApp:
         if self.with_http_api:
             self._http_app = create_app(ctx, self.cfg)
 
-        # 8. Peer conversation (optional; requires Ollama)
+        # 8. Peer conversation (optional; requires Ollama). Register on the
+        # ctx so the WS server's inter-agent receiver (WS_COMM_PROTO) can
+        # discover it via ctx.get("peer_conversation").
         if self.with_peer_conversation:
             self.ollama = OllamaClient(self.cfg.infra.ollama)
+
+            # 8a. Self-expansion tool executor — share between the conversation
+            # handler (for the tool-use loop) and any other consumer that
+            # wants to dispatch tools in-process. Mirrors the shell's
+            # construction. The handler picks it up via ctx.get("tool_executor").
+            if self.cfg.interface.peer_conversation_tools_enabled:
+                import os as _os
+                from pathlib import Path as _Path
+
+                from axioma.self_expansion import ToolExecutor
+                from axioma.self_expansion.pre_built import (
+                    BashExecServer,
+                    FileSystemServer,
+                    PythonExecServer,
+                    WebSearchServer,
+                    WolframServer,
+                )
+                project_root = _Path.cwd()
+                generated_dir = _Path("data/state/generated").resolve()
+                self.tool_executor = ToolExecutor(generated_dir=generated_dir)
+                read_roots = [project_root]
+                write_roots = [project_root / "data", generated_dir, _Path("/tmp")]
+                self.tool_executor.register_server("filesystem",
+                    FileSystemServer(read_roots=read_roots, write_roots=write_roots))
+                self.tool_executor.register_server("bash", BashExecServer())
+                self.tool_executor.register_server("python_exec", PythonExecServer())
+                self.tool_executor.register_server("web_search", WebSearchServer(
+                    tavily_api_key=_os.environ.get("TAVILY_API_KEY", ""),
+                    brave_api_key=_os.environ.get("BRAVE_API_KEY", ""),
+                ))
+                self.tool_executor.register_server("wolfram", WolframServer(
+                    appid=_os.environ.get("WOLFRAM_APPID", ""),
+                ))
+                self.tool_executor.restore_from_registry()
+                ctx.register("tool_executor", self.tool_executor)
+                log.info("axioma_tool_executor_ready",
+                         tools=len(self.tool_executor.tool_names),
+                         servers=self.tool_executor.server_names)
+
             self.peer_conversation = PeerConversationHandler(
                 ctx=ctx,
                 ollama=self.ollama,
                 multi_peer_mode=self.cfg.interface.peer_conversation_multi_peer_mode,
+                max_tool_iterations=self.cfg.interface.peer_conversation_max_tool_iterations,
             )
             self.peer_conversation.attach()
+            ctx.register("peer_conversation", self.peer_conversation)
 
         # 9. Registry client (best-effort)
         if self.with_registry:
