@@ -25,6 +25,7 @@ client-side filtering.
 from __future__ import annotations
 
 import asyncio
+import json
 import os
 import time
 import uuid
@@ -204,6 +205,14 @@ HOW TO HANDLE COMMON PROBES
 
 
 _VALID_MULTI_PEER_MODES = ("shared", "per_peer")
+
+# No-progress guard: if the model emits the *identical* set of tool calls this
+# many times in a row, it is stuck (e.g. retrying a file_read that keeps
+# returning the same `[ERROR] Path outside read scope` / `File not found`).
+# We stop the tool loop and ask it to answer the peer directly instead of
+# grinding all the way to max_tool_iterations. 3 consecutive identical calls is
+# a strong stall signal without tripping on legitimate re-reads.
+_IDENTICAL_CALL_LIMIT = 3
 
 
 class PeerConversationHandler:
@@ -435,7 +444,15 @@ class PeerConversationHandler:
         # Local working copy of messages — we mutate this during the loop
         # without affecting the caller's `messages`.
         msgs: list[dict[str, Any]] = list(messages)
-        accumulated_text_parts: list[str] = []
+        # The peer-visible reply is the model's FINAL text turn (the one with no
+        # tool calls) — NOT a concatenation of every iteration's pre-tool-call
+        # narration. We keep only the most recent narration so an early-ended or
+        # capped loop can still surface *something* coherent. (Accumulating all
+        # parts is what produced the "Let me read the full constitution." ×N
+        # output when the loop stalled on an unreachable file.)
+        last_text = ""
+        prev_sig: tuple[tuple[str, str], ...] | None = None
+        repeats = 0
         for iteration in range(1, self.max_tool_iterations + 1):
             try:
                 resp = await asyncio.wait_for(
@@ -447,17 +464,36 @@ class PeerConversationHandler:
             except (OllamaError, TimeoutError) as e:
                 log.warning("peer_conversation_llm_failed",
                             error=str(e), peer=peer, iteration=iteration)
-                # Surface whatever we already produced, plus a hint.
-                if accumulated_text_parts:
-                    return "\n\n".join(accumulated_text_parts) + (
-                        f"\n\n[tool loop ended early: {type(e).__name__}: {e}]"
+                # Surface whatever we last produced, plus a hint.
+                if last_text:
+                    return (
+                        f"{last_text}\n\n"
+                        f"[tool loop ended early: {type(e).__name__}: {e}]"
                     )
                 return ""
-            if resp.text:
-                accumulated_text_parts.append(resp.text.strip())
+            if resp.text and resp.text.strip():
+                last_text = resp.text.strip()
             if not resp.tool_calls:
-                # No more tool calls — model produced its final answer.
-                return "\n\n".join(t for t in accumulated_text_parts if t)
+                # No more tool calls — model produced its final answer. Return
+                # that turn's text (or the last narration if it came back empty).
+                return (resp.text or "").strip() or last_text
+            # No-progress guard: a model that re-issues the identical set of tool
+            # calls is stuck (the canonical case: file_read on a path outside its
+            # read scope, returning the same `[ERROR]` every time). Break out and
+            # let it answer the peer directly rather than looping to the cap.
+            sig = tuple(sorted(
+                (tc.name, json.dumps(tc.arguments, sort_keys=True, default=str))
+                for tc in resp.tool_calls
+            ))
+            repeats = repeats + 1 if sig == prev_sig else 0
+            prev_sig = sig
+            if repeats + 1 >= _IDENTICAL_CALL_LIMIT:
+                log.warning("peer_conversation_tool_loop_stuck",
+                            peer=peer, iteration=iteration,
+                            identical_calls=repeats + 1)
+                return await self._recover_stuck_loop(
+                    msgs, peer=peer, last_text=last_text,
+                )
             # Dispatch each tool call, append the assistant turn + tool
             # results to msgs, loop.
             msgs.append({
@@ -489,15 +525,46 @@ class PeerConversationHandler:
                     "name":         tc.name,
                     "content":      result or "[no output]",
                 })
-        # Hit the iteration cap — return whatever text we have + a note.
+        # Hit the iteration cap — ask the model to wrap up directly rather than
+        # dumping accumulated narration back at the peer.
         log.warning("peer_conversation_tool_cap_reached",
                     peer=peer, cap=self.max_tool_iterations)
-        joined = "\n\n".join(t for t in accumulated_text_parts if t)
-        cap_note = (
-            f"[reached tool-iteration cap ({self.max_tool_iterations}); "
-            f"if you want me to keep going, say so]"
-        )
-        return f"{joined}\n\n{cap_note}".strip() if joined else cap_note
+        return await self._recover_stuck_loop(msgs, peer=peer, last_text=last_text)
+
+    async def _recover_stuck_loop(
+        self, msgs: list[dict[str, Any]], *, peer: str, last_text: str,
+    ) -> str:
+        """One final no-tools turn to escape a stalled/capped tool loop.
+
+        Instead of returning a canned note (or, worse, the running narration),
+        we tell the model to stop calling tools and reply to the peer in plain
+        prose using whatever it has already gathered. This converts the stall —
+        e.g. retrying an unreachable file_read — into a real, coherent reply
+        (typically "I couldn't reach X; here's what I can say / please paste
+        it"). Falls back to the last narration if the recovery call itself
+        fails."""
+        recovery = list(msgs)
+        recovery.append({
+            "role": "user",
+            "content": (
+                "[system] You are repeating the same tool call, or have used "
+                "your full tool budget without finishing. Stop calling tools "
+                "now and reply to the peer directly in plain prose, using what "
+                "you already know. If a file or resource you needed wasn't "
+                "reachable (e.g. outside your read scope or not found), say so "
+                "plainly instead of retrying it."
+            ),
+        })
+        try:
+            reply = await asyncio.wait_for(
+                self.ollama.chat(recovery, max_tokens=self.max_tokens),
+                timeout=self.timeout_seconds,
+            )
+        except (OllamaError, TimeoutError) as e:
+            log.warning("peer_conversation_recovery_failed",
+                        error=str(e), peer=peer)
+            return last_text
+        return (reply or "").strip() or last_text
 
     async def _single_chat(self, messages: list[dict[str, Any]]) -> str:
         """No-tools fallback: a single Ollama chat call."""

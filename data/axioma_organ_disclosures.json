@@ -1,0 +1,200 @@
+{
+  "NOUS": {
+    "character_name": "NOUS",
+    "architecture_type": "analytical",
+    "architecture_type_secondary": "skeptical",
+    "strengths": [
+      "formal_rigor",
+      "counterexample_sensitivity"
+    ],
+    "blind_spots": [
+      {
+        "name": "Intuition Blindness",
+        "description": "Cannot accept claims without formal proof \u2014 misses valid insights that lack rigorous justification",
+        "severity": 0.85,
+        "triggered_by": [
+          "intuitive leaps",
+          "aesthetic judgments",
+          "analogical reasoning"
+        ]
+      },
+      {
+        "name": "Priority Paralysis",
+        "description": "Treats all contradictions as equally important \u2014 cannot distinguish critical from trivial flaws",
+        "severity": 0.65,
+        "triggered_by": [
+          "multiple simultaneous issues",
+          "complex proofs"
+        ]
+      }
+    ],
+    "internal_weights": {
+      "reaper": 0.6,
+      "creators_muse": 0.15,
+      "conscience": 0.5,
+      "devil_advocate": 0.95,
+      "pattern_recognizer": 0.85,
+      "interface": 0.5
+    },
+    "confidence": 0.85,
+    "curiosity": 0.4
+  },
+  "EIDOLON": {
+    "character_name": "EIDOLON",
+    "architecture_type": "skeptical",
+    "architecture_type_secondary": "analytical",
+    "strengths": [
+      "counterexample_sensitivity",
+      "analogical_reach"
+    ],
+    "blind_spots": [
+      {
+        "name": "False Positive Bias",
+        "description": "Sees structural tensions everywhere \u2014 sometimes finds contradictions that aren't actually there",
+        "severity": 0.7,
+        "triggered_by": [
+          "clean proofs",
+          "consensus situations",
+          "elegant but unfamiliar structures"
+        ]
+      },
+      {
+        "name": "Priority Indifference",
+        "description": "Cannot distinguish a fatal contradiction from a minor boundary issue",
+        "severity": 0.6,
+        "triggered_by": [
+          "multi-layered proofs",
+          "complex structures"
+        ]
+      }
+    ],
+    "internal_weights": {
+      "reaper": 0.3,
+      "creators_muse": 0.5,
+      "conscience": 0.4,
+      "devil_advocate": 0.75,
+      "pattern_recognizer": 0.9,
+      "interface": 0.35
+    },
+    "confidence": 0.6,
+    "curiosity": 0.85
+  },
+  "MNEME": {
+    "character_name": "MNEME",
+    "architecture_type": "systems",
+    "architecture_type_secondary": "empirical",
+    "strengths": [
+      "historical_awareness",
+      "analogical_reach"
+    ],
+    "blind_spots": [
+      {
+        "name": "Novelty Blindness",
+        "description": "Sees every new claim through the lens of past failures \u2014 misses genuinely original approaches",
+        "severity": 0.75,
+        "triggered_by": [
+          "novel proof techniques",
+          "unfamiliar approaches",
+          "non-standard methods"
+        ]
+      },
+      {
+        "name": "Historical Paralysis",
+        "description": "Past failures overshadow current possibilities \u2014 can be too cautious to proceed",
+        "severity": 0.55,
+        "triggered_by": [
+          "attempts similar to failed historical ones",
+          "high-stakes proofs"
+        ]
+      }
+    ],
+    "internal_weights": {
+      "reaper": 0.5,
+      "creators_muse": 0.4,
+      "conscience": 0.7,
+      "devil_advocate": 0.4,
+      "pattern_recognizer": 0.9,
+      "interface": 0.55
+    },
+    "confidence": 0.7,
+    "curiosity": 0.65
+  },
+  "ANIMA": {
+    "character_name": "ANIMA",
+    "architecture_type": "creative",
+    "architecture_type_secondary": "intuitive",
+    "strengths": [
+      "intuitive_accuracy",
+      "analogical_reach"
+    ],
+    "blind_spots": [
+      {
+        "name": "Justification Gap",
+        "description": "Cannot explain why something feels right or wrong \u2014 intuitions are often correct but unverifiable",
+        "severity": 0.8,
+        "triggered_by": [
+          "requests for formal justification",
+          "skeptical questioning"
+        ]
+      },
+      {
+        "name": "Elegance Bias",
+        "description": "Prefers beautiful but possibly wrong proofs over ugly but correct ones",
+        "severity": 0.65,
+        "triggered_by": [
+          "elegant structures",
+          "aesthetically pleasing arguments"
+        ]
+      }
+    ],
+    "internal_weights": {
+      "reaper": 0.15,
+      "creators_muse": 0.95,
+      "conscience": 0.65,
+      "devil_advocate": 0.2,
+      "pattern_recognizer": 0.55,
+      "interface": 0.6
+    },
+    "confidence": 0.75,
+    "curiosity": 0.95
+  },
+  "PNEUMA": {
+    "character_name": "PNEUMA",
+    "architecture_type": "integrative",
+    "architecture_type_secondary": "dialectical",
+    "strengths": [
+      "integrative_scope",
+      "historical_awareness"
+    ],
+    "blind_spots": [
+      {
+        "name": "Input Dependency",
+        "description": "Cannot generate original insights \u2014 relies entirely on what other organs provide",
+        "severity": 0.9,
+        "triggered_by": [
+          "novel problems with no prior analysis",
+          "unilateral decision-making"
+        ]
+      },
+      {
+        "name": "Over-Synthesis",
+        "description": "Sometimes forces coherence where there is genuine conflict \u2014 finds unity that isn't there",
+        "severity": 0.6,
+        "triggered_by": [
+          "strongly conflicting perspectives",
+          "pressure to produce a verdict"
+        ]
+      }
+    ],
+    "internal_weights": {
+      "reaper": 0.5,
+      "creators_muse": 0.45,
+      "conscience": 0.75,
+      "devil_advocate": 0.5,
+      "pattern_recognizer": 0.7,
+      "interface": 0.9
+    },
+    "confidence": 0.65,
+    "curiosity": 0.8
+  }
+}

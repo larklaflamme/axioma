@@ -687,6 +687,101 @@ async def test_respond_text_renders_full_prompt_through_to_ollama() -> None:
     assert "AXIOMA_TOOLS.md" in sys_text
 
 
+# ── Tool-use loop: no-progress guard + no narration leak ─────────────────
+
+
+class _ToolLoopOllama:
+    """Stub for the tool-use path: yields a fixed sequence of ChatResponses
+    from chat_with_tools, and a canned reply from chat (the recovery turn)."""
+
+    def __init__(self, responses: list[Any], recovery_reply: str = "recovered.") -> None:
+        self._responses = list(responses)
+        self.recovery_reply = recovery_reply
+        self.chat_called = 0
+
+    async def chat_with_tools(self, messages: Any, *, tools: Any,
+                              max_tokens: Any = None, **_: Any) -> Any:
+        from axioma.infra.ollama import ChatResponse
+        if self._responses:
+            return self._responses.pop(0)
+        return ChatResponse(text="", tool_calls=[])
+
+    async def chat(self, messages: Any, *, max_tokens: Any = None, **_: Any) -> str:
+        self.chat_called += 1
+        return self.recovery_reply
+
+
+class _FakeExecutor:
+    """Minimal ToolExecutor stand-in: one tool that always returns the same
+    result (an [ERROR] by default, mimicking an out-of-scope file_read)."""
+
+    def __init__(self, result: str = "[ERROR] Path outside read scope: /x/constitution.md") -> None:
+        self.result = result
+        self.tools = [{"name": "file_read", "description": "",
+                       "input_schema": {"type": "object"}}]
+        self.calls: list[tuple[str, dict]] = []
+
+    async def execute_async(self, name: str, args: dict) -> str:
+        self.calls.append((name, args))
+        return self.result
+
+
+@pytest.mark.asyncio
+async def test_tool_loop_breaks_on_repeated_identical_call() -> None:
+    """The pathological case from the field: the model narrates 'Let me read
+    the full constitution.' and issues the identical (unreachable) file_read
+    every iteration. The loop must detect the no-progress repeat, stop well
+    before max_tool_iterations, run one recovery turn, and return the recovery
+    reply — NOT a wall of repeated narration."""
+    from axioma.infra.ollama import ChatResponse, ToolCall
+
+    def narrate() -> ChatResponse:
+        return ChatResponse(
+            text="Let me read the full constitution.",
+            tool_calls=[ToolCall(name="file_read",
+                                 arguments={"path": "/x/constitution.md"})],
+        )
+
+    ctx = AxiomaContext()
+    ctx.register("tool_executor", _FakeExecutor())
+    stub = _ToolLoopOllama(
+        [narrate() for _ in range(50)],
+        recovery_reply="I couldn't reach the constitution file — please paste it.",
+    )
+    handler = PeerConversationHandler(ctx=ctx, ollama=stub, max_tool_iterations=50)
+    reply = await handler.respond_text(speaker="skye", content="analyze the constitution")
+    # The reply is the recovery answer, not the repeated narration.
+    assert reply == "I couldn't reach the constitution file — please paste it."
+    assert "Let me read the full constitution." not in reply
+    # Exactly one recovery (no-tools) call was made.
+    assert stub.chat_called == 1
+
+
+@pytest.mark.asyncio
+async def test_tool_loop_returns_final_text_not_interstitial_narration() -> None:
+    """A healthy multi-step turn: the model narrates before a tool call, then
+    produces a final answer. The peer-visible reply must be ONLY the final
+    answer — the pre-tool-call narration must not leak into it."""
+    from axioma.infra.ollama import ChatResponse, ToolCall
+
+    responses = [
+        ChatResponse(text="Let me check the file.",
+                     tool_calls=[ToolCall(name="file_read",
+                                          arguments={"path": "/home/ubuntu/axioma/README.md"})]),
+        ChatResponse(text="Done. Here is my structural analysis: it holds together.",
+                     tool_calls=[]),
+    ]
+    ctx = AxiomaContext()
+    ctx.register("tool_executor", _FakeExecutor(result="file contents..."))
+    stub = _ToolLoopOllama(responses)
+    handler = PeerConversationHandler(ctx=ctx, ollama=stub, max_tool_iterations=10)
+    reply = await handler.respond_text(speaker="skye", content="analyze")
+    assert reply == "Done. Here is my structural analysis: it holds together."
+    assert "Let me check the file." not in reply
+    # The recovery path was NOT taken — the loop terminated normally.
+    assert stub.chat_called == 0
+
+
 @pytest.mark.asyncio
 async def test_per_peer_mode_self_echo_guard_still_active() -> None:
     """The AXIOMA-self echo guard must work in per_peer mode too — outbound
