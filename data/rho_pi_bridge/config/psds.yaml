@@ -1,0 +1,32 @@
+# PSD registry — Issue #7, T8
+
+ZDHP:
+  name: "ZDHP"
+  type: "analytic"
+  description: "Zero-Detuning High-Power (aLIGO design sensitivity)"
+  source: "LIGO-T0900288-v3"
+
+Early_aLIGO:
+  name: "Early aLIGO"
+  type: "analytic"
+  description: "Early aLIGO design sensitivity (2015-era)"
+  source: "LIGO-T0900288-v3"
+
+O2_H1:
+  name: "O2 H1"
+  type: "measured"
+  description: "Measured Hanford PSD, O2 run (spectral lines retained)"
+  source: "GWOSC strain-derived"
+  file: "data/psds/O2_H1_psd.txt"
+
+O2_L1:
+  name: "O2 L1"
+  type: "measured"
+  description: "Measured Livingston PSD, O2 run (spectral lines retained)"
+  source: "GWOSC strain-derived"
+  file: "data/psds/O2_L1_psd.txt"
+
+# For PSD-weighted mean frequency computation
+freq_range: [20, 2048]  # Hz
+n_freq_bins: 500
+freq_spacing: "log"

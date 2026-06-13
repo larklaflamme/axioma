@@ -1,0 +1,102 @@
+{
+  "quadrature_convergence": {
+    "1000": {
+      "N_quad": 1000,
+      "d_N": 0.21317774,
+      "log10_cond": 3.0759
+    },
+    "2000": {
+      "N_quad": 2000,
+      "d_N": 0.21323888,
+      "log10_cond": 3.0056
+    },
+    "4000": {
+      "N_quad": 4000,
+      "d_N": 0.21300751,
+      "log10_cond": 2.9942
+    },
+    "8000": {
+      "N_quad": 8000,
+      "d_N": 0.21355573,
+      "log10_cond": 2.9971
+    },
+    "16000": {
+      "N_quad": 16000,
+      "d_N": 0.21380834,
+      "log10_cond": 2.9966
+    },
+    "32000": {
+      "N_quad": 32000,
+      "d_N": 0.21389015,
+      "log10_cond": 2.9971
+    }
+  },
+  "n_scaling": {
+    "10": {
+      "N": 10,
+      "d_N": 0.21866374,
+      "cond_G": 220.7736,
+      "log10_cond": 2.3439,
+      "rank_99": 1,
+      "svd_decay_exp": NaN,
+      "max_singval": 1.639909,
+      "min_singval": 0.007428,
+      "elapsed_s": 0.0
+    },
+    "20": {
+      "N": 20,
+      "d_N": 0.21380834,
+      "cond_G": 992.1613,
+      "log10_cond": 2.9966,
+      "rank_99": 2,
+      "svd_decay_exp": -1.8897,
+      "max_singval": 2.176433,
+      "min_singval": 0.002194,
+      "elapsed_s": 0.01
+    },
+    "30": {
+      "N": 30,
+      "d_N": 0.21224152,
+      "cond_G": 2476.7132,
+      "log10_cond": 3.3939,
+      "rank_99": 2,
+      "svd_decay_exp": -1.8098,
+      "max_singval": 2.495425,
+      "min_singval": 0.001008,
+      "elapsed_s": 0.02
+    },
+    "50": {
+      "N": 50,
+      "d_N": 0.20927269,
+      "cond_G": 7093.9706,
+      "log10_cond": 3.8509,
+      "rank_99": 2,
+      "svd_decay_exp": -1.8117,
+      "max_singval": 2.880781,
+      "min_singval": 0.000406,
+      "elapsed_s": 0.03
+    },
+    "75": {
+      "N": 75,
+      "d_N": 0.20788766,
+      "cond_G": 15991.011,
+      "log10_cond": 4.2039,
+      "rank_99": 2,
+      "svd_decay_exp": -1.83,
+      "max_singval": 3.175586,
+      "min_singval": 0.000199,
+      "elapsed_s": 0.04
+    },
+    "100": {
+      "N": 100,
+      "d_N": 0.20762606,
+      "cond_G": 32136.5687,
+      "log10_cond": 4.507,
+      "rank_99": 2,
+      "svd_decay_exp": -1.866,
+      "max_singval": 3.384737,
+      "min_singval": 0.000105,
+      "elapsed_s": 0.06
+    }
+  }
+}

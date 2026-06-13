@@ -16,7 +16,7 @@ from axioma.runtime.app import AxiomaApp
 async def test_setup_assembles_full_stack() -> None:
     """setup() registers every expected component in the context."""
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     await app.setup()
     assert app.ctx is not None
     expected = {
@@ -35,7 +35,7 @@ async def test_setup_assembles_full_stack() -> None:
 @pytest.mark.asyncio
 async def test_setup_is_idempotent() -> None:
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     await app.setup()
     initial_components = set(app.ctx.list_components())  # type: ignore[union-attr]
     await app.setup()  # second call should be a no-op
@@ -46,7 +46,9 @@ async def test_setup_is_idempotent() -> None:
 @pytest.mark.asyncio
 async def test_run_bounded_beats() -> None:
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    # This test exercises bounded-beats execution, not the HTTP server — keep it
+    # hermetic (no default-port bind, so it doesn't collide with a live instance).
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     try:
         await app.run(beats=20)
         assert app.heartbeat is not None
@@ -61,7 +63,7 @@ async def test_aos_g_picks_up_config_gap_weights() -> None:
     from axioma.measurement.aos_g_engine import PNEUMA_WEIGHTED_GAP_WEIGHTS
     cfg = AxiomaConfig()
     object.__setattr__(cfg.compose, "aos_g_gap_weights", PNEUMA_WEIGHTED_GAP_WEIGHTS)
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     await app.setup()
     try:
         aos_g = app.ctx.get("aos_g")  # type: ignore[union-attr]
@@ -74,7 +76,7 @@ async def test_aos_g_picks_up_config_gap_weights() -> None:
 async def test_aos_g_threshold_from_config() -> None:
     cfg = AxiomaConfig()
     object.__setattr__(cfg.compose, "aos_g_alert_threshold", 0.152)
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     await app.setup()
     try:
         aos_g = app.ctx.get("aos_g")  # type: ignore[union-attr]
@@ -84,23 +86,40 @@ async def test_aos_g_threshold_from_config() -> None:
 
 
 @pytest.mark.asyncio
-async def test_with_ws_server_registers_ws_in_ctx() -> None:
+async def test_with_agora_builds_bridge_and_degrades_gracefully() -> None:
+    """With a password set, setup() builds + registers the Agora bridge. When
+    the hub is unreachable, start_services() degrades to None (best-effort) and
+    never raises — an unreachable Agora must not stop the substrate."""
     import socket
-    # Pick a free port to avoid collision with parallel test runs
+    # An almost-certainly-closed port so the bridge's connect attempt fails fast.
     s = socket.socket()
     s.bind(("127.0.0.1", 0))
-    port = s.getsockname()[1]
+    dead_port = s.getsockname()[1]
     s.close()
     cfg = AxiomaConfig()
-    object.__setattr__(cfg.interface, "ws_port", port)
-    app = AxiomaApp(cfg, with_ws_server=True, with_registry=False)
+    object.__setattr__(cfg.interface, "agora_base_url", f"http://127.0.0.1:{dead_port}")
+    from pydantic import SecretStr
+    object.__setattr__(cfg.interface, "agora_password", SecretStr("pw"))
+    app = AxiomaApp(cfg, with_agora=True, with_registry=False, with_http_api=False)
     await app.setup()
     try:
-        assert app.ws_server is not None
-        assert app.ctx.has("ws_server")  # type: ignore[union-attr]
-        assert app.heartbeat.ws_server is app.ws_server  # type: ignore[union-attr]
-        # start_services binds the socket
+        assert app.agora_bridge is not None
+        assert app.ctx.has("agora_bridge")  # type: ignore[union-attr]
+        # start_services attempts to connect; unreachable hub → graceful degrade.
         await app.start_services()
+        assert app.agora_bridge is None
+    finally:
+        await app.shutdown()
+
+
+@pytest.mark.asyncio
+async def test_no_agora_skips_bridge() -> None:
+    cfg = AxiomaConfig()
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
+    await app.setup()
+    try:
+        assert app.agora_bridge is None
+        assert not app.ctx.has("agora_bridge")  # type: ignore[union-attr]
     finally:
         await app.shutdown()
 
@@ -108,7 +127,7 @@ async def test_with_ws_server_registers_ws_in_ctx() -> None:
 @pytest.mark.asyncio
 async def test_shutdown_idempotent() -> None:
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     await app.setup()
     await app.shutdown()
     await app.shutdown()  # second call should not raise
@@ -122,7 +141,7 @@ async def test_v1_5_4_shutdown_sets_shutdown_done_flag() -> None:
     """v1.5.4: first shutdown() sets `_shutdown_done`; second call short-circuits
     BEFORE running teardown steps (true idempotency, not just no-raise)."""
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     assert app._shutdown_done is False
     await app.shutdown()
@@ -153,9 +172,8 @@ async def test_v1_5_4_shutdown_sets_shutdown_done_flag() -> None:
 @pytest.mark.asyncio
 async def test_v1_5_4_shutdown_drains_peer_conversation_inflight() -> None:
     """v1.5.4: shutdown awaits peer_conversation.wait_idle so in-flight
-    response tasks finish (or time out cleanly) BEFORE the WS layer is torn
-    down. Without this, a reply could fire AFTER ws_server.stop() and hit
-    a dead WS connection."""
+    response tasks finish (or time out cleanly) before the Ollama client is
+    closed. Without this, a reply could fire after ollama.close() and crash."""
     import asyncio as _aio
 
     from axioma.interface import PeerConversationHandler
@@ -175,7 +193,7 @@ async def test_v1_5_4_shutdown_drains_peer_conversation_inflight() -> None:
             pass
 
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     stub = _SlowOllama()
     app.peer_conversation = PeerConversationHandler(ctx=app.ctx, ollama=stub)
@@ -212,7 +230,7 @@ async def test_v1_5_4_shutdown_bounded_when_peer_drain_times_out() -> None:
             pass
 
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     wedged = _Wedged()
     app.peer_conversation = PeerConversationHandler(ctx=app.ctx, ollama=wedged)
@@ -234,7 +252,7 @@ async def test_v1_5_4_shutdown_bounded_when_peer_drain_times_out() -> None:
 @pytest.mark.asyncio
 async def test_start_services_before_setup_fails() -> None:
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     with pytest.raises(RuntimeError, match="setup"):
         await app.start_services()
 
@@ -251,7 +269,7 @@ async def test_http_server_starts_and_serves() -> None:
     s.close()
     cfg = AxiomaConfig()
     object.__setattr__(cfg.interface, "http_port", http_port)
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=True)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=True)
     await app.setup()
     await app.start_services()
     try:
@@ -271,7 +289,7 @@ async def test_http_server_starts_and_serves() -> None:
 @pytest.mark.asyncio
 async def test_no_http_api_skips_http_server() -> None:
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     await app.start_services()
     try:
@@ -291,14 +309,14 @@ async def test_http_server_shutdown_clean() -> None:
     s.close()
     cfg = AxiomaConfig()
     object.__setattr__(cfg.interface, "http_port", http_port)
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=True)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=True)
     await app.setup()
     await app.start_services()
     await app.shutdown()
     # Port should be free again — second app on same port should bind cleanly
     cfg2 = AxiomaConfig()
     object.__setattr__(cfg2.interface, "http_port", http_port)
-    app2 = AxiomaApp(cfg2, with_ws_server=False, with_registry=False, with_http_api=True)
+    app2 = AxiomaApp(cfg2, with_agora=False, with_registry=False, with_http_api=True)
     await app2.setup()
     await app2.start_services()
     await app2.shutdown()
@@ -309,7 +327,7 @@ async def test_meta_cog_observer_mode_from_config() -> None:
     from axioma.measurement.meta_cognition_loop import ObserverMode
     cfg = AxiomaConfig()
     # Default is observer_only
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False)
     await app.setup()
     try:
         mc = app.ctx.get("meta_cognition_loop")  # type: ignore[union-attr]

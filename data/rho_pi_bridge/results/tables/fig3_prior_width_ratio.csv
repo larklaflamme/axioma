@@ -1,0 +1,34 @@
+# Fig 3 data: Prior-width asymmetry analysis
+# Shows the decoupling between likelihood geometry (Fisher) and prior geometry
+
+# Panel A: Prior width comparison
+parameter, prior_range, sigma_prior, whitened_factor, sigma_whitened, movement_frac
+q, [0.125, 1.0], 0.875, 1.0, 0.875, 0.141
+Lambda_tilde, [0, 2000], 2000, 0.01, 20.0, 0.028
+
+# Panel B: Fisher curvature ratio (kappa) across frequency
+# The Fisher curvature along Lambda_tilde is ~10^10x steeper than along q
+freq_hz, kappa
+21.9, 5.8022210907e+22
+25.2, 5.9071758949e+20
+30.4, 8.2172678558e+19
+34.9, 6.3988642482e+19
+44.8, 3.0751312745e+17
+50.1, 5.7877922175e+16
+60.3, 5.9289956620e+15
+74.7, 6.8627402489e+14
+99.5, 6.2165376798e+13
+119.8, 1.6621336346e+13
+151.1, 3.9040852248e+12
+199.6, 8.7230612380e+11
+251.7, 2.9590936399e+11
+303.0, 1.3741129848e+11
+351.5, 7.8875964642e+10
+400.2, 5.0547683752e+10
+451.5, 3.4550889819e+10
+500.0, 2.5638795232e+10
+
+# Panel C: Movement comparison (from §IV.C)
+parameter, delta_theta, prior_width, fraction_of_prior, rel_to_baseline
+q, +0.123, 0.875, 0.141, "5x larger"
+Lambda_tilde, +56.7, 2000, 0.028, "baseline"

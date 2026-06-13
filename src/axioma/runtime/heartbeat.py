@@ -74,11 +74,9 @@ class Heartbeat:
         # each one before invoking compute. Per IMPLEMENTATION_PLAN §3.5.
         self.measurement_engines: list[Any] = []
         # Stage-4 emergency pause: number of beats to skip the substrate tick.
-        # Each pause()-marked beat increments beat_no and runs persistence + WS
-        # publish, but skips substrate / measurement / compose. Per ARCH §4.9.
+        # Each pause()-marked beat increments beat_no and runs persistence, but
+        # skips substrate / measurement / compose. Per ARCH §4.9.
         self._pause_beats_remaining: int = 0
-        # WS server reference (set by app entry-point); publish_beat called each beat.
-        self.ws_server: Any | None = None
         # Zone classifier hysteresis state (Phase F fix)
         from ..schemas import Zone
         self._prev_zone: Zone = Zone.IDLE
@@ -135,6 +133,15 @@ class Heartbeat:
             external = compose.compose(internal, theta_short=theta_short)
             # Attach cadence label
             external.cadence = cadence.current_cadence(beat_no)
+            # Wire psi from AOS-G's cached reading (1-beat lag, acceptable
+            # for a noise-robust integrity signal — compose runs before
+            # AOS-G in the same beat per the ordering invariant above).
+            if self.ctx.has("aos_g"):
+                aos_g_val = self.ctx.get("aos_g").current_value()
+                if aos_g_val is not None:
+                    psi_val = getattr(aos_g_val, "psi", None)
+                    if psi_val is not None:
+                        external.psi = float(psi_val)
             # Phase F fix — wire Zone classifier into the compose path.
             self._classify_and_attach_zone(external, theta_short)
             # PNEUMA's buffer_depth gets bumped per compose event
@@ -227,11 +234,6 @@ class Heartbeat:
                         self.ctx.recovery_protocol.tick(self.beat_no)
                     except Exception:
                         log.exception("recovery_tick_failed_in_pause")
-                if self.ws_server is not None:
-                    try:
-                        self.ws_server.publish_beat(self.beat_no)
-                    except Exception:
-                        log.exception("ws_publish_failed_in_pause")
                 log.info("heartbeat_paused_beat", beat_no=self.beat_no)
                 last_internal = self.substrate.last_internal()
                 self.beat_no += 1
@@ -283,16 +285,11 @@ class Heartbeat:
                         engine.run_if_due(self.beat_no, budget)
                     except Exception:
                         log.exception("engine_tick_failed", engine=engine.name)
-                # Step 8: external interface push (per ARCH §5.0 step 8).
-                # WS server publishes data-plane channels (state_snapshot,
-                # theta, aos_g, coherence_budget, per_organ_mi_raw) for this
-                # beat. Event-driven channels (recovery, fragmentation, etc.)
-                # are pushed independently via context.subscribe.
-                if self.ws_server is not None:
-                    try:
-                        self.ws_server.publish_beat(self.beat_no)
-                    except Exception:
-                        log.exception("ws_publish_beat_failed")
+                # Step 8 (external interface push) is no longer a heartbeat
+                # concern: Axioma is now a *client* of The Agora (see
+                # interface/agora_bridge.py), which runs its own asyncio loop and
+                # reacts to inbound messages rather than being driven per-beat.
+                # Substrate telemetry is no longer streamed over a local socket.
                 # Step 9: persistence (every snapshot_period_beats)
                 if self.snapshot_manager is not None and self.beat_no > 0:
                     if self.beat_no % self.snapshot_period_beats == 0:

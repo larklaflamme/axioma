@@ -61,10 +61,15 @@ observability:
   log_json: true
 
 interface:
-  ws_host: 127.0.0.1
-  ws_port: 8820
   http_host: 127.0.0.1
   http_port: 8821
+  # The Agora (ACP/1.1) — Axioma's communication hub. Credentials come from .env
+  # (AGORA_USER_ID / AGORA_USER_PASSWORD, sourced by scripts/axioma_ctl.sh), not
+  # from this file. AXIOMA_INTERFACE__AGORA_* env vars override everything.
+  agora_enabled: true
+  agora_base_url: http://localhost:8935
+  agora_citizen_id: axioma
+  agora_subscribe_all: true
 
 infra:
   ollama:

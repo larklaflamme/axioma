@@ -59,7 +59,10 @@ axioma = ["py.typed"]
 line-length = 100
 target-version = "py313"
 src = ["src", "tests"]
-extend-exclude = ["organ", "phi_scaling", "aos_g_gap", "control_experiments"]
+# src/axioma/interface/agora is VENDORED verbatim from the agora repo's reference
+# client — we keep it byte-for-byte in sync with upstream, so it's not linted here.
+extend-exclude = ["organ", "phi_scaling", "aos_g_gap", "control_experiments",
+                  "src/axioma/interface/agora"]
 
 [tool.ruff.lint]
 select = [
@@ -98,7 +101,8 @@ warn_unused_ignores = true
 warn_redundant_casts = true
 no_implicit_optional = true
 disallow_untyped_defs = false  # gradually tightened as code stabilizes
-exclude = ["organ/", "phi_scaling/", "aos_g_gap/", "control_experiments/", "build/"]
+exclude = ["organ/", "phi_scaling/", "aos_g_gap/", "control_experiments/", "build/",
+           "src/axioma/interface/agora/"]  # vendored reference client (kept in sync upstream)
 mypy_path = "src"
 namespace_packages = true
 explicit_package_bases = true
@@ -128,6 +132,7 @@ markers = [
     "slow: tests that take > 1s (skipped by default; run with -m slow)",
     "gpu: tests that require CUDA",
     "infra: tests that require live infra (Ollama / Qdrant / Redis)",
+    "agora: tests that launch a real Agora server (needs the agora repo + env)",
     "e2e: end-to-end tests",
     "benchmark: performance benchmarks",
 ]

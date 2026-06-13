@@ -395,32 +395,30 @@ def create_app(ctx: AxiomaContext, cfg: AxiomaConfig) -> FastAPI:
                 "compose_boundary",
                 "perturbation_admin",
             ],
-            "channels": [
-                "conversation", "theta", "per_organ_theta", "per_organ_mi_raw",
-                "delta_phi", "aos_g", "plasticity", "fragmentation",
-                "perturbations", "coherence_budget", "recovery",
-                "meta_cognition", "meta_cognition_suggestion",
-                "presence", "state_snapshot",
-            ],
+            # Communication runs over The Agora (ACP/1.1); Axioma joins as a
+            # citizen rather than exposing its own channel multiplexer.
+            "comms": {"hub": "agora", "protocol": "ACP/1.1"},
         }
 
     @app.get("/connections")
     async def connections() -> dict[str, Any]:
-        ws = ctx.get("ws_server") if ctx.has("ws_server") else None
-        if ws is None:
+        """Report Axioma's link to The Agora (its single communication hub).
+
+        Axioma is now a *citizen client* of The Agora rather than a server peers
+        dial into, so there is one outbound connection (the bridge), not a set of
+        inbound subscribers."""
+        bridge = ctx.get("agora_bridge") if ctx.has("agora_bridge") else None
+        if bridge is None:
             return {"data": [], "warmup_active": True}
         return {
             "data": [
                 {
-                    "connection_id": s.connection_id,
-                    "agent_id": s.agent_id,
-                    "speaker": s.speaker,
-                    "channels": sorted(s.channels),
-                    "sent_total": s.sent_total,
-                    "coalesced_dropped_total": s.coalesced_dropped_total,
-                    "min_interval_ms": s.min_interval_ms,
-                }
-                for s in ws.subscribers.values()
+                    "hub": "agora",
+                    "base_url": bridge.base_url,
+                    "citizen_id": bridge.citizen_id,
+                    "connected": bridge.connected,
+                    "subscriptions": bridge.subscriptions,
+                },
             ],
         }
 

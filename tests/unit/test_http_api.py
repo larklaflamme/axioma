@@ -36,14 +36,16 @@ def test_metrics_returns_prometheus_text() -> None:
     assert "axioma_beat_duration_seconds" in r.text
 
 
-def test_capabilities_lists_channels() -> None:
+def test_capabilities_reports_agora_comms() -> None:
     ctx = AxiomaContext()
     client = _client(ctx)
     r = client.get("/capabilities")
     assert r.status_code == 200
     body = r.json()
     assert "theta_stream" in body["capabilities"]
-    assert "state_snapshot" in body["channels"]
+    # Communication now runs over The Agora (ACP/1.1), not an in-house channel
+    # multiplexer — /capabilities advertises the hub instead of a channel list.
+    assert body["comms"] == {"hub": "agora", "protocol": "ACP/1.1"}
 
 
 def test_status_warmup_when_no_compose() -> None:

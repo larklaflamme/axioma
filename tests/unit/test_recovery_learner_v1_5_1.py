@@ -152,7 +152,7 @@ async def _build_and_explore(seed: int) -> list[tuple[float, float, int]]:
     cfg = AxiomaConfig()
     app = AxiomaApp(
         cfg, seed=seed,
-        with_ws_server=False, with_registry=False, with_http_api=False,
+        with_agora=False, with_registry=False, with_http_api=False,
     )
     await app.setup()
     try:

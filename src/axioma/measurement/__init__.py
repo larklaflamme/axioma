@@ -63,6 +63,10 @@ from .theta_core import (
     concat_summary_window,
     select_summary_columns,
 )
+from .curvature_engine import (
+    CurvatureMeasurementEngine,
+    CurvatureResult,
+)
 from .theta_engine import (
     BiasDiagnostic,
     ThetaLongEngine,
@@ -111,6 +115,8 @@ __all__ = [
     "RecoveryRequestPayload",
     "SuggestionTracker",
     "SuggestionType",
+    "CurvatureMeasurementEngine",
+    "CurvatureResult",
     "ThetaLongEngine",
     "ThetaResult",
     "ThetaShortEngine",

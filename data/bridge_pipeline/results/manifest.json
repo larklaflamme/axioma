@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "timestamp": "2026-06-11T21:48:28.689538",
+    "pipeline_version": "1.0.0",
+    "git_commit": "8218e95a68dfecaaaf6b896d276eda99f4d57fef",
+    "numpy_version": "2.4.6",
+    "scipy_version": "1.17.1"
+  },
+  "entries": {
+    "T2.angle_lowSpin": {
+      "value": 0.01,
+      "units": "deg",
+      "section": "III.B",
+      "table": "I",
+      "description": "",
+      "threshold": null,
+      "ci_lo": 0.0,
+      "ci_hi": 0.02
+    },
+    "T2.angle_highSpin": {
+      "value": 0.01,
+      "units": "deg",
+      "section": "III.B",
+      "table": "I",
+      "description": "",
+      "threshold": null,
+      "ci_lo": 0.0,
+      "ci_hi": 0.02
+    },
+    "T3.dMc": {
+      "value": 0.0,
+      "units": "ln(Mc/Msun)",
+      "section": "III.C",
+      "table": "II",
+      "description": "",
+      "threshold": null
+    },
+    "T3.cos2a": {
+      "value": 0.0004,
+      "units": "",
+      "section": "III.C",
+      "table": "II",
+      "description": "",
+      "threshold": null
+    },
+    "T3.pval": {
+      "value": 0.974328,
+      "units": "",
+      "section": "III.C",
+      "table": "II",
+      "description": "",
+      "threshold": null
+    },
+    "T3.angle": {
+      "value": 88.84,
+      "units": "deg",
+      "section": "III.C",
+      "table": "II",
+      "description": "",
+      "threshold": null,
+      "ci_lo": 87.47,
+      "ci_hi": 89.86
+    },
+    "T3.logLcost": {
+      "value": 70624867063.4745,
+      "units": "",
+      "section": "III.C",
+      "table": "II",
+      "description": "",
+      "threshold": null
+    },
+    "T4.condnum_gw150914": {
+      "value": 186038169.0,
+      "units": "",
+      "section": "III.D",
+      "table": "III",
+      "description": "",
+      "threshold": null
+    },
+    "T4.gain_gw150914": {
+      "value": 0.1,
+      "units": "",
+      "section": "III.D",
+      "table": "III",
+      "description": "",
+      "threshold": null
+    },
+    "T4.condnum_gw170817": {
+      "value": 1.7261949879402072e+16,
+      "units": "",
+      "section": "III.D",
+      "table": "III",
+      "description": "",
+      "threshold": null
+    },
+    "T4.gain_gw170817": {
+      "value": 458.1,
+      "units": "",
+      "section": "III.D",
+      "table": "III",
+      "description": "",
+      "threshold": null
+    },
+    "T4.kappa_ratio": {
+      "value": 35295750.1,
+      "units": "",
+      "section": "III.D",
+      "table": "III",
+      "description": "",
+      "threshold": null
+    },
+    "T7.slope_measured": {
+      "value": 0.84,
+      "units": "",
+      "section": "V.D",
+      "table": "",
+      "description": "",
+      "threshold": null
+    },
+    "T7.slope_analytic": {
+      "value": 0.25,
+      "units": "",
+      "section": "V.D",
+      "table": "",
+      "description": "",
+      "threshold": null
+    },
+    "T10.v1_passes": {
+      "value": false,
+      "units": "",
+      "section": "II.F",
+      "table": "",
+      "description": "",
+      "threshold": null
+    },
+    "T10.vd_fails_low": {
+      "value": true,
+      "units": "",
+      "section": "II.F",
+      "table": "",
+      "description": "",
+      "threshold": null
+    }
+  },
+  "thresholds": {}
+}

@@ -95,15 +95,6 @@ DISK_BYTES_USED = Gauge(
 
 # ── External interface (Phase D) ────────────────────────────────────────────
 
-WS_CONNECTIONS_TOTAL = Counter(
-    "axioma_ws_connections_total", "Inbound WebSocket connections opened", registry=REGISTRY
-)
-WS_DISCONNECTS_TOTAL = Counter(
-    "axioma_ws_disconnects_total", "Inbound WebSocket connections closed", registry=REGISTRY
-)
-WS_MESSAGES_SENT_TOTAL = Counter(
-    "axioma_ws_messages_sent_total", "Outbound WS messages sent across all subscribers", registry=REGISTRY
-)
 HTTP_REQUESTS_TOTAL = Counter(
     "axioma_http_requests_total", "HTTP API requests", ["method", "path", "status"], registry=REGISTRY
 )

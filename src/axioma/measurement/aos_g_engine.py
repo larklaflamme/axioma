@@ -195,7 +195,7 @@ class StructuralHealthMonitor:
         *,
         history_size: int = 5,
         debounce_floor: float = 0.6,
-        forbidden_modules: tuple[str, ...] = ("axioma.interface.ws_handlers",),
+        forbidden_modules: tuple[str, ...] = ("axioma.interface.agora_bridge",),
         forbidden_name: str = "InternalState",
     ) -> None:
         self.history_size = history_size

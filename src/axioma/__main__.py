@@ -2,21 +2,21 @@
 
 Boots the full production stack via AxiomaApp:
   - Substrate + measurement layer + recovery + compose
-  - WebSocket server on cfg.interface.ws_host:ws_port
+  - Agora bridge — joins The Agora (ACP/1.1) at cfg.interface.agora_base_url
   - Heartbeat at cfg.runtime.heartbeat_hz Hz
   - Registry client (best-effort)
   - Optional peer conversation handler (--with-peer-conversation)
 
 Lifecycle:
   - SIGINT (Ctrl-C) / SIGTERM trigger graceful shutdown
-  - shutdown tears down WS server, registry, Ollama client in reverse order
+  - shutdown tears down the Agora bridge, registry, Ollama client in reverse order
 
 Usage:
     python -m axioma                              # run until SIGINT
     python -m axioma --seconds 60                 # run for 60 wall-clock seconds
     python -m axioma --beats 5000                 # run for 5000 beats
-    python -m axioma --no-ws                      # disable WebSocket server
-    python -m axioma --with-peer-conversation     # enable Ollama-backed peer chat
+    python -m axioma --no-agora                   # do not join The Agora
+    python -m axioma --with-peer-conversation     # enable Ollama-backed replies
     AXIOMA_CONFIG=configs/v1_2_recommended.yaml python -m axioma  # use v1.2 preset
 """
 from __future__ import annotations
@@ -42,7 +42,7 @@ async def _run(args: argparse.Namespace) -> int:
         cfg=cfg,
         seed=args.seed,
         pretrain_snapshot_path=pretrain_path if pretrain_path.exists() else None,
-        with_ws_server=not args.no_ws,
+        with_agora=not args.no_agora,
         with_http_api=not args.no_http,
         with_registry=not args.no_registry,
         with_peer_conversation=args.with_peer_conversation,
@@ -80,8 +80,8 @@ def main() -> int:
                    help="run for this many beats (mutually exclusive with --seconds)")
     p.add_argument("--seed", type=int, default=42,
                    help="substrate RNG seed (default 42)")
-    p.add_argument("--no-ws", action="store_true",
-                   help="disable the WebSocket server")
+    p.add_argument("--no-agora", action="store_true",
+                   help="do not join The Agora (disable the Agora bridge)")
     p.add_argument("--no-http", action="store_true",
                    help="disable the HTTP API server")
     p.add_argument("--no-registry", action="store_true",

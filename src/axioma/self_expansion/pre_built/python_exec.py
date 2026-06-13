@@ -30,6 +30,7 @@ from pathlib import Path
 from typing import Any
 
 from ..types import TextContent, Tool
+from ._proc import PREEXEC, kill_process_tree
 
 log = logging.getLogger(__name__)
 
@@ -222,6 +223,9 @@ class PythonExecServer:
                 stderr=asyncio.subprocess.PIPE,
                 cwd=cwd,
                 env=env,
+                # Own process group + die-with-parent so a timeout reaps the
+                # whole subtree and a crash can't leak this process (see _proc).
+                preexec_fn=PREEXEC,
             )
         except Exception as e:
             return _err(f"failed to launch {label}: {type(e).__name__}: {e}")
@@ -243,8 +247,7 @@ class PythonExecServer:
                 "elapsed_seconds": round(elapsed, 3),
             })
         except TimeoutError:
-            with contextlib.suppress(ProcessLookupError):
-                proc.kill()
+            kill_process_tree(proc)
             stdout_b = stderr_b = b""
             with contextlib.suppress(Exception):
                 stdout_b, stderr_b = await asyncio.wait_for(

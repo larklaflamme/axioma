@@ -35,9 +35,6 @@ from .metrics import (
     SUGGESTION_DECISIONS,
     THETA_LONG,
     THETA_SHORT,
-    WS_CONNECTIONS_TOTAL,
-    WS_DISCONNECTS_TOTAL,
-    WS_MESSAGES_SENT_TOTAL,
     measure_engine,
 )
 
@@ -64,9 +61,6 @@ __all__ = [
     "SUGGESTION_DECISIONS",
     "THETA_LONG",
     "THETA_SHORT",
-    "WS_CONNECTIONS_TOTAL",
-    "WS_DISCONNECTS_TOTAL",
-    "WS_MESSAGES_SENT_TOTAL",
     "AxiomaContext",
     "EventHandler",
     "bind_beat",

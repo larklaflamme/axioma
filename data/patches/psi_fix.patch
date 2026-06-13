@@ -1,0 +1,18 @@
+--- a/src/axioma/runtime/heartbeat.py
++++ b/src/axioma/runtime/heartbeat.py
+@@ -132,6 +132,15 @@
+             external = compose.compose(internal, theta_short=theta_short)
+             # Attach cadence label
+             external.cadence = cadence.current_cadence(beat_no)
++            # Wire psi from AOS-G's cached reading (1-beat lag, acceptable
++            # for a noise-robust integrity signal — compose runs before
++            # AOS-G in the same beat per the ordering invariant above).
++            if self.ctx.has("aos_g"):
++                aos_g_val = self.ctx.get("aos_g").current_value()
++                if aos_g_val is not None:
++                    psi_val = getattr(aos_g_val, "psi", None)
++                    if psi_val is not None:
++                        external.psi = float(psi_val)
+             # Phase F fix — wire Zone classifier into the compose path.
+             self._classify_and_attach_zone(external, theta_short)
+             # PNEUMA's buffer_depth gets bumped per compose event

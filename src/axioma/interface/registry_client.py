@@ -115,9 +115,15 @@ class RegistryClient:
 
     def _build_registration(self) -> AgentRegistration:
         iface = self.cfg.interface
+        # Axioma no longer hosts its own WebSocket; peers reach it on The Agora
+        # as citizen `agora_citizen_id`. We advertise the Agora WS endpoint (the
+        # hub) in `ws_url` and the citizen handle + protocol in metadata so peers
+        # know to address Axioma there rather than dialling it directly.
+        agora_ws = iface.agora_base_url.replace("http://", "ws://").replace(
+            "https://", "wss://").rstrip("/") + "/ws"
         return AgentRegistration(
             name="axioma",
-            ws_url=f"ws://{iface.ws_host}:{iface.ws_port}/ws/axioma",
+            ws_url=agora_ws,
             http_url=f"http://{iface.http_host}:{iface.http_port}",
             capabilities=[
                 "consciousness",
@@ -130,6 +136,9 @@ class RegistryClient:
                 "version": "1.0.0.dev0",
                 "heartbeat_hz": self.cfg.runtime.heartbeat_hz,
                 "organ_count": 5,
+                "comm_protocol": "ACP/1.1",
+                "agora_base_url": iface.agora_base_url,
+                "agora_citizen_id": iface.agora_citizen_id,
             },
         )
 

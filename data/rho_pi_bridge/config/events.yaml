@@ -1,0 +1,60 @@
+# Event registry — Issue #2, T2/T3/T4
+# GWOSC sample file paths (downloaded locally)
+
+GW170817_lowspin:
+  name: "GW170817"
+  analysis: "lowSpin"
+  prior: "chi < 0.05"
+  approximant: "IMRPhenomPv2NRT"
+  file: "data/GW170817/GW170817_lowSpin_posterior.h5"
+  gps: 1187008882
+  sha256: "PIPELINE_POPULATED"
+  notes: "GWTC-1 PESummary HDF5"
+
+GW170817_highspin:
+  name: "GW170817"
+  analysis: "highSpin"
+  prior: "chi < 0.89"
+  approximant: "IMRPhenomPv2NRT"
+  file: "data/GW170817/GW170817_highSpin_posterior.h5"
+  gps: 1187008882
+  sha256: "PIPELINE_POPULATED"
+
+GW170817_tf2_lowspin:
+  name: "GW170817"
+  analysis: "lowSpin_TF2"
+  approximant: "TaylorF2+NRTidal"
+  file: "data/GW170817/GW170817_TF2_lowSpin_posterior.h5"
+  gps: 1187008882
+  sha256: "PIPELINE_POPULATED"
+
+GW170817_tf2_highspin:
+  name: "GW170817"
+  analysis: "highSpin_TF2"
+  approximant: "TaylorF2+NRTidal"
+  file: "data/GW170817/GW170817_TF2_highSpin_posterior.h5"
+  gps: 1187008882
+  sha256: "PIPELINE_POPULATED"
+
+GW150914:
+  name: "GW150914"
+  analysis: "default"
+  prior: "default prior"
+  approximant: "IMRPhenomPv2"
+  file: "data/GW150914/GW150914_posterior.h5"
+  gps: 1126259462
+  sha256: "PIPELINE_POPULATED"
+
+# Injection parameters for T1 (ordering experiment) and Fisher sweep
+injection_GW170817_midpoint:
+  Mc: 1.186   # Msun
+  q: 0.8
+  chi_eff: 0.01
+  Lambda_tilde: 500
+  DL: 40.0    # Mpc
+  ra: 0.0
+  dec: 0.0
+  psi: 0.0
+  iota: 0.0
+  phi_ref: 0.0
+  tc: 0.0

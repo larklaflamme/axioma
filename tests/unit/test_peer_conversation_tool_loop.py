@@ -7,7 +7,9 @@ under the key `tool_executor`, the handler runs a multi-turn loop:
   - If the model returns `tool_calls`, dispatch each via the executor
   - Append the assistant turn (tool_calls) and one tool-result turn per call
   - Loop until the model returns plain text, or hit `max_tool_iterations`
-  - Final reply concatenates any text the model emitted along the way
+  - Final reply = the last plain-text turn (intermediate narration is
+    captured as `last_text` but NOT concatenated into the final output —
+    avoids "Let me check." ×N noise when the loop stalls)
 
 These tests stub both Ollama and the executor so the loop's mechanics
 are verified without booting either dependency.
@@ -53,7 +55,7 @@ class _StubOllama:
             )
 
     async def chat(self, messages: list, **_: Any) -> str:
-        # Fallback path: only used when no executor is registered.
+        # Fallback path: used by the recovery/stuck handler.
         return "fallback single-shot"
 
 
@@ -152,8 +154,8 @@ async def test_single_tool_call_then_final_text() -> None:
 
 @pytest.mark.asyncio
 async def test_multiple_tool_calls_in_one_round_all_dispatched() -> None:
-    """One LLM round can emit several tool_calls; all dispatched in parallel
-    (well, sequentially in the loop) and each gets its own tool-result turn."""
+    """One LLM round can emit several tool_calls; all dispatched (sequentially)
+    and each gets its own tool-result turn."""
     executor = _StubExecutor({
         "file_read": "f-out", "bash_exec": "b-out",
     })
@@ -178,7 +180,9 @@ async def test_multiple_tool_calls_in_one_round_all_dispatched() -> None:
 
 @pytest.mark.asyncio
 async def test_chained_tool_calls_across_iterations() -> None:
-    """Web-search → web-fetch → text — three LLM rounds, two tools."""
+    """Web-search → web-fetch → text — three LLM rounds, two tools.
+    Final reply is the LAST no-tool text ONLY — intermediate narration
+    is NOT concatenated."""
     executor = _StubExecutor({
         "web_search": '[{"url": "http://x"}]',
         "web_fetch":  "the page body",
@@ -195,33 +199,30 @@ async def test_chained_tool_calls_across_iterations() -> None:
     handler = _make_handler(ollama=ollama, executor=executor)
     reply = await handler.respond_text(speaker="skye",
                                         content="research x for me")
-    # All text fragments concatenated
-    assert "Let me search." in reply
-    assert "Now I'll fetch." in reply
-    assert "Based on the page, the answer is Y." in reply
+    # Only the final turn's text is returned (no concatenation of intermediate)
+    assert reply == "Based on the page, the answer is Y."
     # Two tools dispatched in order
     assert [d[0] for d in executor.dispatched] == ["web_search", "web_fetch"]
     assert len(ollama.calls) == 3
 
 
 @pytest.mark.asyncio
-async def test_iteration_cap_returns_partial_with_note() -> None:
-    """If the model keeps calling tools past max_tool_iterations, return
-    whatever text was produced plus a 'reached cap' note. Don't raise."""
+async def test_iteration_cap_triggers_recovery_and_returns_fallback() -> None:
+    """Three identical tool calls → stuck guard fires → _recover_stuck_loop
+    calls ollama.chat() → returns the stub fallback."""
     executor = _StubExecutor({"file_read": "ok"})
     # Always returns a tool call — never plain text
     forever = ChatResponse(text="progress…", tool_calls=[
         ToolCall(name="file_read", arguments={"path": "/x"}, id="c"),
     ])
-    ollama = _StubOllama([forever, forever, forever])  # 3 rounds before cap
+    ollama = _StubOllama([forever, forever, forever])  # 3 rounds, then stuck
     handler = _make_handler(ollama=ollama, executor=executor,
                             max_tool_iterations=3)
     reply = await handler.respond_text(speaker="skye", content="loop forever")
-    assert "progress" in reply
-    assert "reached tool-iteration cap" in reply
-    assert "3" in reply
+    # Stuck guard → _recover_stuck_loop → ollama.chat() → "fallback single-shot"
+    assert reply == "fallback single-shot"
     # Executor dispatched 3 times
-    assert len(executor.dispatched) == 3
+    assert len(executor.dispatched) == 2
 
 
 @pytest.mark.asyncio
@@ -295,9 +296,8 @@ async def test_ollama_error_with_partial_text_returns_partial() -> None:
 @pytest.mark.asyncio
 async def test_history_is_updated_with_final_reply_not_intermediates() -> None:
     """The persistent per-speaker history should record AXIOMA's final
-    reply text, not the intermediate tool-result turns. Otherwise the
-    history bloats with tool noise and the next conversation rebuilds
-    that into the prompt."""
+    reply text (the no-tool-call turn), not the intermediate tool noise.
+    The implementation returns only the final turn's text."""
     executor = _StubExecutor({"file_read": "the contents"})
     ollama = _StubOllama([
         ChatResponse(text="Let me check.", tool_calls=[
@@ -312,7 +312,6 @@ async def test_history_is_updated_with_final_reply_not_intermediates() -> None:
     assert len(history) == 2
     assert history[0].speaker == "skye"
     assert history[1].speaker == "axioma"
-    # AXIOMA's stored reply is the concatenation of all text-only parts
-    assert "Let me check." in history[1].content
+    # AXIOMA's stored reply is the FINAL turn text only (not intermediate)
     assert "The file says" in history[1].content
     assert reply == history[1].content

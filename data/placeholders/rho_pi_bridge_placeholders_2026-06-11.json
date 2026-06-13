@@ -1,0 +1,58 @@
+{
+  "pipeline": "rho_pi_bridge",
+  "fiducial_params": {
+    "Mc": 1.1976401990005625,
+    "q": 0.737508491224335,
+    "chi_eff": 0.02258466205578362,
+    "Lambda_tilde": 566.4620923085889,
+    "DL": 40.37727748539286
+  },
+  "posterior_source": "GW170817_GWTC-1 IMRPhenomPv2NRT (lowSpin)",
+  "computed_at": "2026-06-11T23:03:21",
+
+  "T2_ridge_angle": {
+    "description": "Angle between leading Fisher eigenvector v₁(f) and posterior displacement direction vd",
+    "coordinate_system": "[ln Mc, q, chi_eff, Lt/100, ln DL]",
+    "vd_unit_vector": [-0.0001215, 0.211208, -0.031362, 0.972973, -0.087925],
+    "vd_dominant_component": "Lt/100 (97.3%)",
+    "v1_dominant_component": "ln Mc (99.8% at all frequencies)",
+    "angle_at_22Hz_deg": 89.9767,
+    "angle_at_500Hz_deg": 89.9395,
+    "angle_range_deg": [89.9395, 89.9783],
+    "angle_v2_at_500Hz_deg": 88.7491,
+    "interpretation": "v₁ and vd are in orthogonal parameter dimensions (ln Mc vs Λ̃/100) → α≈90° at all frequencies. This geometrically explains T3 failure: the test compares alignment against a displacement that lives in a different subspace."
+  },
+
+  "T9_f_star": {
+    "description": "Broken power-law transition frequency for C(f)",
+    "value_Hz": 124.9,
+    "method": "log-log slope crossing 1.0 (transition from steep to flat)",
+    "uncertainty_Hz": 15.0,
+    "band_dependent_slopes": {
+      "22-40_Hz": 6.90,
+      "40-80_Hz": 2.96,
+      "80-150_Hz": 1.29,
+      "150-300_Hz": 0.343,
+      "300-500_Hz": 0.0620
+    },
+    "full_band_slope_22_500": 0.82,
+    "interpretation": "Below ~125 Hz, C(f) grows steeply as new Fisher information accumulates. Above ~125 Hz, growth saturates as the Fisher matrix stabilizes."
+  },
+
+  "T9_N_500": {
+    "description": "Number of statistically significant eigenmodes at 500 Hz",
+    "N_at_0.1pct_threshold": 2,
+    "N_at_1pct_threshold": 1,
+    "lambda2_lambda1_ratio": 0.00162,
+    "lambda3_lambda1_ratio": 7.28e-08,
+    "interpretation": "At 0.1% threshold (standard convention), N=2 because λ₂/λ₁=0.16%. At stricter 1% threshold, N=1. Fisher matrix is effectively rank-1 or rank-2."
+  },
+
+  "C_growth_22_500": {
+    "growth_from_C_array": 2481,
+    "growth_from_C_cut_manifest": 2339,
+    "C_at_22Hz": 6.54e-07,
+    "C_at_500Hz": 1.62e-03,
+    "note": "Two values differ due to interpolation between stored frequency bins. Manifest uses 18 cut frequencies; C array has denser sampling."
+  }
+}

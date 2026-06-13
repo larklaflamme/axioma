@@ -1,0 +1,37 @@
+# Coordinate conventions — Issue #3
+# Primary: declared analysis coordinates for all eigendecompositions, norms, angles
+
+primary:
+  name: "ln-Mc-q-chi-Lambda/100-ln-DL"
+  params: ["ln_Mc", "q", "chi_eff", "Lambda_tilde/100", "ln_DL"]
+  description: >
+    ln Mc, ln DL are scale-free; q, chi_eff are already O(1);
+    Lambda_tilde rescaled to O(1) rather than logged because
+    lowSpin analysis includes values near boundary of support.
+
+alternate_A:
+  name: "ln-Mc-eta-chi-lnLambda-lnDL"
+  params: ["ln_Mc", "eta", "chi_eff", "ln(Lambda_tilde+1)", "ln_DL"]
+  description: >
+    Symmetric mass ratio eta replaces q; log tidal deformability.
+    Tests sensitivity to mass-ratio parametrisation.
+
+alternate_B:
+  name: "prior-range-whitened"
+  params: ["Mc/Mc_prior_width", "q/q_prior_width",
+           "chi_eff/chi_prior_width", "Lambda_tilde/Lambda_prior_width",
+           "DL/DL_prior_width"]
+  description: >
+    Each raw parameter divided by its prior width (uniform over
+    the prior support). Tests sensitivity to dimensional scaling.
+
+# Physical parameter ordering (canonical)
+physical_params: ["Mc", "q", "chi_eff", "Lambda_tilde", "DL"]
+
+# Prior widths for alternate_B (GW170817-like)
+prior_widths:
+  Mc: [1.0, 2.0]  # Msun, range
+  q: [0.1, 1.0]    # dimensionless
+  chi_eff: [-0.5, 0.5]
+  Lambda_tilde: [0, 2000]
+  DL: [10, 200]    # Mpc

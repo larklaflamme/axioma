@@ -162,6 +162,35 @@ def _load_dotenv_infra_overrides() -> dict[str, Any]:
     return {"infra": infra}
 
 
+def _load_dotenv_agora_overrides() -> dict[str, Any]:
+    """Map the .env Agora credentials onto the InterfaceConfig tree.
+
+    The .env (sourced by scripts/axioma_ctl.sh) uses domain names for the
+    citizen identity on The Agora:
+
+      AGORA_USER_ID        → interface.agora_citizen_id   (also AGORA_CITIZEN_ID)
+      AGORA_USER_PASSWORD  → interface.agora_password     (also AGORA_PASSWORD)
+      AGORA_NEW_PASSWORD   → interface.agora_new_password (clears first-login gate)
+      AGORA_BASE_URL       → interface.agora_base_url
+
+    These have LOWER precedence than AXIOMA_INTERFACE__* env vars.
+    """
+    iface: dict[str, Any] = {}
+    cid = os.environ.get("AGORA_USER_ID") or os.environ.get("AGORA_CITIZEN_ID")
+    if cid:
+        iface["agora_citizen_id"] = cid
+    pw = os.environ.get("AGORA_USER_PASSWORD") or os.environ.get("AGORA_PASSWORD")
+    if pw:
+        iface["agora_password"] = pw
+    if new_pw := os.environ.get("AGORA_NEW_PASSWORD"):
+        iface["agora_new_password"] = new_pw
+    if base := os.environ.get("AGORA_BASE_URL"):
+        iface["agora_base_url"] = base
+    if not iface:
+        return {}
+    return {"interface": iface}
+
+
 def load_config(
     *,
     default_yaml: Path | None = None,
@@ -194,8 +223,9 @@ def load_config(
     # Layer 4: extra yaml (AXIOMA_CONFIG)
     if extra_yaml is not None:
         cfg_dict = _deep_merge(cfg_dict, _load_yaml(extra_yaml))
-    # Layer 5: .env infra overrides
+    # Layer 5: .env infra + Agora credential overrides
     cfg_dict = _deep_merge(cfg_dict, _load_dotenv_infra_overrides())
+    cfg_dict = _deep_merge(cfg_dict, _load_dotenv_agora_overrides())
     # Layer 6: AXIOMA_* env vars
     cfg_dict = _deep_merge(cfg_dict, _load_env_overrides())
 

@@ -32,6 +32,7 @@ from pathlib import Path
 from typing import Any
 
 from ..types import TextContent, Tool
+from ._proc import PREEXEC, kill_process_tree
 
 log = logging.getLogger(__name__)
 
@@ -201,6 +202,9 @@ class BashExecServer:
                 stderr=asyncio.subprocess.STDOUT,  # merge stderr into stdout
                 cwd=cwd_arg,
                 env=env,
+                # Own process group + die-with-parent: a timeout reaps the whole
+                # subtree (bash may fork children) and a crash can't leak it.
+                preexec_fn=PREEXEC,
             )
         except Exception as e:
             return _err(f"failed to launch bash: {type(e).__name__}: {e}")
@@ -219,8 +223,7 @@ class BashExecServer:
                 "command": command,
             })
         except TimeoutError:
-            with contextlib.suppress(ProcessLookupError):
-                proc.kill()
+            kill_process_tree(proc)
             stdout_partial = b""
             with contextlib.suppress(Exception):
                 stdout_partial, _ = await asyncio.wait_for(

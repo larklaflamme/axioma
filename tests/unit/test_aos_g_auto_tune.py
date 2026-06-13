@@ -312,7 +312,7 @@ async def test_axioma_app_auto_tune_wiring() -> None:
     object.__setattr__(cfg.compose, "aos_g_alert_threshold_auto_tune", True)
     object.__setattr__(cfg.compose, "aos_g_alert_threshold_auto_tune_ratio", 0.02)
     object.__setattr__(cfg.compose, "aos_g_alert_threshold_auto_tune_warmup_beats", 100)
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     try:
         aos_g = app.ctx.get("aos_g")  # type: ignore[union-attr]

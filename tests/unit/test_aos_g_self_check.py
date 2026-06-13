@@ -222,7 +222,7 @@ async def test_axioma_app_self_check_endpoint_e2e() -> None:
     from axioma.runtime.app import AxiomaApp
 
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     try:
         aos_g = app.ctx.get("aos_g")  # type: ignore[union-attr]

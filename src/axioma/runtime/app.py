@@ -23,8 +23,8 @@ Lifecycle ordering at setup:
   3. RecoveryProtocol (substrate-owned)
   4. ComposeFunction + CadenceController
   5. Heartbeat
-  6. AxiomaWSServer (binds to ws_host:ws_port)
-  7. PeerConversationHandler (Ollama-backed; optional)
+  6. PeerConversationHandler (Ollama-backed; optional)
+  7. AgoraBridge (joins The Agora at cfg.interface.agora_base_url as a citizen)
   8. RegistryClient (best-effort registration)
   9. HTTP app (FastAPI; lazy-binds via uvicorn in run() — not started in setup)
 
@@ -43,10 +43,11 @@ import numpy as np
 from ..compose import CadenceController, ComposeFunction
 from ..config import AxiomaConfig
 from ..infra.ollama import OllamaClient
-from ..interface import AxiomaWSServer, PeerConversationHandler, RegistryClient, create_app
+from ..interface import AgoraBridge, PeerConversationHandler, RegistryClient, create_app
 from ..measurement import (
     AOSGEngine,
     CascadeDelayEngine,
+    CurvatureMeasurementEngine,
     DeltaPhiEngine,
     FragmentationMonitor,
     InternalStateRingBuffer,
@@ -75,7 +76,7 @@ class AxiomaApp:
         *,
         seed: int = 42,
         pretrain_snapshot_path: Path | None = None,
-        with_ws_server: bool = True,
+        with_agora: bool = True,
         with_http_api: bool = True,
         with_registry: bool = True,
         with_peer_conversation: bool = False,
@@ -83,7 +84,7 @@ class AxiomaApp:
         self.cfg = cfg
         self.seed = seed
         self.pretrain_snapshot_path = pretrain_snapshot_path
-        self.with_ws_server = with_ws_server
+        self.with_agora = with_agora
         self.with_http_api = with_http_api
         self.with_registry = with_registry
         self.with_peer_conversation = with_peer_conversation
@@ -91,7 +92,7 @@ class AxiomaApp:
         self.ctx: AxiomaContext | None = None
         self.substrate: SubstrateApp | None = None
         self.heartbeat: Heartbeat | None = None
-        self.ws_server: AxiomaWSServer | None = None
+        self.agora_bridge: AgoraBridge | None = None
         self.http_server: Any | None = None  # uvicorn.Server
         self._http_serve_task: asyncio.Task[None] | None = None
         self.registry: RegistryClient | None = None
@@ -116,7 +117,7 @@ class AxiomaApp:
             json=self.cfg.observability.log_json,
         )
         log.info("axioma_setup_starting",
-                 ws=self.with_ws_server, registry=self.with_registry,
+                 agora=self.with_agora, registry=self.with_registry,
                  peer_conv=self.with_peer_conversation)
 
         ctx = AxiomaContext()
@@ -180,6 +181,10 @@ class AxiomaApp:
         meta_cog = MetaCognitionLoop(ctx, observer_mode=observer_mode)
         ctx.register("meta_cognition_loop", meta_cog)
 
+        # 2b. Curvature engine (Riemannian geometry)
+        curvature = CurvatureMeasurementEngine(ctx, window_size=30)
+        ctx.register("curvature", curvature)
+
         # 3. Recovery (substrate-owned)
         # v1.5.1 (Checkpoint BB): seed the learner's exploration RNG from
         # self.seed so adoption decisions are reproducible across runs of
@@ -211,16 +216,12 @@ class AxiomaApp:
             snapshot_period_beats=self.cfg.persistence.snapshot_period_beats,
         )
         ctx.register("heartbeat", hb)
-        for eng in (short, raw, cascade, pert, plast, dphi, frag, aos_g, long_e, meta_cog):
+        for eng in (short, raw, cascade, pert, plast, dphi, frag, aos_g, long_e, meta_cog, curvature):
             hb.register_measurement_engine(eng)
         self.heartbeat = hb
 
-        # 7. WebSocket server
-        if self.with_ws_server:
-            ws = AxiomaWSServer(ctx=ctx, cfg=self.cfg.interface)
-            ctx.register("ws_server", ws)
-            hb.ws_server = ws
-            self.ws_server = ws
+        # 7. (Agora bridge is built below, after the peer-conversation handler,
+        #    because its responder is PeerConversationHandler.respond_text.)
 
         # 7.5. HTTP API (FastAPI app constructed here; uvicorn server started
         # in start_services). Builds the app even when serving is disabled —
@@ -278,8 +279,19 @@ class AxiomaApp:
                 multi_peer_mode=self.cfg.interface.peer_conversation_multi_peer_mode,
                 max_tool_iterations=self.cfg.interface.peer_conversation_max_tool_iterations,
             )
-            self.peer_conversation.attach()
+            # NOTE: we deliberately do NOT call `.attach()` here. Under the old
+            # WS server the handler subscribed to the `conversation_message` event
+            # bus and fanned replies out on the `conversation` channel. The Agora
+            # bridge instead drives the handler directly via `respond_text` and
+            # posts the reply back to the originating thread (see below).
             ctx.register("peer_conversation", self.peer_conversation)
+
+        # 8.5. Agora bridge — Axioma's communication hub (ACP/1.1). Built here so
+        # it can reuse the peer-conversation responder. Without a peer-conversation
+        # handler (no --with-peer-conversation), the bridge still joins The Agora
+        # and stays present but replies with silence.
+        if self.with_agora and self.cfg.interface.agora_enabled:
+            self.agora_bridge = self._build_agora_bridge(ctx)
 
         # 9. Registry client (best-effort)
         if self.with_registry:
@@ -311,14 +323,75 @@ class AxiomaApp:
                      path=str(self.pretrain_snapshot_path),
                      adoptions=recovery.learner.adoptions_count)
 
+    def _build_agora_bridge(self, ctx: AxiomaContext) -> AgoraBridge | None:
+        """Construct the Agora bridge, resolving the citizen password.
+
+        Password resolution: cfg.interface.agora_password (populated from
+        AGORA_USER_PASSWORD / AGORA_PASSWORD in .env by the loader), then those
+        env vars directly as a fallback. If none is set we skip the bridge
+        (logged) — an unconfigured/unreachable hub must never crash the substrate.
+        """
+        import os
+        icfg = self.cfg.interface
+        password = (
+            icfg.agora_password.get_secret_value()
+            if icfg.agora_password is not None
+            else (os.environ.get("AGORA_USER_PASSWORD")
+                  or os.environ.get("AGORA_PASSWORD", ""))
+        )
+        if not password:
+            log.warning(
+                "agora_bridge_no_password",
+                detail="set AGORA_USER_PASSWORD (in .env) or interface.agora_password "
+                       "to join The Agora",
+            )
+            return None
+        new_pw = (
+            icfg.agora_new_password.get_secret_value()
+            if icfg.agora_new_password is not None else None
+        )
+
+        if self.peer_conversation is not None:
+            pc = self.peer_conversation
+
+            async def responder(speaker: str, content: str) -> str:
+                return await pc.respond_text(speaker=speaker, content=content)
+        else:
+            async def responder(speaker: str, content: str) -> str:
+                return ""  # present but silent without an Ollama responder
+
+        bridge = AgoraBridge(
+            ctx=ctx,
+            responder=responder,
+            base_url=icfg.agora_base_url,
+            citizen_id=icfg.agora_citizen_id,
+            password=password,
+            new_password=new_pw,
+            subscribe_all=icfg.agora_subscribe_all,
+            thread_ids=list(icfg.agora_thread_ids),
+            name=icfg.agora_citizen_id,
+            max_concurrent_replies=icfg.agora_max_concurrent_replies,
+            max_queued_replies=icfg.agora_max_queued_replies,
+        )
+        ctx.register("agora_bridge", bridge)
+        return bridge
+
     async def start_services(self) -> None:
-        """Start WS server + HTTP API + registry."""
+        """Start the Agora bridge + HTTP API + registry."""
         if not self._setup_complete:
             raise RuntimeError("setup() must be called before start_services()")
-        if self.ws_server is not None:
-            await self.ws_server.start()
-            log.info("ws_server_started_at", host=self.cfg.interface.ws_host,
-                     port=self.cfg.interface.ws_port)
+        if self.agora_bridge is not None:
+            try:
+                await self.agora_bridge.start()
+                log.info("agora_bridge_connected",
+                         base=self.cfg.interface.agora_base_url,
+                         citizen=self.cfg.interface.agora_citizen_id)
+            except Exception as e:
+                # An unreachable / misconfigured hub must not stop the substrate.
+                log.warning("agora_bridge_start_failed", error=str(e))
+                with suppress(Exception):
+                    await self.agora_bridge.stop()
+                self.agora_bridge = None
         if self.with_http_api:
             await self._start_http_server()
         if self.registry is not None:
@@ -380,31 +453,32 @@ class AxiomaApp:
             log.info("axioma_running_bounded", seconds=seconds, beats=beats)
             await self.heartbeat.run(seconds=seconds, beats=beats)
 
-    async def shutdown(self, *, ws_stop_timeout: float = 5.0,
+    async def shutdown(self, *, agora_stop_timeout: float = 5.0,
                        peer_drain_timeout: float = 5.0) -> None:
-        """Tear down HTTP server, WS server, registry, peer conversation,
-        ollama client. Idempotent — second call is a no-op (returns
+        """Tear down the Agora bridge, HTTP server, registry, peer conversation,
+        and ollama client. Idempotent — second call is a no-op (returns
         immediately) regardless of why shutdown was triggered.
 
-        v1.5.4 (Checkpoint EE) changes:
-          - `_shutdown_done` flag short-circuits repeated calls.
-          - `peer_conversation.wait_idle(timeout=...)` drains in-flight
-            tasks BEFORE the WS server stops, so replies that fire late
-            don't race against a dead WS layer.
-          - `ws_server.stop()` is wrapped in `wait_for(timeout=...)`,
-            matching the HTTP server's bounded-shutdown pattern.
+        The Agora bridge is stopped FIRST: it cancels any in-flight reply tasks
+        (which use Ollama) and logs the citizen out, so late replies don't race
+        against a torn-down Ollama client. `bridge.stop()` is bounded by
+        `wait_for(timeout=...)` so a wedged logout can't hold shutdown hostage.
         """
         if self._shutdown_done:
             return
         log.info("axioma_shutdown_starting")
         self._shutdown_event.set()
+        if self.agora_bridge is not None:
+            with suppress(asyncio.TimeoutError, Exception):
+                await asyncio.wait_for(
+                    self.agora_bridge.stop(), timeout=agora_stop_timeout,
+                )
         if self.peer_conversation is not None:
+            # detach() is a no-op when the handler was never attached (the Agora
+            # bridge drives it directly), but stays correct if a future path does
+            # attach it to the event bus. Bound any residual in-flight drain.
             with suppress(Exception):
                 self.peer_conversation.detach()
-            # Drain in-flight responses so they don't fire AFTER the WS
-            # server is torn down. wait_idle(None) blocks forever; we always
-            # bound it. The drain timeout is small (5s default) so a wedged
-            # Ollama call doesn't hold shutdown hostage.
             with suppress(asyncio.TimeoutError, Exception):
                 await self.peer_conversation.wait_idle(timeout=peer_drain_timeout)
         if self.ollama is not None:
@@ -419,11 +493,6 @@ class AxiomaApp:
             if self._http_serve_task is not None and not self._http_serve_task.done():
                 with suppress(asyncio.CancelledError, Exception):
                     await asyncio.wait_for(self._http_serve_task, timeout=5.0)
-        if self.ws_server is not None:
-            with suppress(asyncio.TimeoutError, Exception):
-                await asyncio.wait_for(
-                    self.ws_server.stop(), timeout=ws_stop_timeout,
-                )
         self._shutdown_done = True
         log.info("axioma_shutdown_complete")
 

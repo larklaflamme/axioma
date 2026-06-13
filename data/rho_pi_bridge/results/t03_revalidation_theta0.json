@@ -1,0 +1,99 @@
+{
+  "task": "T03_revalidation_at_theta0",
+  "theta0_phys": {
+    "Mc": 1.197598,
+    "q": 0.79901,
+    "chi_eff": 0.013452,
+    "Lambda_tilde": 594.794,
+    "DL": 39.3695
+  },
+  "theta0_primary": {
+    "ln Mc": 0.18031788411520702,
+    "q": 0.79901,
+    "chi_eff": 0.013452,
+    "Lt/100": 5.94794,
+    "ln DL": 3.6729914048496
+  },
+  "expansion_point_source": "midpoint of lowSpin and highSpin posterior means",
+  "posterior_source": "GW170817_GWTC-1 IMRPhenomPv2NRT",
+  "f_analysis_hz": 500.0,
+  "condition_number_500": 27312347938.190247,
+  "displacement_coords": {
+    "ln Mc": -7.07781952621056e-05,
+    "q": 0.12300327364386987,
+    "chi_eff": -0.018264679514213848,
+    "Lt/100": 0.566639327570428,
+    "ln DL": -0.05120541702665404
+  },
+  "displacement_phys": {
+    "Mc": -8.476381210842376e-05,
+    "q": 0.12300327364386987,
+    "chi_eff": -0.018264679514213848,
+    "Lambda_tilde": 56.663932757042744,
+    "DL": -2.015492889998896
+  },
+  "eigenvalues_descending": [
+    1419128043.0669894,
+    2335887.333952812,
+    103.37531276544357,
+    28.104816556215837,
+    0.051959210767180304
+  ],
+  "vd": {
+    "ln Mc": 6.222467719406164e-07,
+    "q": -0.06992115949681103,
+    "chi_eff": 0.005312979234308502,
+    "Lt/100": 0.9975383720467205,
+    "ln DL": 5.187997395688327e-07
+  },
+  "cos_alpha": 0.005858114367478071,
+  "cos2_alpha": 3.4317503942453e-05,
+  "alpha_deg": 89.66435285105784,
+  "p_value": 0.9912129289667143,
+  "p_significant": false,
+  "rho2_total": 468.9757099118948,
+  "rho2_vd": 0.016094075776368254,
+  "rho2_orth": 468.9596158361184,
+  "component_table": [
+    {
+      "dim": 1,
+      "eigenvalue": 1419128043.0669894,
+      "proj_sq": 1.8452145690210862e-07,
+      "fraction": 3.9345631980977053e-10,
+      "dominant_param": "ln Mc"
+    },
+    {
+      "dim": 2,
+      "eigenvalue": 2335887.333952812,
+      "proj_sq": 8.822261869782477e-05,
+      "fraction": 1.8811767183933454e-07,
+      "dominant_param": "chi_eff"
+    },
+    {
+      "dim": 3,
+      "eigenvalue": 103.37531276544357,
+      "proj_sq": 0.0026245880427767476,
+      "fraction": 5.596426397584263e-06,
+      "dominant_param": "ln DL"
+    },
+    {
+      "dim": 4,
+      "eigenvalue": 28.104816556215837,
+      "proj_sq": 0.026708112577477818,
+      "fraction": 5.6949884637938715e-05,
+      "dominant_param": "q"
+    },
+    {
+      "dim": 5,
+      "eigenvalue": 0.051959210767180304,
+      "proj_sq": 0.3097444233763499,
+      "fraction": 0.0006604700772979069,
+      "dominant_param": "Lt/100"
+    }
+  ],
+  "dx_vd_decomposition": {
+    "along_vd": 0.5565468743747916,
+    "orthogonal": 0.1715258224303538,
+    "frac_along_vd": 0.955643463175352
+  }
+}

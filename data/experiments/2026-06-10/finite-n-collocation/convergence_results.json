@@ -1,0 +1,483 @@
+{
+  "summary": {
+    "N_values": [
+      100,
+      200,
+      500,
+      1000,
+      2000
+    ],
+    "M_values": [
+      20,
+      30,
+      40,
+      50
+    ],
+    "t_range": [
+      10.0,
+      50.0
+    ]
+  },
+  "runs": {
+    "N100_M20": {
+      "parameters": {
+        "N": 100,
+        "M": 20,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.001
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N200_M20": {
+      "parameters": {
+        "N": 200,
+        "M": 20,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.001
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N500_M20": {
+      "parameters": {
+        "N": 500,
+        "M": 20,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.001
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N1000_M20": {
+      "parameters": {
+        "N": 1000,
+        "M": 20,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.002
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N2000_M20": {
+      "parameters": {
+        "N": 2000,
+        "M": 20,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N100_M30": {
+      "parameters": {
+        "N": 100,
+        "M": 30,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.001
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N200_M30": {
+      "parameters": {
+        "N": 200,
+        "M": 30,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.002
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N500_M30": {
+      "parameters": {
+        "N": 500,
+        "M": 30,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.002
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N1000_M30": {
+      "parameters": {
+        "N": 1000,
+        "M": 30,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N2000_M30": {
+      "parameters": {
+        "N": 2000,
+        "M": 30,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.004
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N100_M40": {
+      "parameters": {
+        "N": 100,
+        "M": 40,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.002
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N200_M40": {
+      "parameters": {
+        "N": 200,
+        "M": 40,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.002
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N500_M40": {
+      "parameters": {
+        "N": 500,
+        "M": 40,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N1000_M40": {
+      "parameters": {
+        "N": 1000,
+        "M": 40,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N2000_M40": {
+      "parameters": {
+        "N": 2000,
+        "M": 40,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.006
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N100_M50": {
+      "parameters": {
+        "N": 100,
+        "M": 50,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N200_M50": {
+      "parameters": {
+        "N": 200,
+        "M": 50,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N500_M50": {
+      "parameters": {
+        "N": 500,
+        "M": 50,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.003
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N1000_M50": {
+      "parameters": {
+        "N": 1000,
+        "M": 50,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.004
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    },
+    "N2000_M50": {
+      "parameters": {
+        "N": 2000,
+        "M": 50,
+        "t_min": 10.0,
+        "t_max": 50.0
+      },
+      "performance": {
+        "elapsed_s": 0.007
+      },
+      "matrix_size": 1,
+      "condition_number": null,
+      "n_eigenvalues_total": 1,
+      "n_real_in_window": 0,
+      "eigenvalues": [],
+      "matches": [],
+      "mean_abs_error": null,
+      "median_abs_error": null,
+      "n_underestimated": null,
+      "n_overestimated": null,
+      "schur_distinct_clusters": null,
+      "schur_nontriv_blocks": null
+    }
+  }
+}

@@ -1,0 +1,39 @@
+--- run.py.bak	2026-06-09 20:36:56.852053891 +0000
++++ run.py.patched	2026-06-09 20:37:11.614897087 +0000
+@@ -30,6 +30,7 @@
+ from parelia.substrate import Substrate
+ from parelia.vitals import Metric
+ from parelia.telemetry_writer import TelemetryWriter
++from v2.integration import V2Integration
+ 
+ _ASSENT_ENUM = {"assent": ASSENT, "emerging": EMERGING, "informed": INFORMED}
+ 
+@@ -103,6 +104,7 @@
+         self.config_id = C.crc()
+         self._last_config_seq = 0
+         self.running = False
++        self.v2 = V2Integration(self, preset="newborn")
+ 
+         self.shared = SharedState(C.MMAP_PATH) if attach_shared else None
+ 
+@@ -164,6 +166,12 @@
+             except Exception:
+                 pass  # telemetry must never break the heartbeat
+ 
++        # ── v2 integration: growth decisions, plateau detection, θ-rules ──
++        v2_result = self.v2.tick(hot, full)
++        if v2_result and v2_result.growth_decision:
++            for _ in range(v2_result.growth_decision.nodes_added):
++                self.lattice.add_node(content=f"growth@{beat}")
++
+         # egress / voice (spectral mode = instant, hot-loop safe)
+         if phi > self.cfg["PHI_THRESHOLD_CONSCIOUS"]:
+             self.ports.egress(self.substrate.speak(active))
+@@ -221,6 +229,7 @@
+     def close(self):
+         if self.shared is not None:
+             self.shared.close()
++        self.v2.shutdown()
+         self.telemetry.close()
+ 
+ 

@@ -1,0 +1,12 @@
+{
+  "pipeline_status": "complete",
+  "n_tasks_run": 6,
+  "tasks": [
+    "T2: Ridge orientation",
+    "T3: Prior-displacement alignment",
+    "T4: GW150914 contrast",
+    "T5: Displacement scalars",
+    "T7: Growth-law slopes",
+    "T10: Validity map"
+  ]
+}

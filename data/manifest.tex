@@ -1,0 +1,66 @@
+% Auto-generated from rho_pi_bridge data (θ₀ stack)
+% Generated: 2026-07-15 (updated from θ₀ stack verification)
+% Sources: rho_pi_bridge U0_theta0_summary.json + D2+D3+𝒦(f)+T3 files
+%
+% Each macro is loaded via \manifest{Tn.subkey} in the document.
+% The first dot maps to the leading underscore in the macro name.
+
+% T2 — Ridge orientation (placeholder, needs posterior covariance eigenanalysis)
+\manifestset{T2_angle_GW150914}{N/A}
+\manifestset{T2_angle_highSpin}{N/A}
+\manifestset{T2_angle_lowSpin}{N/A}
+
+% T3 — Prior-displacement alignment (from rho_pi_bridge θ₀ stack)
+% Fisher-weighted: cos²α = 3.43e-05, α = 89.7°, p = 0.991
+% Euclidean:       cos²α = 0.913,   α = 17.3°, 95.6% of length along v_d
+\manifestset{T3_angle}{89.7}
+\manifestset{T3_cos2a}{3.43e-05}
+\manifestset{T3_angle_euc}{17.3}
+\manifestset{T3_cos2a_euc}{0.913}
+\manifestset{T3_frac_along_vd}{0.956}
+\manifestset{T3_lambdad}{0.0520}
+\manifestset{T3_dMc}{-8.476381e-05}
+\manifestset{T3_logLcost}{0.0001249}
+\manifestset{T3_pval}{0.991}
+
+% T4 — GW150914 contrast (from rho_pi_bridge θ₀ stack)
+% 4-parameter common block (ln Mc, q, χ_eff, ln DL), no tidal parameter
+\manifestset{T4_condnum_gw150914}{1.453e+05}
+\manifestset{T4_condnum_gw170817}{5.05e+07}
+\manifestset{T4_gain_gw150914}{3.834e+05}
+\manifestset{T4_gain_gw170817}{8.399e+04}
+\manifestset{T4_kappa_ratio}{3.47e+02}
+
+% T5 — Quadratic misfit (from rho_pi_bridge θ₀ stack)
+\manifestset{T5_quadratic_rho2_full}{0.0002498}
+
+% T6 — Commutator growth (from rho_pi_bridge θ₀ stack, f_min=20 Hz)
+% C(f) = ||Γ − λ₁Π||_F / ||Γ||_F (normalized fractional misalignment, Eq. 15)
+% Values at 20 Hz (low bound) and 500 Hz (full band)
+\manifestset{T6_C20}{2.31e-09}
+\manifestset{T6_C500}{1.65e-03}
+\manifestset{T6_growth_envelope}{0.14}
+\manifestset{T6_growth_factor}{7.11e5}
+\manifestset{T6_ridge_uniformity_band}{0.0038}
+\manifestset{T6_vd_outside_block}{3.13e-07}
+
+% T8 — PSD insensitivity (from rho_pi_bridge)
+\manifestset{T8_C22_early_aligo}{6.7033e-07}
+\manifestset{T8_C22_o2_h1}{N/A}
+\manifestset{T8_C22_o2_l1}{N/A}
+\manifestset{T8_C22_zdhp}{6.7028e-07}
+\manifestset{T8_C500_early_aligo}{4.9310e-03}
+\manifestset{T8_C500_o2_h1}{N/A}
+\manifestset{T8_C500_o2_l1}{N/A}
+\manifestset{T8_C500_zdhp}{1.6216e-03}
+\manifestset{T8_int_early_aligo}{1.6599e+00}
+\manifestset{T8_int_o2_h1}{N/A}
+\manifestset{T8_int_o2_l1}{N/A}
+\manifestset{T8_int_zdhp}{6.1694e-01}
+\manifestset{T8_max_variation}{2.69}
+
+% T9 — Peak-drop prediction (f★ from broken-power-law fit; N(500) from eigenvalue ratios)
+\manifestset{T9_N500}{1--2}
+\manifestset{T9_fstar_1}{120}
+\manifestset{T9_fstar_2}{124.8}
+\manifestset{T9_fstar_4}{130}

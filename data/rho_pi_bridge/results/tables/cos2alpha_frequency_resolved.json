@@ -1,0 +1,389 @@
+{
+  "results": [
+    {
+      "f_target_hz": 22,
+      "f_actual_hz": 21.9,
+      "cos_alpha": -0.0,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 1.0,
+      "p_significant": false,
+      "condition_number": "5.80e+22",
+      "eigenvalues": [
+        "2.4044e-44",
+        "1.6329e-50",
+        "6.5503e-53",
+        "1.2811e-59",
+        "4.1440e-67"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.99996,
+      "vd_q_component": -0.008923,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 25,
+      "f_actual_hz": 25.2,
+      "cos_alpha": 0.0,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 0.999999,
+      "p_significant": false,
+      "condition_number": "5.91e+20",
+      "eigenvalues": [
+        "5.5658e-44",
+        "2.6343e-49",
+        "1.9342e-52",
+        "2.1236e-57",
+        "9.4221e-65"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999969,
+      "vd_q_component": -0.007826,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 30,
+      "f_actual_hz": 30.4,
+      "cos_alpha": 1e-06,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 0.999999,
+      "p_significant": false,
+      "condition_number": "8.22e+19",
+      "eigenvalues": [
+        "9.3096e-44",
+        "1.7618e-48",
+        "4.5405e-52",
+        "7.9266e-56",
+        "1.1329e-63"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999973,
+      "vd_q_component": -0.0073,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 35,
+      "f_actual_hz": 34.9,
+      "cos_alpha": 1e-06,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 0.999999,
+      "p_significant": false,
+      "condition_number": "6.40e+19",
+      "eigenvalues": [
+        "1.1779e-43",
+        "4.6748e-48",
+        "7.4753e-52",
+        "5.1886e-55",
+        "1.8407e-63"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999973,
+      "vd_q_component": -0.00729,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 45,
+      "f_actual_hz": 44.8,
+      "cos_alpha": 8e-06,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 0.999988,
+      "p_significant": false,
+      "condition_number": "3.08e+17",
+      "eigenvalues": [
+        "1.5499e-43",
+        "1.7374e-47",
+        "1.5983e-51",
+        "6.5112e-54",
+        "5.0401e-61"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999969,
+      "vd_q_component": -0.007826,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 50,
+      "f_actual_hz": 50.1,
+      "cos_alpha": 1.7e-05,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 0.999974,
+      "p_significant": false,
+      "condition_number": "5.79e+16",
+      "eigenvalues": [
+        "1.6847e-43",
+        "2.7721e-47",
+        "2.1553e-51",
+        "1.6040e-53",
+        "2.9108e-60"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999965,
+      "vd_q_component": -0.008261,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 60,
+      "f_actual_hz": 60.3,
+      "cos_alpha": 4.5e-05,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 90.0,
+      "p_value": 0.999932,
+      "p_significant": false,
+      "condition_number": "5.93e+15",
+      "eigenvalues": [
+        "1.8663e-43",
+        "5.3731e-47",
+        "3.3831e-51",
+        "5.8235e-53",
+        "3.1477e-59"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999957,
+      "vd_q_component": -0.00925,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 75,
+      "f_actual_hz": 74.7,
+      "cos_alpha": 0.000112,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 89.99,
+      "p_value": 0.999833,
+      "p_significant": false,
+      "condition_number": "6.86e+14",
+      "eigenvalues": [
+        "2.0091e-43",
+        "9.8265e-47",
+        "5.2468e-51",
+        "1.9667e-52",
+        "2.9276e-58"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999941,
+      "vd_q_component": -0.010816,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 100,
+      "f_actual_hz": 99.5,
+      "cos_alpha": 0.000308,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 89.98,
+      "p_value": 0.999538,
+      "p_significant": false,
+      "condition_number": "6.22e+13",
+      "eigenvalues": [
+        "2.1090e-43",
+        "1.7483e-46",
+        "8.1760e-51",
+        "7.0298e-52",
+        "3.3925e-57"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999905,
+      "vd_q_component": -0.013713,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 120,
+      "f_actual_hz": 119.8,
+      "cos_alpha": 0.000547,
+      "cos2_alpha": 0.0,
+      "alpha_deg": 89.97,
+      "p_value": 0.99918,
+      "p_significant": false,
+      "condition_number": "1.66e+13",
+      "eigenvalues": [
+        "2.1368e-43",
+        "2.2426e-46",
+        "9.9988e-51",
+        "1.3276e-51",
+        "1.2856e-56"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999869,
+      "vd_q_component": -0.016109,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 150,
+      "f_actual_hz": 151.1,
+      "cos_alpha": 0.001043,
+      "cos2_alpha": 1e-06,
+      "alpha_deg": 89.94,
+      "p_value": 0.998435,
+      "p_significant": false,
+      "condition_number": "3.90e+12",
+      "eigenvalues": [
+        "2.1517e-43",
+        "2.7636e-46",
+        "1.1937e-50",
+        "2.4858e-51",
+        "5.5113e-56"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999802,
+      "vd_q_component": -0.01975,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 200,
+      "f_actual_hz": 199.6,
+      "cos_alpha": 0.002078,
+      "cos2_alpha": 4e-06,
+      "alpha_deg": 89.88,
+      "p_value": 0.996882,
+      "p_significant": false,
+      "condition_number": "8.72e+11",
+      "eigenvalues": [
+        "2.1573e-43",
+        "3.1984e-46",
+        "1.3644e-50",
+        "4.3137e-51",
+        "2.4732e-55"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.99968,
+      "vd_q_component": -0.025152,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 250,
+      "f_actual_hz": 251.7,
+      "cos_alpha": 0.003461,
+      "cos2_alpha": 1.2e-05,
+      "alpha_deg": 89.8,
+      "p_value": 0.994809,
+      "p_significant": false,
+      "condition_number": "2.96e+11",
+      "eigenvalues": [
+        "2.1586e-43",
+        "3.4166e-46",
+        "1.4587e-50",
+        "5.9512e-51",
+        "7.2949e-55"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999529,
+      "vd_q_component": -0.030517,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 300,
+      "f_actual_hz": 303.0,
+      "cos_alpha": 0.004998,
+      "cos2_alpha": 2.5e-05,
+      "alpha_deg": 89.71,
+      "p_value": 0.992503,
+      "p_significant": false,
+      "condition_number": "1.37e+11",
+      "eigenvalues": [
+        "2.1590e-43",
+        "3.5212e-46",
+        "1.5089e-50",
+        "7.1451e-51",
+        "1.5712e-54"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.99937,
+      "vd_q_component": -0.035281,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 350,
+      "f_actual_hz": 351.5,
+      "cos_alpha": 0.006538,
+      "cos2_alpha": 4.3e-05,
+      "alpha_deg": 89.63,
+      "p_value": 0.990192,
+      "p_significant": false,
+      "condition_number": "7.89e+10",
+      "eigenvalues": [
+        "2.1591e-43",
+        "3.5735e-46",
+        "1.5366e-50",
+        "7.9461e-51",
+        "2.7373e-54"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999219,
+      "vd_q_component": -0.039281,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 400,
+      "f_actual_hz": 400.2,
+      "cos_alpha": 0.00812,
+      "cos2_alpha": 6.6e-05,
+      "alpha_deg": 89.53,
+      "p_value": 0.98782,
+      "p_significant": false,
+      "condition_number": "5.05e+10",
+      "eigenvalues": [
+        "2.1591e-43",
+        "3.6033e-46",
+        "1.5540e-50",
+        "8.5100e-51",
+        "4.2714e-54"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.999072,
+      "vd_q_component": -0.042816,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 450,
+      "f_actual_hz": 451.5,
+      "cos_alpha": 0.009782,
+      "cos2_alpha": 9.6e-05,
+      "alpha_deg": 89.44,
+      "p_value": 0.985328,
+      "p_significant": false,
+      "condition_number": "3.46e+10",
+      "eigenvalues": [
+        "2.1591e-43",
+        "3.6217e-46",
+        "1.5656e-50",
+        "8.9171e-51",
+        "6.2491e-54"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.998927,
+      "vd_q_component": -0.046039,
+      "rho2_dx": 0.0
+    },
+    {
+      "f_target_hz": 500,
+      "f_actual_hz": 500.0,
+      "cos_alpha": 0.011325,
+      "cos2_alpha": 0.000128,
+      "alpha_deg": 89.35,
+      "p_value": 0.983014,
+      "p_significant": false,
+      "condition_number": "2.56e+10",
+      "eigenvalues": [
+        "2.1591e-43",
+        "3.6322e-46",
+        "1.5729e-50",
+        "9.1798e-51",
+        "8.4213e-54"
+      ],
+      "vd_dominant_param": "Lt_over_100",
+      "vd_Lt_component": 0.998802,
+      "vd_q_component": -0.048656,
+      "rho2_dx": 0.0
+    }
+  ],
+  "displacement_primary": {
+    "ln_Mc": -7.07781952621056e-05,
+    "q": 0.12300327364386987,
+    "chi_eff": -0.018264679514213848,
+    "Lt_over_100": 0.566639327570428,
+    "ln_DL": -0.05120541702665404
+  }
+}

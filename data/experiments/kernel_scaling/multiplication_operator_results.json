@@ -1,0 +1,63 @@
+{
+  "N": 2000,
+  "t_range": [
+    5.0,
+    55.0
+  ],
+  "n_samples": 1000,
+  "n_matched": 5,
+  "errors": [
+    0.006024,
+    0.000549,
+    0.003595,
+    0.011265,
+    0.022374
+  ],
+  "mean_error": 0.008762,
+  "median_error": 0.006024,
+  "min_error": 0.000549,
+  "max_error": 0.022374,
+  "fraction_under_0_15": 1.0,
+  "fraction_under_0_05": 1.0,
+  "fraction_under_0_01": 0.6,
+  "smallest_eigenvalue": 0.002351023,
+  "median_eigenvalue": 1.776888,
+  "n_on_target_smallest_14": 2,
+  "matches": [
+    {
+      "zero": 21.02204,
+      "estimated": 21.016016,
+      "delta": 0.006024,
+      "magnitude": 0.01466263,
+      "rank": 10
+    },
+    {
+      "zero": 30.424876,
+      "estimated": 30.425425,
+      "delta": 0.000549,
+      "magnitude": 0.03318833,
+      "rank": 24
+    },
+    {
+      "zero": 37.586178,
+      "estimated": 37.582583,
+      "delta": 0.003595,
+      "magnitude": 0.0169663,
+      "rank": 12
+    },
+    {
+      "zero": 43.327073,
+      "estimated": 43.338338,
+      "delta": 0.011265,
+      "magnitude": 0.04170018,
+      "rank": 29
+    },
+    {
+      "zero": 52.970322,
+      "estimated": 52.947948,
+      "delta": 0.022374,
+      "magnitude": 0.02353151,
+      "rank": 16
+    }
+  ]
+}

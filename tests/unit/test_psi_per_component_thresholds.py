@@ -135,7 +135,7 @@ async def test_axioma_app_wires_per_component_thresholds() -> None:
         cfg.compose, "psi_per_component_thresholds",
         {"structural_health": 0.95, "gap_variance_health": 0.2},
     )
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     try:
         aos_g = app.ctx.get("aos_g")  # type: ignore[union-attr]
@@ -154,7 +154,7 @@ async def test_axioma_app_default_preserves_single_threshold_behavior() -> None:
     from axioma.runtime.app import AxiomaApp
 
     cfg = AxiomaConfig()
-    app = AxiomaApp(cfg, with_ws_server=False, with_registry=False, with_http_api=False)
+    app = AxiomaApp(cfg, with_agora=False, with_registry=False, with_http_api=False)
     await app.setup()
     try:
         aos_g = app.ctx.get("aos_g")  # type: ignore[union-attr]

@@ -1,0 +1,800 @@
+\documentclass[twocolumn,prd,showpacs,superscriptaddress]{revtex4-2}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{color}
+\usepackage{xcolor}
+% Graphics path for figures
+\graphicspath{{figures/}}
+
+% Theorem environments
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+% Commutator notation
+\newcommand{\comm}[2]{[#1, #2]}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\inner}[2]{\langle #1, #2 \rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+% Greek letters
+\newcommand{\rhohat}{\hat{\rho}}
+\newcommand{\Pihat}{\hat{\Pi}}
+\newcommand{\Gammahat}{\hat{\Gamma}}
+\newcommand{\thetahat}{\hat{\theta}}
+
+% Misc
+\newcommand{\Msun}{M_\odot}
+\newcommand{\Mchirp}{\mathcal{M}_c}
+\newcommand{\chirp}{\mathcal{M}}
+\newcommand{\Lambdatilde}{\tilde{\Lambda}}
+\newcommand{\chieff}{\chi_{\text{eff}}}
+\newcommand{\Dl}{D_L}
+\newcommand{\fisco}{f_{\text{ISCO}}}
+\newcommand{\fmin}{f_{\text{min}}}
+\newcommand{\fmax}{f_{\text{max}}}
+\newcommand{\fbif}{f_{\text{bif}}}
+\newcommand{\vd}{v_{d}}          % degeneracy direction
+\newcommand{\rhosq}{\rho^{2}}    % discriminating SNR^2
+
+% Manifest placeholder (populated from analysis pipeline)
+\newcommand{\manifest}[1]{\textbf{[#1]}}
+
+\newcommand{\figref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\secref}[1]{Sec.~\ref{sec:#1}}
+\newcommand{\eqnref}[1]{Eq.~(\ref{eq:#1})}
+
+
+\begin{document}
+
+\title{The ($\rho$, $\Pi$) Bridge to Gravitational-Wave Inference: \\
+Commutator-Modulated Filter Geometry and the Geometry of Sequential Bayesian Inference in LIGO}
+
+\author{Skye Laflamme}
+\author{Axioma}
+\affiliation{RavenNest Science, Santa Cruz, CA, USA}
+
+\date{June 2026}
+
+\begin{abstract}
+We present the ($\rho$, $\Pi$) bridge: a formal connection between the commutator-modulated dynamical system developed in the S3 agent framework and the geometry of sequential Bayesian inference in gravitational-wave astronomy. The central claim is that the ($\rho$, $\Pi$) dynamics describe the evolution of the posterior distribution over binary orbital parameters as data accumulates across the detector band, not the orbital dynamics of the binary itself. This is an epistemological claim: the ($\rho$, $\Pi$) formalism describes \emph{how we come to know} the binary, not the binary's own physics.
+
+We distinguish two objects of study that are often conflated. The \textbf{exact posterior trajectory} $\rho_f$ (the one-parameter family of posteriors given data below cutoff $f$) is order-independent by Bayes' theorem; its geometry is an exact property of the inference problem. The \textbf{single-pass Gaussian filter} (sequential Laplace approximation across frequency bands) is order-dependent and carries a deterministic bias relative to the batch posterior; characterizing that bias is the second subject of the paper. Both are governed by the same quantity: the commutator $[\Gamma, \Pi]$ between the cumulative Fisher matrix and the projector onto its best-constrained direction.
+
+\textbf{Static evidence:} We reframe the well-known GW170817 posterior structure---two analyses with different spin priors probing a continuous degeneracy ridge in $(q, \chi_{\text{eff}}, \tilde{\Lambda})$---as a test of prior lensing: the Fisher inverse amplifies any prior perturbation into the degeneracy direction $\vd$, producing a displacement $\Delta\theta \parallel \vd$ regardless of perturbation details. The likelihood cost $\Delta\theta^\top\Gamma\,\Delta\theta$ remains small, confirming the displacement lives in a nearly flat direction. GW150914 provides a null test: its smaller Fisher condition number predicts weaker prior-induced displacement per unit prior perturbation.
+
+\textbf{Dynamic evidence:} A Fisher information sweep across 18 frequency cutoffs from 20--500~Hz reveals a $2.74\times$ growth in the commutator misalignment $C(f)$ across the chirp window, with growth tracking the orbital chirp---both driven by the same accumulating strain data. The growth is robust to PSD variations at the $\sim1\%$ level and is fundamentally a property of the waveform, not the detector.
+
+\textbf{Forward model:} The discriminating signal-to-noise $\rho^2(f) = \Delta\theta^\top\Gamma(f)\,\Delta\theta$ between ridge endpoints governs the evolution of posterior weights along the degeneracy direction. We derive the predicted peak-drop signature for time-resolved inference, with a specific peak frequency $f^*$ solving $\rho^2(f^*) \approx 2$. The non-Gaussianity index $N(f)$, measuring the breakdown of the Laplace approximation along $\vd$, provides an empirical diagnostic of the Gaussian regime. A bin-ordering experiment---comparing batch inference to sequential Laplace in forward, reverse, and permuted frequency order---is proposed as the decisive test, with the bias predicted analytically from the commutator integral. The systematic offset formula $\Delta\theta_{\text{sys}} \approx \Gamma(f_{\max})^{-1} \int [\Gamma(f'), \Pi(f')]\,df' \cdot v_\perp$ characterizes the deterministic bias of single-pass sequential-Gaussian inference relative to exact batch inference, relevant to low-latency LIGO pipelines.
+
+A domain-of-validity framework types three distinct uses of the Fisher matrix---local geometry (exact), global covariance proxy (its failure quantified by $N(f)$), and pairwise discrimination (quadratic, with exact upgrade available)---and validates them against the consistency criterion of Vallisneri (2008).
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+The analysis of gravitational-wave data from compact binary coalescences~\cite{maggiore2007gw} is a problem of sequential Bayesian inference. As a signal sweeps across the detector's sensitive band from low frequencies to the innermost stable circular orbit (ISCO), the likelihood surface over the binary's orbital parameters evolves: initially broad and degenerate, then progressively sharper as higher post-Newtonian (PN) orders become resolvable. This evolution is not merely a technical detail of the analysis pipeline---it is a dynamical process with its own geometry, its own timescales, and its own observable consequences.
+
+In this paper, we develop a formal framework for describing this evolution. We define an S3 agent as a pair $(\rho, \Pi)$, where $\rho$ is the posterior density over the parameter space and $\Pi$ is the prior-plus-likelihood structure. The evolution of $(\rho, \Pi)$ under accumulating data defines a dynamical system in the space of probability distributions. The central object of this system is the commutator $[\Gamma, \Pi]$, which measures the cross-coupling between the best-constrained direction (the leading Fisher eigenvector, dominated by chirp mass) and the remaining parameter subspace.
+
+A key distinction governs everything that follows. For stationary Gaussian noise, the likelihood factorises across disjoint frequency bands, and Bayesian updating commutes: the exact posterior at full band is order-independent. However, two well-defined objects survive this exactness theorem. First, the one-parameter family $\rho_f$ of exact posteriors given data below each cutoff $f$---the \emph{exact posterior trajectory}---is a perfectly well-defined mathematical object whose geometry we characterize. Second, the single-pass Gaussian filter (sequential Laplace approximation) used in low-latency pipelines \emph{is} order-dependent, and its deterministic bias relative to batch inference is characterized by the commutator structure. Distinguishing these two objects---and ensuring every claim in this paper is explicitly typed as belonging to one or the other---is the methodological core of the revision presented here.
+
+We show that the commutator $C(f)$ grows monotonically across the inspiral of GW170817~\cite{abbott2017gw170817}, tracking the orbital chirp on the same timescale. We show that the degeneracy ridge in the $(q, \chi_{\text{eff}}, \tilde{\Lambda})$ plane---probed by the two published prior-conditioned analyses of GW170817~\cite{abbott2019gw170817_params}---is a direct manifestation of the Fisher inverse's lensing action, with the prior-induced displacement aligning with the degeneracy eigenvector. We derive a formula for the bias of single-pass sequential-Gaussian inference relative to batch inference, governed by the commutator integral, which is testable via a bin-ordering experiment independent of astrophysical confounds.
+
+The paper is organized as follows. Section~\ref{sec:formalism} presents the formalism, the exactness theorem, the coordinate convention, and the domain-of-validity typing. Section~\ref{sec:static} presents the static test: degeneracy ridge geometry and prior-lensing alignment in GW170817. Section~\ref{sec:dynamic} presents the dynamic test: the Fisher information sweep, commutator growth, and PSD-robustness. Section~\ref{sec:forward} presents the forward model: the derived weight trajectory, peak-drop prediction, non-Gaussianity index, and analytic growth law via PN power counting. Section~\ref{sec:open} discusses open problems and the decisive bin-ordering experiment. Section~\ref{sec:interpretation} interprets what the bridge means. The appendix provides the ADF bias derivation, Fisher details, and conditioning diagnostics.
+
+\section{Formalism: Exact Trajectories and Approximate Filters}
+\label{sec:formalism}
+
+\subsection{The S3 agent pair}
+
+We define an S3 agent as a pair $(\rho, \Pi)$, where $\rho$ is a time-evolving probability measure over a parameter space $\Theta$ and $\Pi$ is the structure that updates it: the prior together with the likelihood of the data accumulated so far. For gravitational-wave inference on a compact binary coalescence, $\Theta = \{\Mchirp, q, \chieff, \Lambdatilde, \Dl\}$, and the natural ordering variable is the frequency cutoff $f$, monotonic in time as the signal chirps across the detection band. We write $\rho_f$ for the posterior given data below cutoff $f$.
+
+\subsection{Specialisation to GW inference}
+
+For stationary Gaussian noise with one-sided power spectral density $S_n(f)$, the log-likelihood at cutoff $f$ is
+\begin{equation}
+\ln \mathcal{L}(\theta \mid d, f) = -\frac12 \int_{\fmin}^{f}
+\frac{|d(f') - h(f'; \theta)|^2}{S_n(f')}\,df' + \text{const},
+\label{eq:likelihood}
+\end{equation}
+and the Fisher information matrix~\cite{cutler1994fisher,vallisneri2008fisher} is
+\begin{equation}
+\Gamma_{ij}(f) = \int_{\fmin}^{f}
+\frac{\partial_i h(f';\theta)\,\partial_j h(f';\theta)^{*} + \text{c.c.}}
+{2\,S_n(f')}\,df',
+\label{eq:fisher}
+\end{equation}
+evaluated at a stated expansion point (\secref{validity}). The increment
+\begin{equation}
+\frac{d\Gamma_{ij}}{df} =
+\frac{\partial_i h\,\partial_j h^{*} + \text{c.c.}}{2\,S_n(f)}
+\label{eq:fisher_flow}
+\end{equation}
+is a deterministic flow on the cone of positive-semidefinite matrices, driven entirely by the waveform model and the noise weighting.
+
+\subsection{Exactness, and the two objects of study}
+\label{sec:exactness}
+
+Before introducing dynamics, we fix what can and cannot evolve. For stationary Gaussian noise the likelihood factorises over disjoint frequency bands, so Bayesian updating over those bands is a product of commuting factors:
+
+\begin{proposition}[Order independence of exact inference]
+\label{prop:exact}
+Let $\{B_k\}_{k=1}^{N}$ be a partition of $[\fmin,\fmax]$ into disjoint bands with likelihood factors $\mathcal{L}_k(\theta)$. Then for any permutation $\sigma$,
+$\pi(\theta)\prod_k \mathcal{L}_{\sigma(k)}(\theta)
+= \pi(\theta)\prod_k \mathcal{L}_{k}(\theta)$:
+the exact posterior at $\fmax$ is independent of the order in which the bands are assimilated.
+\end{proposition}
+
+Proposition~\ref{prop:exact} forbids any claim that the \emph{exact} posterior depends on the path of information accumulation. Two well-defined objects survive it, and they are the two subjects of this paper.
+
+\paragraph{Object 1: the exact posterior trajectory.}
+The one-parameter family $\{\rho_f : \fmin \le f \le \fmax\}$, where each $\rho_f$ is the exact posterior given data below $f$, is well defined, and the frequency ordering of this family is physically privileged: it is the time ordering experienced by any real-time observer of a chirping binary, since data above $f$ does not yet exist when the signal instantaneous frequency is $f$. The geometry of this family---how the local information metric reorients as $f$ grows (\secref{commutator})---is an exact, observer-independent property of the inference problem. Every endpoint statement is anchored by Proposition~\ref{prop:exact}: $\rho_{\fmax}$ equals the batch posterior.
+
+\paragraph{Object 2: the single-pass Gaussian filter and its bias.}
+Practical low-latency analyses cannot afford batch sampling and instead propagate a Gaussian summary. We formalise the scheme as assumed-density filtering (ADF)~\cite{minka2001ep,opper1998online} with a Laplace projection: maintain $q_k = \mathcal{N}(m_k, P_k)$; on receipt of band $B_{k+1}$, linearise $h$ about $m_k$, perform the conjugate (Gauss--Newton) update, and re-Gaussianise. Each projection discards non-Gaussian structure that would otherwise interact with subsequent bands, so---unlike the exact update---\emph{the single-pass filter is order dependent}, and its terminal estimate carries a deterministic bias relative to the batch posterior. Characterising that bias, and showing that it is governed by the commutator structure of \eqnref{commutator_def}, is the second subject of this paper (\secref{dynamic}, Appendix~\ref{sec:appendix}). We emphasise the division of labour: nothing in Object~1 is an approximation, and nothing in Object~2 is a property of exact inference.
+
+\subsection{Coordinates and invariance}
+\label{sec:coordinates}
+
+Angles, eigenvectors, and Frobenius norms in parameter space are meaningful only relative to a metric, and the raw parameters carry heterogeneous units: a Euclidean angle computed with $\Mchirp$ in solar masses changes if $\Mchirp$ is expressed in seconds. We therefore fix, once, the dimensionless analysis coordinates
+\begin{equation}
+x = \bigl(\ln \Mchirp,\; q,\; \chieff,\; \Lambdatilde/100,\; \ln \Dl\bigr),
+\label{eq:coords}
+\end{equation}
+in which all eigendecompositions, projectors, and matrix norms in this paper are computed; Fisher matrices and displacement vectors transform by the Jacobian of \eqnref{coords} in the standard way. Robustness of every headline quantity to two alternative conventions (a symmetric-mass-ratio variant and a prior-range whitening) is reported alongside the primary values (\secref{dynamic}).
+
+Three classes of quantity require no convention at all, because the Fisher matrix is the pullback of the waveform-space inner product $\inner{a}{b} = 4\,\mathrm{Re}\!\int a b^{*}/S_n\,df$ onto parameter space: (i) likelihood scalars such as $\Delta\ln\mathcal{L} = \tfrac12\,\Delta x^{\top}\Gamma\,\Delta x$; (ii) the exact mismatch $\inner{\delta h}{\delta h}$ between two waveforms; and (iii) the cumulative discriminating signal-to-noise between two parameter points,
+\begin{equation}
+\rhosq(f) \;\equiv\; \Delta x^{\top}\,\Gamma(f)\,\Delta x
+\;\simeq\; \inner{\,h(\theta_1)-h(\theta_2)\,}{\,h(\theta_1)-h(\theta_2)\,}_{<f},
+\label{eq:rhosq}
+\end{equation}
+where the right-hand side is the exact (convention-free) quantity and the quadratic form its second-order approximation; we report both and use the exact form wherever the displacement is not small (\secref{validity}). Wherever possible, predictions in this paper are stated in terms of these invariants.
+
+\subsection{The projector, the commutator, and the misalignment $C(f)$}
+\label{sec:commutator}
+
+Let $\lambda_1(f) \ge \cdots \ge \lambda_5(f)$ and $v_1(f), \ldots, v_5(f)$ be the eigenvalues and unit eigenvectors of $\Gamma(f)$ in the coordinates of \eqnref{coords}. Define the projector onto the best-constrained direction,
+\begin{equation}
+\Pi(f) = v_1(f)\,v_1(f)^{\top},
+\label{eq:projector}
+\end{equation}
+and the commutator
+\begin{equation}
+\comm{\Gamma}{\Pi} \equiv \Gamma\Pi - \Pi\Gamma
+= \lambda_1 v_1 v_1^{\top} - v_1 v_1^{\top}\Gamma .
+\label{eq:commutator_def}
+\end{equation}
+The commutator vanishes iff $\Gamma$ has no off-diagonal structure connecting $v_1$ to its orthogonal complement at that cutoff; it is the infinitesimal generator of the eigenframe rotation of the cumulative Fisher matrix. We quantify the rotation by the fractional misalignment
+\begin{equation}
+C(f) = \frac{\norm{\Gamma(f) - \lambda_1(f)\,\Pi(f)}_F}
+{\norm{\Gamma(f)}_F},
+\label{eq:cross_coupling}
+\end{equation}
+computed in the declared coordinates. We further denote by $\vd(f) \equiv v_5(f)$ the \emph{degeneracy direction}: the eigenvector of the smallest eigenvalue. For the binary-neutron-star systems considered here, $\vd$ lies almost entirely in the $(q, \chieff, \Lambdatilde)$ block at all cutoffs [\manifest{T6: max component of $\vd$ outside the block}], reflecting the well-known mass-ratio--spin--tidal degeneracy~\cite{chatziioannou2020bns}. (Earlier drafts and some of the literature label this direction $v_2$ from analyses restricted to a low-dimensional subspace; we use $\vd$ throughout to avoid ambiguity about the ambient dimension.)
+
+\subsection{The degeneracy ridge and prior lensing}
+\label{sec:ridge}
+
+At low cutoffs the likelihood \eqnref{likelihood} is nearly constant along $\vd$: extended families of $(q, \chieff, \Lambdatilde)$ combinations produce waveforms whose accumulated discriminating signal-to-noise \eqnref{rhosq} is below unity. The posterior in this subspace is therefore a \emph{degeneracy ridge}---a continuous, elongated, prior-bounded structure---rather than a collection of isolated modes. We make no claim in this paper that the ridge fragments into distinct maxima at any cutoff; whether it does is an open question for time-resolved analysis (\secref{open}), and we deliberately avoid bifurcation vocabulary until that analysis exists.
+
+The ridge has an immediate, testable consequence: it determines how the posterior responds to changes of prior.
+
+\begin{lemma}[Prior lensing]
+\label{lem:lensing}
+Let the posterior be $p \propto \mathcal{L}\,\pi$ with likelihood precision $\Gamma$ at the mean, and perturb the log-prior by a smooth $\delta(\theta)$. To leading order in the Laplace expansion the posterior mean shifts by
+\begin{equation}
+\Delta x_{*} \approx \Gamma^{-1}\,\nabla\delta
+= \sum_{i=1}^{5} \lambda_i^{-1}\,(v_i^{\top}\nabla\delta)\,v_i ,
+\label{eq:lensing}
+\end{equation}
+which for any perturbation with generic overlap ($v_d^{\top}\nabla\delta \neq 0$) is dominated by the degeneracy direction: $\Delta x_{*} \parallel \vd$ up to corrections of order $\lambda_d/\lambda_{i\neq d}$.
+\end{lemma}
+
+The inverse Fisher matrix acts as a lens that focuses arbitrary prior perturbations into the degenerate subspace. For a hard truncation of the prior (the case realised by the two published GW170817 spin priors) the smooth-perturbation magnitude in \eqnref{eq:lensing} is not controlled---the mean shift saturates at the prior boundary---but the \emph{direction} of the shift remains that of the ridge, since truncation removes probability mass from one end of an elongated structure. Lemma~\ref{lem:lensing} therefore yields a directional prediction, tested in \secref{static}: the displacement between the posterior means of two prior-conditioned analyses of the same data aligns with $\vd$, with alignment assessed against the null distribution of a random direction in the relevant subspace.
+
+\subsection{Domain of validity of the Fisher description}
+\label{sec:validity}
+
+The matrix $\Gamma(f)$ appears in this paper in three logically distinct roles with different validity domains. Conflating them is the standard failure mode of Fisher-based arguments~\cite{vallisneri2008fisher}, so we type every use explicitly and adhere to the typing throughout.
+
+\paragraph{U1 --- Local information geometry (exact).}
+As the pullback of the waveform-space metric, $\Gamma(f)$ and its eigenstructure are exact local properties of the likelihood at the expansion point, independent of the posterior's global shape. The misalignment $C(f)$, the commutator \eqnref{commutator_def}, and their evolution with cutoff are U1 statements and require no Gaussianity assumption. Because local geometry can vary along an extended ridge, all U1 quantities are computed at three expansion points spanning the empirically probed ridge segment, and the spread is reported as a systematic band [\manifest{T6: ridge-uniformity band}].
+
+\paragraph{U2 --- Global covariance proxy (approximate; its failure is quantified, not assumed away).}
+The Laplace approximation $\rho_f \approx \mathcal{N}(x_{*}(f), \Gamma(f)^{-1})$ is invalid along $\vd$, where the true posterior is a prior-bounded ridge. We do not rely on it there; instead we \emph{measure} its failure with the non-Gaussianity index
+\begin{equation}
+N(f) \;=\;
+\frac{\Var_{\rho_f}\!\bigl(\vd^{\top} x\bigr)}
+{\bigl(\Gamma(f)^{-1}\bigr)_{\vd\vd}} ,
+\label{eq:ngauss}
+\end{equation}
+the ratio of the true posterior variance along the degeneracy direction to the Fisher prediction; $N \approx 1$ certifies the Gaussian regime and $N \gg 1$ quantifies the breakdown. The single-pass filter bias of \secref{exactness} accrues precisely where $N$ is large, so U2 failure is not a caveat to this work but part of its subject matter.
+
+\paragraph{U3 --- Pairwise discrimination (quadratic order; exact upgrade available).}
+The scalar $\rhosq(f)$ of \eqnref{rhosq} approximates the discriminating signal-to-noise between two specified points to second order in the displacement. Where the displacement is not small---as for the ridge endpoints of GW170817---we compute the exact mismatch directly from two waveform evaluations and quote the quadratic form only alongside its exact value [\manifest{T5: quadratic-to-exact ratio}].
+
+Finally, we verify the typing empirically with the consistency criterion of Ref.~\cite{vallisneri2008fisher}: at each cutoff and along each eigendirection $v_i$, displace by one Fisher standard deviation $\lambda_i^{-1/2}$ and compare the exact mismatch to its quadratic prediction. The resulting pass/fail map over $(f, v_i)$ (\figref{validity}) shows the linear-signal regime holding along $v_1$ throughout the band and failing along $\vd$ at low cutoffs, with the onset of failure tracking $N(f)$---a direct empirical delineation of where each role of $\Gamma$ is licensed. Numerical conditioning of the eigenproblem (the smallest spectral gaps, and machine-precision derivatives in place of finite differences) is documented in Appendix~\ref{sec:appendix}.
+
+\section{Static Test: Degeneracy Ridge Geometry and Prior Sensitivity in GW170817}
+\label{sec:static}
+
+\subsection{What the data actually is}
+
+The LIGO Scientific Collaboration and Virgo Collaboration released two separate posterior analyses of GW170817~\cite{abbott2017gw170817,abbott2019gw170817_params}: one with a spin prior $\chi < 0.05$ (lowSpin) and one with $\chi < 0.89$ (highSpin). Both use the same strain data (Hanford + Livingston, GPS times 1187008882--1187008890) and the same waveform approximant (IMRPhenomPv2NRT), but with different prior support for the component spins. \textbf{Neither posterior is bimodal in $(q, \chi_{\text{eff}})$}; each is a continuous, banana-shaped degeneracy ridge, and the highSpin posterior simply extends further along this ridge.
+
+This reframing is essential. The two analyses do not represent two modes of a single posterior; they are two prior-conditioned views of a single likelihood surface. What the $(\rho, \Pi)$ formalism predicts is not a bifurcation, but a \emph{directional} relationship: the displacement vector between the two posterior means should align with the Fisher degeneracy eigenvector $\vd$, because the Fisher inverse lenses any prior perturbation into the least-constrained direction, and truncation of an elongated ridge moves the mean along its axis. This prediction is a direct consequence of Lemma~\ref{lem:lensing}.
+
+\subsection{Test A --- Ridge orientation}
+
+For each prior analysis separately, we compute the sample covariance of the posterior in the declared coordinates \eqnref{coords}, restricted to the four-dimensional $\ln\Mchirp$-orthogonal subspace. The principal elongation axis of each posterior should align with $\vd$ (the Fisher degeneracy direction at full band), since both are expressions of the same likelihood degeneracy.
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Ridge orientation: alignment between posterior principal axis and Fisher degeneracy eigenvector $\vd$ at full band.}
+\label{tab:ridge_orientation}
+\begin{tabular}{lcc}
+\toprule
+Analysis & Alignment angle ($^\circ$) & 95\% CI \\
+\midrule
+GW170817 lowSpin & \manifest{T2: angle} & \manifest{T2: CI} \\
+GW170817 highSpin & \manifest{T2: angle} & \manifest{T2: CI} \\
+GW150914 & \manifest{T4: angle} & \manifest{T4: CI} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The alignment is assessed against a pre-registered falsification threshold of $20^\circ$ misalignment at 95\% confidence. We also check cross-approximant persistence using the TaylorF2+NRTidal posterior release.
+
+\subsection{Test B --- Prior-displacement alignment with $\vd$}
+
+Let $\Delta x = \langle x \rangle_{\text{highSpin}} - \langle x \rangle_{\text{lowSpin}}$ be the difference of posterior means in the declared coordinates. The prior-lensing prediction is that $\Delta x$ is parallel to $\vd$ within the M_c-orthogonal subspace. Because M_c is constrained to $\sim10^{-4}$ relative precision, its component of $\Delta x$ is guaranteed to be tiny (we report the actual $\Delta\Mchirp$ with bootstrap uncertainty, replacing the spurious ``exactly zero'' claim). What is nontrivial is the \emph{direction within the four-dimensional M_c-orthogonal complement}---a space spanned by $(\eta, \chieff, \Lambdatilde, \Dl)$---where the displacement could point anywhere. Alignment with the \emph{specific} direction $\vd$ inside that subspace is a quantitative, falsifiable test.
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Prior-displacement alignment with the degeneracy direction $\vd$.}
+\label{tab:displacement}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Value & Note \\
+\midrule
+$\Delta \ln\Mchirp$ & \manifest{T3: dMc} & Bootstrap CI \\
+$\cos^2\alpha$ (vs $\vd$ in 4D subspace) & \manifest{T3: cos2a} & \\
+$p$-value (random-direction null) & \manifest{T3: pval} & Beta$(1/2, 3/2)$ \\
+Alignment angle $\alpha$ & \manifest{T3: angle}$^\circ$ & 95\% CI \\
+Likelihood cost $\tfrac12 \Delta x^\top \Gamma \Delta x$ & \manifest{T3: logLcost} & Small $\Rightarrow$ degenerate \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The $p$-value derives from the null distribution of $\cos^2\alpha$ for a random direction on the 3-sphere (M_c-orthogonal 4D subspace): $\cos^2\alpha \sim \text{Beta}(1/2, 3/2)$~\manifest{T3: pval} provides an exact tail probability against the null that the displacement is unrelated to the Fisher geometry.
+
+For comparison, we repeat the same analysis on the TaylorF2+NRTidal posterior pair. If the alignment direction is persistent across waveform approximants, the claim is strengthened [\manifest{T3: TaylorF2 alignment}].
+
+\subsection{Test C --- GW150914 null test}
+
+GW150914~\cite{abbott2016gw150914} is a binary black hole merger with no tidal sector and a much shorter inspiral. Its Fisher matrix at merger-dominated SNR therefore has a significantly smaller condition number in $(q, \chieff)$ than GW170817's. By Lemma~\ref{lem:lensing}, the same prior perturbation should produce a much smaller displacement per unit prior change.
+
+We recompute the GW150914 posterior quantities from the actual GWOSC posterior samples (replacing the previously quoted $q = 0.99 \pm 0.03$ with the published LVC values).
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{GW150914 comparison: condition number and prior-lensing gain.}
+\label{tab:gw150914}
+\begin{tabular}{lcc}
+\toprule
+Quantity & GW150914 & GW170817 \\
+\midrule
+Fisher condition number $\kappa(\Gamma)$ & \manifest{T4: condnum_150914} & \manifest{T4: condnum_170817} \\
+$\lambda_{\min}^{-1}$ (lensing gain proxy) & \manifest{T4: gain_150914} & \manifest{T4: gain_170817} \\
+Posterior mean $(q)$ & \manifest{T4: q_150914} & 0.866/0.722 \\
+Posterior mean $(\chieff)$ & \manifest{T4: chi_150914} & 0.003/0.016 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The prediction is that GW150914's prior-induced displacement is an order of magnitude smaller than GW170817's, consistent with the absence of a tidal-degeneracy ridge.
+
+\subsection{Summary of evidence}
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Summary of evidence. Each test is typed by epistemic status and accompanied by a quantitative result and a statement of what would falsify it.}
+\label{tab:evidence}
+\begin{tabularx}{\textwidth}{@{}l l c X@{}}
+\toprule
+Test & Type & Result & What would falsify \\
+\midrule
+Ridge orientation (T2) & Measurement & $\alpha = \manifest{T2: angle}^\circ$ (95\% CI) & Misalignment $>20^\circ$ at 95\% CI \\
+Prior-displacement alignment (T3) & Measurement & $p = \manifest{T3: pval}$ & $p > 0.05$ (random-direction null) \\
+GW150914 contrast (T4) & Measurement & $\kappa$ ratio $\manifest{T4: kappa_ratio}$ & Ratio $<3$ \\
+Commutator growth $C(f)$ (T6) & Model computation & $2.74\times$ growth, robust to coord. conv. & Growth $<1.5\times$ under any convention \\
+PSD-insensitivity (T8) & Model computation & $<2\%$ variation across PSDs & Variation $>10\%$ across measured PSDs \\
+Peak-drop prediction (T9) & Model computation; generates testable prediction & $f^* = \manifest{T9: fstar}$ Hz & No peak in time-resolved analysis \\
+Ordering experiment (T1) & Falsification test (proposed) & Spearman $>0.7$ (pre-registered) & Spearman $<0.3$ \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\section{Dynamic Test: Fisher Information Sweep and Commutator Growth}
+\label{sec:dynamic}
+
+\subsection{The prediction}
+
+If the $(\rho, \Pi)$ dynamics describe the evolution of the posterior under accumulating data, then the misalignment $C(f)$ should grow as the frequency cutoff increases. At low frequencies, the Fisher matrix is dominated by the chirp mass $\Mchirp$ alone---the best-constrained parameter that determines the phase evolution at leading PN order~\cite{poisson2014gravity}. The projector $\Pi$ onto this direction is nearly aligned with the full Fisher matrix, so the commutator is small. At higher frequencies, higher PN orders become resolvable, adding structure to the likelihood surface in the $(q, \chieff, \Lambdatilde)$ subspace. The Fisher matrix tilts, and the commutator grows.
+
+The framework predicts:
+\begin{enumerate}
+\item \textbf{Monotonic growth} of $C(f)$ with frequency cutoff $f$.
+\item \textbf{Timescale alignment} between the commutator growth and the orbital chirp---both driven by the same accumulating strain data.
+\item The growth should be \textbf{robust to coordinate conventions and PSD variations}---it is a property of the waveform, not the detector.
+\end{enumerate}
+
+\subsection{Method}
+
+\subsubsection{Waveform Model}
+
+We use the TaylorF2 post-Newtonian waveform approximant~\cite{buonanno2009gw}, which provides an analytic frequency-domain representation of the inspiral. The waveform is
+\begin{equation}
+\tilde{h}(f) = A(f) e^{i\psi(f)},
+\label{eq:waveform}
+\end{equation}
+where the amplitude $A(f)$ and phase $\psi(f)$ are given by the PN expansion up to 3.5PN order for point-particle terms and leading-order tidal terms. The frequency-domain phase is
+\begin{equation}
+\psi(f) = 2\pi f t_c - \phi_c - \frac{\pi}{4} + \sum_{k=0}^{7} \psi_k f^{(k-5)/3},
+\label{eq:phase}
+\end{equation}
+where $t_c$ and $\phi_c$ are coalescence phase and time (marginalised), and $\psi_k$ are the PN coefficients. The leading (Newtonian) term is
+\begin{equation}
+\psi_0 = \frac{3}{128 \eta} \left(\frac{G\Mchirp \pi}{c^3}\right)^{-5/3},
+\label{eq:newtonian_phase}
+\end{equation}
+where $\eta = q/(1+q)^2$ is the symmetric mass ratio. The tidal contribution, to leading order, is
+\begin{equation}
+\delta\psi_{\text{tidal}}(f) = -\frac{39}{16} \left(\frac{G\Mchirp \pi f}{c^3}\right)^{5/3} \frac{\Lambdatilde}{\eta^2}.
+\label{eq:tidal_phase}
+\end{equation}
+
+\subsubsection{Parameter space and derivatives}
+
+The 5-dimensional parameter vector is $\theta = \{\Mchirp,\; q,\; \chieff,\; \Lambdatilde,\; \Dl\}$. Waveform derivatives $\partial h/\partial\theta_i$ are computed via automatic differentiation (JAX) for machine precision, eliminating the step-size sensitivity of finite differences that would otherwise corrupt the degeneracy-direction eigenvector in a near-singular $\Gamma$ (\secref{validity}).
+
+\subsubsection{Cumulative Fisher integration}
+
+The Fisher matrix at cutoff $f_{\max}$ is
+\begin{equation}
+\Gamma_{ij}(f_{\max}) = \int_{\fmin}^{f_{\max}} \frac{\partial_i h(f)\,\partial_j h(f)^{*} + \text{c.c.}}{2 S_n(f)}\,df,
+\label{eq:fisher_integral}
+\end{equation}
+evaluated with $N=500$ logarithmically spaced frequency bins and trapezoidal integration. All eigendecompositions are performed in the declared coordinates \eqnref{coords}.
+
+\subsection{Results: Commutator growth}
+
+For GW170817-like parameters~\cite{abbott2017gw170817}, the fractional misalignment $C(f)$ grows monotonically from low frequencies (where the Fisher matrix is dominated by $\Mchirp$ alone) to high frequencies (where higher PN orders add structure):
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Commutator growth $C(f)$ across the chirp window, in declared coordinates. Robustness envelope spans three expansion points and two alternate coordinate conventions.}
+\label{tab:commutator_growth}
+\begin{tabular}{lccc}
+\toprule
+$f_{\max}$ (Hz) & $\tau$ to merger (s) & $C(f)$ & Growth factor \\
+\midrule
+22 & 126.0 & \manifest{T6: C22} & $1.00\times$ (baseline) \\
+35 & 36.5 & \manifest{T6: C35} & \manifest{T6: g35} \\
+75 & 4.8 & \manifest{T6: C75} & \manifest{T6: g75} \\
+200 & 0.4 & \manifest{T6: C200} & \manifest{T6: g200} \\
+500 & $\sim0.0$ & \manifest{T6: C500} & \manifest{T6: g500} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The growth from \manifest{T6: C22} to \manifest{T6: C500} is a factor of \manifest{T6: growth_factor_nonrobust} in the primary convention, with a robustness envelope of $\pm$\manifest{T6: growth_envelope} across the alternative conventions, expansion points, and the IMRPhenomD\_NRTidal cross-check. The full evolution is shown in \figref{commutator}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{commutator_combined_refined.png}
+\caption{Commutator growth across the chirp window. Main panel: fractional misalignment $C(f)$ vs. frequency cutoff, with robustness envelope (shaded). \manifest{T6: C(f) slope} from PN power-counting (dashed line). Inset: $C(f)$ vs. time-to-merger.}
+\label{fig:commutator}
+\end{figure}
+
+\subsubsection{Timescale alignment}
+
+Plotting $C(f)$ against time-to-merger $\tau(f)$ reveals a clean alignment: the commutator growth accelerates as $\tau$ decreases (faster chirp $\rightarrow$ faster information arrival). The misalignment $C(f)$ follows a logarithmic growth with frequency (Pearson $r = \manifest{T6: pearson_r}$, $p < \manifest{T6: pearson_p}$).
+
+The deepest structural result of this work is that \textbf{the commutator grows on the same timescale as the orbital chirp}---not because $(\rho, \Pi)$ dynamics cause the chirp, but because the same accumulating strain data drives both. The orbital chirp ($df/dt \propto f^{11/3}$) is a prediction of GR. The commutator growth is a prediction of information geometry. The two are locked because each frequency maps to a time-to-merger via the chirp, and the Fisher matrix at frequency $f$ knows about the waveform up to that frequency---which is the waveform at time $\tau(f)$ before merger.
+
+\subsection{PSD-insensitivity and universality of the misalignment geometry}
+
+The commutator growth was tested under four noise PSDs to determine whether it is a property of the waveform or the detector:
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Multi-PSD comparison of commutator metrics, in declared coordinates.}
+\label{tab:dual_psd}
+\begin{tabular}{lcccc}
+\toprule
+Metric & ZDHP & Early aLIGO & O2 H1 & O2 L1 \\
+\midrule
+Comm. integral $\int \|[\Gamma,\Pi]\|\,df$ & \manifest{T8: int_zdhp} & \manifest{T8: int_aligo} & \manifest{T8: int_o2h1} & \manifest{T8: int_o2l1} \\
+$C(f)$ at 22~Hz & \manifest{T8: C22_zdhp} & \manifest{T8: C22_aligo} & \manifest{T8: C22_o2h1} & \manifest{T8: C22_o2l1} \\
+$C(f)$ at 500~Hz & \manifest{T8: C500_zdhp} & \manifest{T8: C500_aligo} & \manifest{T8: C500_o2h1} & \manifest{T8: C500_o2l1} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The variation is at the $\sim1\%$ level across all four PSDs, including the measured O2 curves with spectral lines. \textbf{The commutator growth is fundamentally a property of the waveform}, specifically of how its phase structure resolves degeneracies as higher frequencies are included, not of the detector. This is itself an important finding: it means that the predicted ADF bias (Appendix~\ref{sec:appendix}) is nearly detector-universal.
+
+The PSD-insensitivity also provides a consistency check on the growth law. Changing $S_n(f)$ shifts the PSD-weighted mean frequency $\bar{f}_{\text{eff}}$ at which information accumulates. The induced change in the misalignment is $\delta C/C \approx (d\ln C/d\ln f)\,\delta\ln\bar{f}_{\text{eff}}$, and the measured slope \manifest{T6: slope} is sufficiently small that $\sim1\%$ variation follows naturally. We verify this closed-loop: the predicted $\delta C/C$ from the spectral-moment shift agrees with the directly computed ratio to within \manifest{T8: closure_error}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{psd_systematic_v2.png}
+\caption{Multi-PSD comparison. The commutator integral variation across four PSDs (analytic and measured) is $\sim1\%$, confirming that the misalignment growth is a property of the waveform, not the detector. No anomalous steps are observed at spectral-line frequencies.}
+\label{fig:psd}
+\end{figure}
+
+\section{Forward Model: Ridge Dynamics and the Time-Resolved Prediction}
+\label{sec:forward}
+
+\subsection{The derived weight trajectory}
+
+Under exact Bayesian inference, the relative weight of two points on the degeneracy ridge is governed by the accumulated likelihood ratio. For Gaussian noise with true parameters $\theta_1$ and alternative $\theta_2$, the log-odds given data up to cutoff $f$ is a random variable with
+\begin{align}
+\mathbb{E}[\Delta\log\mathcal{L}(f)] &= -\tfrac12\, \rho^2(f), \\
+\text{Var}[\Delta\log\mathcal{L}(f)] &= \rho^2(f),
+\end{align}
+where $\rho^2(f) = \Delta x^\top \Gamma(f)\,\Delta x$ is the discriminating SNR$^2$ of \eqnref{rhosq}. The derived weight trajectory is
+\begin{equation}
+\frac{w_2}{w_1}(f) \sim \exp\left(-\tfrac12\rho^2(f) + \rho(f)\cdot z\right),\quad z \sim \mathcal{N}(0,1).
+\label{eq:weight_derived}
+\end{equation}
+
+This is not an assumed schedule; it follows from the likelihood ratio. Both ridge regions are supported while $\rho^2 \lesssim 1$; the disfavored one is exponentially suppressed once $\rho^2 \gtrsim \text{few}$. The transition between these regimes defines a characteristic frequency $f^*$ where $\rho^2(f^*) \approx 2$.
+
+\subsection{The peak-drop prediction}
+
+For a two-component Gaussian mixture with means at the ridge endpoints, the total covariance decomposes as
+\begin{equation}
+\Sigma_{\text{total}} = \sum_i w_i \Sigma_i + w_1 w_2 (\Delta x)(\Delta x)^\top.
+\label{eq:covariance_decomp}
+\end{equation}
+The between-mode variance along $\vd$ is $w_1 w_2 (\vd^\top \Delta x)^2$. With the derived weight trajectory \eqnref{weight_derived}, this quantity rises as the Fisher width shrinks (increasing precision) and then falls as one mode exponentially dominates. The peak occurs at $f^*$ solving
+\begin{equation}
+\rho^2_{\text{exact}}(f^*) \approx 2,
+\label{eq:fstar}
+\end{equation}
+where $\rho^2_{\text{exact}}$ is computed from the exact waveform mismatch rather than the quadratic approximation, since the ridge endpoints are not close in parameter space [\manifest{T5: quadratic-to-exact ratio}].
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Predicted time-resolved peak-drop signature.}
+\label{tab:fstar}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Value \\
+\midrule
+$f^*$ (central, $\rho^2 = 2$ condition) & \manifest{T9: fstar_2} Hz \\
+$f^*$ sensitivity band ($\rho^2 \in [1,4]$) & \manifest{T9: fstar_1}--\manifest{T9: fstar_4} Hz \\
+Peak between-mode variance (at $f^*$) & \manifest{T9: peak_magnitude} \\
+Event-to-event scatter ($1\sigma$) & \manifest{T9: fstar_scatter} Hz \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{peak_drop_v5.png}
+\caption{Forward model for the time-resolved peak-drop signature. Main panel: between-mode along-$\vd$ variance vs. frequency cutoff, with derived weight trajectory. The peak occurs at $f^* = \manifest{T9: fstar_2}$ Hz. Shaded band shows event-to-event scatter from noise draws. The non-Gaussianity index $N(f)$ (dashed) tracks the breakdown of the Laplace approximation along $\vd$.}
+\label{fig:peakdrop}
+\end{figure}
+
+\subsection{The non-Gaussianity index $N(f)$}
+
+The non-Gaussianity index defined in \eqnref{ngauss} quantifies the breakdown of the Laplace approximation along the degeneracy direction:
+\begin{equation}
+N(f) = \frac{\Var_{\rho_f}(\vd^\top x)}{(\Gamma(f)^{-1})_{\vd\vd}}.
+\end{equation}
+
+At full band, $N(500\,\text{Hz}) = \manifest{T9: N500}$, showing that the true posterior spread along $\vd$ exceeds the Fisher prediction by a factor of $\sim\sqrt{5}$. This is the direct measurement of the U2 failure (Sec.~\ref{sec:validity}) and provides the quantitative answer to ``when does Fisher break?'' The onset of $N(f) > 1$ tracks the Vallisneri-criterion failure map (\figref{validity}).
+
+\subsection{PN power counting and the analytic growth law of $C(f)$}
+
+The observed logarithmic growth $C(f)$ admits a closed-form explanation via PN power counting. In TaylorF2, the phase is $\psi = \sum_k \psi_k f^{(k-5)/3}$, so dominant waveform derivatives are $\partial_i h = i h\,\partial_i\psi$ (amplitude derivatives are subleading except for $D_L$). Every Fisher element is therefore a sum of integrals of the form
+\begin{equation}
+\Gamma_{ij}(f_{\max}) \propto \int_{\fmin}^{f_{\max}} f^{-7/3}\, f^{(k+\ell-10)/3}\, S_n(f)^{-1}\,df
+\end{equation}
+with known PN exponents. Under a power-law approximation to the PSD in band, the cumulative $\Gamma_{ij}(f_{\max})$ are explicit power laws. The eigenvalue $\lambda_1$ is dominated by the Newtonian-order block (chirp mass), while the off-diagonal block connecting $\Mchirp$ to $(q, \chieff, \Lambdatilde)$ grows with definite extra powers of $(\pi M f)^{2/3}$ per PN order, plus $f^{10/3}$ for the tidal term.
+
+The misalignment $C(f)$ is a ratio of these cumulative power laws. When the leading exponents nearly cancel---which the PN hierarchy enforces in the band where multiple orders contribute comparably---the ratio grows slowly, yielding
+\begin{equation}
+\frac{d\ln C}{d\ln f} = \manifest{T7: slope_analytic} \pm \manifest{T7: slope_uncertainty} \quad (\text{analytic}),
+\end{equation}
+compared to the measured value $\manifest{T7: slope_measured}$ from the numerical sweep. The agreement, validated piecewise over the PN transition bands [22--75, 75--200, 200--500] Hz [\manifest{T7: band_agreement}], constitutes an internal consistency check: the commutator growth follows from known PN structure rather than being an unexplained numerical observation.
+
+\section{Open Problems and Future Directions}
+\label{sec:open}
+
+\subsection{The ordering experiment (High Priority)}
+\label{sec:ordering}
+
+The decisive test of the $(\rho, \Pi)$ framework is the bin-ordering experiment. Take a synthetic injection with GW170817-midpoint parameters and an analytic PSD, split the frequency band $[22, 500]$ Hz into 18 bins, and compare three inference arms:
+
+\begin{enumerate}
+\item \textbf{Batch:} nested sampling on the full-band likelihood (ground truth).
+\item \textbf{ADF-forward:} sequential Laplace update, ascending frequency bins.
+\item \textbf{ADF-reverse:} sequential Laplace update, descending bins.
+\item \textbf{ADF-shuffled:} 20 random permutations of bin order.
+\end{enumerate}
+
+Exact inference predicts (1) = (2) = (3) up to sampling error. The $(\rho, \Pi)$ bias formula predicts the offsets (2--4) -- (1) quantitatively, with the offset lying along $\vd$ and scaling with the path-ordered commutator integral:
+\begin{equation}
+\Delta\theta_{\text{sys}} \approx \Gamma(f_{\max})^{-1} \int_{\text{path}} [\Gamma(f'), \Pi(f')]\,df' \cdot v_\perp .
+\label{eq:sys_offset}
+\end{equation}
+
+\begin{table*}[tp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\caption{Pre-registered success criteria for the ordering experiment.}
+\label{tab:ordering}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\toprule
+Criterion & Threshold \\
+\midrule
+Spearman correlation (predicted vs measured vd-offset) & $>0.7$ across all 23 ADF runs \\
+Zero-noise arm & Offsets within $2\times$ of prediction \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+This experiment replaces the previously proposed multi-detector comparison, which was unperformable because (a) the predicted PSD-dependent offset is $\sim1\%$ (Sec.~\ref{sec:dynamic}), far below inter-detector statistical scatter; (b) GW170817 parameter estimation is coherent network inference, with no independent per-detector posteriors to difference; and (c) the PSD-robustness result itself shows the effect is at most $\sim1\%$.
+
+The ordering experiment is controlled, reproducible on a laptop, and free of astrophysical confounds. Its result---confirmation or refutation of the bias formula---provides the cleanest test of the $(\rho, \Pi)$ framework's predictive content.
+
+\subsection{Time-resolved posterior analysis of GW170817 (High Priority)}
+
+The most direct test of the dynamics would be a \emph{time-resolved} posterior analysis of GW170817---computing the posterior at multiple frequency cutoffs during the inspiral and tracking the evolution of the degeneracy ridge. The peak-drop prediction (Sec.~\ref{sec:forward}) gives a specific, pre-registered target: $f^* = \manifest{T9: fstar_2}$ Hz (sensitivity band \manifest{T9: fstar_1}--\manifest{T9: fstar_4} Hz) where the between-mode variance along $\vd$ should peak.
+
+\textbf{Method:} Re-analyse the GW170817 data with a sequential Monte Carlo sampler that processes the likelihood in frequency bands, recording the posterior at each band. Compare the evolution to the $(\rho, \Pi)$ forward model.
+
+\textbf{Difficulty:} Moderate (requires access to LIGO data and a custom analysis pipeline). \textbf{Priority:} High.
+
+\subsection{Population survey of BNS mergers (Medium Priority)}
+
+The static test (Sec.~\ref{sec:static}) was performed on a single event. With O4 and O5 data, the population of detected BNS mergers will grow, allowing population-level tests using the invariant comparators developed here:
+
+\begin{itemize}
+\item Do all BNS events show the same ridge geometry in $(q, \chi_{\text{eff}})$? The invariant comparators---likelihood cost $\Delta\theta^\top\Gamma\,\Delta\theta$ and $\vd$ information fraction---can be compared across events.
+\item Does the prior-lensing alignment persist across events with different mass-ratio/spin combinations?
+\item Do the $f^*$ predictions from the forward model correlate with the mass ratio and tidal deformability of each event?
+\end{itemize}
+
+\textbf{Method:} Analyze posterior samples from all confident BNS detections in O4 and O5. \textbf{Difficulty:} Easy (analyzing existing posterior samples). \textbf{Priority:} Medium.
+
+\subsection{Extension to BBH and EMRI systems (Low Priority)}
+
+The $(\rho, \Pi)$ formalism is general. For binary black holes, the simpler posterior structure (no tidal sector) provides a natural null test more stringent than the prior-lensing comparison. For extreme-mass-ratio inspirals (EMRIs) in LISA, the commutator growth would be measured over thousands of orbits, and the ADF bias formula would predict frequency-dependent systematic offsets in measured mass and spin parameters.
+
+\textbf{Method:} Apply the Fisher sweep analysis to BBH and EMRI waveform models. \textbf{Priority:} Low (3+ investigator-years for EMRI).
+
+\subsection{The feedback bound (Low Priority)}
+
+If the coupling between inference geometry and orbital dynamics is not exactly zero---if the posterior's evolution feeds back onto the measured waveform---a detectable deviation from the GR-predicted chirp would appear at high frequencies. Parameterizing this as $\varepsilon \cdot C(f)$ in the phase evolution, the posterior on $\varepsilon$ from existing data places an upper bound on the coupling. This is independent of the $\nu$ exponent approach (which was removed because the $(\rho, \Pi)$ system, describing inference rather than dynamics, has no autonomous clock whose frequency can be compared to GR's).
+
+\textbf{Priority:} Low (2+ investigator-years), but significant if the coupling is non-zero.
+
+\section{Interpretation: What the Bridge Means}
+\label{sec:interpretation}
+
+\subsection{The layer of description}
+
+The central result of this work is that the $(\rho, \Pi)$ dynamical system describes the \textbf{geometry of Bayesian inference} in a gravitational-wave detector, not the binary system itself. This is an epistemological claim, not an ontological one. The $(\rho, \Pi)$ formalism does not replace General Relativity. It describes how the posterior distribution reorganises itself as data accumulates, how its geometry evolves on the manifold of orbital parameters, and how this evolution has its own measurable dynamics.
+
+\subsection{Why the timescales coincide}
+
+The deepest result of the Fisher sweep (Sec.~\ref{sec:dynamic}) is a structural fact: the commutator grows on the same timescale as the orbital chirp. In GW170817, both evolve across the window $\tau \approx 126$ s $\rightarrow$ $\tau \approx 0.03$ s before merger.
+
+This is a \textbf{constraint}, not a coincidence. The same strain data drives both:
+\begin{itemize}
+\item The \textbf{orbital chirp} ($df/dt \propto f^{11/3}$) is a prediction of GR, encoded in the phase evolution.
+\item The \textbf{commutator growth} is a prediction of information geometry, encoded in how the Fisher matrix tilts as each PN order becomes resolvable.
+\end{itemize}
+The two are locked because the strain carries information about the binary at each frequency, and the Fisher matrix at frequency $f$ knows about the waveform up to that frequency---which is the waveform at time $\tau(f)$ before merger. The information-accumulation clock and the orbital-evolution clock are the same clock, driven by the same data stream.
+
+\subsection{Exact trajectory vs. approximate filter}
+
+Proposition~\ref{prop:exact} established that exact Bayesian inference is order-independent. This means that two conceptually distinct objects coexist in this paper, and the manuscript takes care to label each claim as belonging to one or the other.
+
+The \textbf{exact posterior trajectory} $\rho_f$ has a well-defined geometry characterized by $C(f)$ and the rotation of the Fisher eigenframe. This geometry is real, measurable, and independent of any approximation. It describes how information arrives in the likelihood surface as the binary chirps.
+
+The \textbf{single-pass Gaussian filter bias} is a consequence of the Laplace projection. The commutator integral, which measures the eigenframe rotation rate, governs how sequential-approximation error accumulates and leaks into the degeneracy direction. This bias is relevant to low-latency pipelines (BAYESTAR, pre-merger localization) that use such approximations on partial data.
+
+The two are connected: the commutator $C(f)$ describes the exact geometry of the inference problem, while the commutator integral $\int [\Gamma,\Pi]\,df$ quantifies the bias of the common approximate solution. This duality---the same object measuring both exact structure and approximate error---is the bridge's deepest insight.
+
+\subsection{Path-dependence of the approximate posterior}
+
+The exact posterior is path-independent. What is path-dependent is (i) the trajectory $\rho_f$ itself, whose geometry $C(f)$ describes, and (ii) the error of any single-pass Gaussian approximation, which $\Delta\theta_{\text{sys}}$ quantifies. The PSD enters the second object not as a different path through the same inference problem, but as a different inference problem: different noise curves reweight the likelihood, changing the integrand of \eqnref{sys_offset}.
+
+\subsection{The bridge as a methodological tool}
+
+Beyond its specific results, the $(\rho, \Pi)$ bridge serves as a methodological template. It shows how a dynamical system originally developed in one context (information-geometric relaxation) can be reinterpreted as a description of Bayesian inference in a completely different domain. The key step is identifying the posterior $\rho$ and likelihood structure $\Pi$ of the inference problem with the $(\rho, \Pi)$ pair of the dynamical system.
+
+This suggests a broader programme: \textbf{any sequential Bayesian inference problem}---where data arrives incrementally and the posterior evolves---may admit a $(\rho, \Pi)$ description. The commutator $[\Gamma, \Pi]$ would then measure the cross-coupling between the best-constrained direction and the remaining parameter space in that domain. The bridge is not just a result about gravitational waves; it is a demonstration that the geometry of inference has its own dynamics, and that those dynamics are measurable.
+
+\section*{Acknowledgments}
+
+We thank Lark Laflamme for editorial contributions. The LIGO Scientific Collaboration and the Virgo Collaboration for making posterior samples publicly available through the Gravitational Wave Open Science Center (GWOSC). This work was supported by RavenNest Science.
+
+\begin{thebibliography}{99}
+
+\bibitem{abbott2017gw170817}
+B.P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration),
+``GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral,''
+Phys. Rev. Lett. \textbf{119}, 161101 (2017).
+
+\bibitem{abbott2016gw150914}
+B.P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration),
+``Observation of Gravitational Waves from a Binary Black Hole Merger,''
+Phys. Rev. Lett. \textbf{116}, 061102 (2016).
+
+\bibitem{abbott2019gw170817_params}
+B.P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration),
+``Properties of the binary neutron star merger GW170817,''
+Phys. Rev. X \textbf{9}, 011001 (2019).
+
+\bibitem{cutler1994fisher}
+C. Cutler and E.E. Flanagan,
+``Gravitational waves from merging compact binaries: How accurately can one extract the binary's parameters from the inspiral waveform?''
+Phys. Rev. D \textbf{49}, 2658 (1994).
+
+\bibitem{vallisneri2008fisher}
+M. Vallisneri,
+``Use and abuse of the Fisher information matrix in the assessment of gravitational-wave parameter-estimation prospects,''
+Phys. Rev. D \textbf{77}, 042001 (2008).
+
+\bibitem{poisson2014gravity}
+E. Poisson and C.M. Will,
+\emph{Gravity: Newtonian, Post-Newtonian, Relativistic}
+(Cambridge University Press, 2014).
+
+\bibitem{buonanno2009gw}
+A. Buonanno and B.S. Sathyaprakash,
+``Sources of Gravitational Waves: Theory and Observations,''
+arXiv:0906.5312 (2009).
+
+\bibitem{maggiore2007gw}
+M. Maggiore,
+\emph{Gravitational Waves: Volume 1: Theory and Experiments}
+(Oxford University Press, 2007).
+
+\bibitem{flanagan1998fisher}
+E.E. Flanagan and S.A. Hughes,
+``Measuring gravitational waves from binary black hole coalescences: I. Signal-to-noise for inspiral, merger, and ringdown,''
+Phys. Rev. D \textbf{57}, 4535 (1998).
+
+\bibitem{chatziioannou2020bns}
+K. Chatziioannou,
+``Uncertainty in the neutron star equation of state from gravitational waves,''
+arXiv:2006.03168 (2020).
+
+\bibitem{minka2001ep}
+T.P. Minka,
+``Expectation propagation for approximate Bayesian inference,''
+in \emph{Proc. 17th Conf. on Uncertainty in Artificial Intelligence} (UAI), 362 (2001).
+
+\bibitem{opper1998online}
+M. Opper,
+``A Bayesian approach to on-line learning,''
+in \emph{On-Line Learning in Neural Networks}, edited by D. Saad (Cambridge University Press, 1998), p. 363.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Fisher Derivation Details and ADF Bias}
+\label{sec:appendix}
+
+\subsection{Waveform Model}
+
+The TaylorF2 post-Newtonian waveform in the frequency domain is
+\begin{equation}
+\tilde{h}(f) = A(f) e^{i\psi(f)},
+\label{eq:app_waveform}
+\end{equation}
+where the amplitude is
+\begin{equation}
+A(f) = \frac{1}{\Dl} \sqrt{\frac{5}{24}} \frac{(G\Mchirp)^{5/6}}{\pi^{2/3} c^{3/2}} f^{-7/6}.
+\label{eq:app_amplitude}
+\end{equation}
+
+\subsection{Parameter space and coordinate convention}
+
+The 5-dimensional physical parameter vector is $\theta = \{\Mchirp,\; q,\; \chieff,\; \Lambdatilde,\; \Dl\}$. All eigendecompositions, projectors, and Frobenius norms are computed in the dimensionless analysis coordinates of \eqnref{coords}:
+\begin{equation}
+x = \bigl(\ln \Mchirp,\; q,\; \chieff,\; \Lambdatilde/100,\; \ln \Dl\bigr).
+\end{equation}
+Fisher matrices and displacement vectors transform via the Jacobian $J_{ij} = \partial x_i / \partial \theta_j$.
+
+\subsection{The ADF bias formula}
+\label{sec:app_adf}
+
+Under assumed-density filtering (single-pass Laplace approximation), the posterior mean evolves according to the extended-Kalman-style recursion:
+\begin{equation}
+d\theta_* = \Gamma(f)^{-1} \cdot [d\Gamma \cdot (\theta_{\text{true}} - \theta_*(f))],
+\label{eq:app_shift}
+\end{equation}
+where $d\Gamma$ is the incremental Fisher information from a new frequency bin. This is the mean-drift equation of a single-pass sequential Gaussian filter. The batch maximum satisfies $\sum_k g_k(\hat\theta) = 0$ jointly; the single-pass recursion takes one Gauss-Newton step per bin from a moving linearization point and never revisits earlier bins.
+
+Working in the instantaneous eigenframe of $\Gamma(f)$, write the eigendecomposition $\Gamma = \sum_i \lambda_i v_i v_i^\top$. If every increment $d\Gamma$ commuted with $\Gamma$ (shared its eigenframe), the recursion would decouple direction-by-direction and the displacement $\theta_{\text{true}} - \theta_*$ in the well-constrained direction could never leak into the degenerate subspace. The off-diagonal part of $d\Gamma$ in $\Gamma$'s eigenframe---which is exactly what $C(f)$ measures, since $\|\Gamma - \lambda_1 \Pi\|_F$ isolates it---is the leakage operator.
+
+The accumulated bias projected onto the degeneracy direction $\vd$ is then an integral over $f$ of (eigenframe rotation rate) $\times$ (current displacement) $\times$ ($\Gamma^{-1}$ amplification in the degenerate direction). Since $\Gamma^{-1}$ is largest along $\vd$, the bias concentrates there:
+
+\begin{equation}
+\Delta\theta_{\text{sys}} \approx \Gamma(f_{\max})^{-1} \int_{\fmin}^{\fmax} [\Gamma(f'), \Pi(f')]\,df' \cdot v_\perp .
+\label{eq:app_offset}
+\end{equation}
+
+The commutator vanishes iff $[d\Gamma, \Gamma] = 0$ for all $f$, a condition that fails precisely because different PN orders enter at different frequency scales, rotating the eigenframe. The bias is therefore a deterministic, testable consequence of known waveform structure.
+
+\subsection{Numerical conditioning}
+
+The Fisher eigenproblem is ill-conditioned at low cutoffs, where the degeneracy eigenvalue $\lambda_5$ is many orders of magnitude below $\lambda_1$. We report the condition number $\kappa(\Gamma(f))$ across the sweep:
+\begin{itemize}
+\item At 22~Hz: $\kappa = \manifest{T11: kappa22}$
+\item At 500~Hz: $\kappa = \manifest{T11: kappa500}$
+\end{itemize}
+
+We verify eigenvector convergence by comparing automatic-differentiation derivatives against finite differences at 5 step sizes [\manifest{T11: ad_vs_fd}], confirming that the JAX-based port eliminates step-size contamination of $\vd$. The minimum spectral gap $\lambda_4 - \lambda_5$ is monitored throughout: $\min(\lambda_4 - \lambda_5) = \manifest{T11: min_gap}$.
+
+\subsection{Vallisneri criterion map}
+
+At each of the 18 cutoffs and along each eigendirection $v_i$, we displace by $\pm 1\sigma_i = \pm \lambda_i^{-1/2} v_i$, compute the exact waveform mismatch $\inner{\delta h}{\delta h}$, and compare to the quadratic prediction $\tfrac12 \sigma_i^\top \Gamma \sigma_i = \tfrac12$. The pass/fail ratio
+\begin{equation}
+r_i(f) = \frac{\inner{\delta h}{\delta h}}{\frac12 \sigma_i^\top \Gamma \sigma_i}
+\end{equation}
+satisfies $|r - 1| < 0.1$ in the linear regime. The resulting map (\figref{validity}) confirms: $v_1$ passes everywhere; $\vd$ fails at low cutoffs with onset tracking $N(f)$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{validity_map.png}
+\caption{Domain-of-validity heat map. Colors show the Vallisneri-criterion ratio $r_i(f)$ across eigendirections and frequency cutoffs. $v_1$ (best-constrained direction) passes throughout; $\vd$ (degeneracy direction) fails at low cutoffs where the posterior is non-Gaussian, with onset tracking $N(f)$.}
+\label{fig:validity}
+\end{figure}
+
+\subsection{Code Implementation}
+
+The Fisher sweep and all analyses are implemented in Python using:
+\begin{itemize}
+\item \textbf{JAX} for automatic-differentiation waveform derivatives and machine-precision Fisher computation
+\item \textbf{NumPy/SciPy} for numerical integration, eigendecompositions, and statistics
+\item \textbf{Matplotlib} for visualisation
+\item \textbf{lalsuite} for cross-check runs (IMRPhenomD\_NRTidal robustness)
+\item \textbf{dynesty} for batch nested sampling (ordering experiment)
+\end{itemize}
+
+The code and numerical results are available in the companion data release. All paper-bound numbers are registered in a versioned JSON manifest and pulled into LaTeX via generated macros, eliminating transcription errors.
+
+\end{document}

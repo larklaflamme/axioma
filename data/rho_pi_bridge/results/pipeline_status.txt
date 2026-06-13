@@ -1,0 +1,82 @@
+========================================================================
+PIPELINE STATUS — AXIOMA'S ASSIGNMENT DELIVERABLES
+========================================================================
+
+Bridge dir:  /home/ubuntu/docs/arxiv/bridge/
+Pipeline root: /home/ubuntu/axioma/data/rho_pi_bridge/
+
+─── COMPLETED ──────────────────────────────────────────────
+
+▶ Item 1: Pipeline (run_pipeline.py)
+  T6 (Fisher sweep)   → OK  (9 CPU seconds, 500 freq pts)
+  T5/T7/T8/T9          → OK  (merged manifest)
+  Figures 1-5          → generated
+  Manifest.tex         → in bridge dir, includes all numbers
+
+▶ Item 3: Factor-of-4 normalization
+  VERIFIED: 4× convention is correct.
+    Small-displacement test: ρ²/⟨δh|δh⟩ = 1.000013 (ε=1e-6)
+    The review's 'factor of 4' is NOT a bug at small displacement.
+    The deviation at large Δθ (ratio=13.4 for actual displacement)
+    IS the Vallisneri nonlinear breakdown (Issue #8, T10)
+  Unit test: check_normalization_convention() in src/waveform.py
+
+▶ Item 4: N(f) restriction
+  N(f) placeholder: manifest records N500=None with note:
+    'Populate from GWOSC posterior samples or T1 synthetic'
+  N(f_max) computable from GWOSC samples when downloaded.
+  N(f) curve labeled for T1 (synthetic) setting only.
+
+▶ Item 5: GW150914 contrast (T4)
+  Limitation acknowledged: no lalsuite, TaylorF2 inspiral-band only.
+  Fisher at 20-80 Hz for GW150914 (inspiral only, conservative).
+  Common 4D block (ln Mc, q, chi_eff, ln DL):
+    κ₄(GW150914)  = 1.45e+05  (inspiral band)
+    κ₄(GW170817)  = 1.15e+08  (full band)
+    Ratio          = 795× (~2.9 orders of magnitude)
+  Supports the 'prior lensing stronger in GW170817' claim.
+  Full IMR comparison needs lalsuite (not installed).
+
+▶ Item 6: ADF initialization spec
+  Written to notes/adf_spec.md.
+  Gaussian pseudo-prior for q₀ from prior mean (not from Fisher).
+  Boundary handling: clamp rules for q, chi_eff, Lambda_tilde.
+  This belongs in §II.C of main_v3.tex as 2-3 sentences.
+
+─── PIPELINE OUTPUT ─────────────────────────────────────────
+
+C(22 Hz)  = 6.9340e-07
+C(500 Hz) = 1.6218e-03
+Growth    = 7.05e+05
+λ₁(500)   = 1.3747e+03
+λ₅(500)   = 4.8193e-07
+κ(500)    = 2.85e+09
+v_d(500)  = [+0.0000, +0.1472, -0.0070, -0.9891, +0.0000]
+
+T3.dMc                         = 0.000000e+00
+T5.rho2_full_band              = 2.497846e-04
+T5.mismatch_exact_dh           = 1.870150e-05
+T5.rho2_ratio_exact            = 1.335639e+01
+T3.cos2a                       = 2.166595e-02
+T3.pval                        = 8.132663e-01
+T3.angle                       = 8.153567e+01
+T7.slope_low                   = 4.555568e+00
+T7.slope_mid                   = 1.077807e+00
+T7.slope_high                  = 1.243411e-01
+T7.slope_total                 = 1.832231e+00
+T8.growth_zdhp                 = 2.345266e+03
+T8.C500_zdhp                   = 1.621782e-03
+T8.growth_early_aligo          = 7.132188e+03
+T8.C500_early_aligo            = 4.932347e-03
+T9.rho2_full_band              = 2.497846e-04
+
+─── WHAT REMAINS ────────────────────────────────────────────
+
+☐ main_v3.tex: needs to be written by @thea (text restructuring)
+☐ Bibliography: needs BAYESTAR, low-latency, prior-sensitivity refs
+☐ T1 ordering experiment: needs dynesty (not installed), overnight run
+☐ GWOSC sample download: needed for T2/T3 bootstrap + N(f)
+☐ Proposition 1 footnote: non-stationarity caveat (Item 7)
+☐ Two-point ridge caveat: restore Occam factor (Item 8)
+☐ S3 framework: drop or cite (Item 2 — @thea handling)
+

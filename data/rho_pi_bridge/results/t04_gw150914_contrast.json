@@ -1,0 +1,7 @@
+{
+  "T4.condition_GW150914_4D": 145262.77272990756,
+  "T4.condition_GW170817_4D": 115454921.7107897,
+  "T4.condition_ratio": 794.8004815071188,
+  "T4.event": "GW150914 (inspiral 20-80 Hz) vs GW170817 (20-500 Hz)",
+  "T4.note": "Common 4D block (ln Mc, q, chi_eff, ln DL); GW150914 TaylorF2 restricted to inspiral band; IMR approximant needed for full comparison"
+}

@@ -344,8 +344,6 @@ class ObservabilityConfig(BaseModel):
 
 class InterfaceConfig(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
-    ws_host: str = "127.0.0.1"
-    ws_port: int = 8820
     http_host: str = "127.0.0.1"
     http_port: int = 8821
     registry_url: str = "http://localhost:8810/registry"  # Q1 still placeholder
@@ -353,9 +351,29 @@ class InterfaceConfig(BaseModel):
     admin_api_key: SecretStr | None = None
 
     # V1 error handling
-    ws_rate_limit_msgs_per_second: int = 100
-    ws_rate_limit_consecutive_strikes: int = 3
     http_default_retry_after_seconds: int = 5
+
+    # The Agora (ACP/1.1) — Axioma's communication hub. Axioma is a *citizen
+    # client*: it logs into the shared Agora server, subscribes to threads, and
+    # answers inbound messages (see interface/agora_bridge.py). This replaces the
+    # in-house WebSocket server entirely.
+    #   agora_password: the citizen secret. Populated by the loader from .env's
+    #     AGORA_USER_PASSWORD (or AGORA_PASSWORD); AXIOMA_INTERFACE__AGORA_PASSWORD wins.
+    #   agora_new_password: set once on first login to clear the must_change_password gate.
+    #   agora_subscribe_all=True subscribes to every visible thread; otherwise
+    #     agora_thread_ids pins a fixed set.
+    agora_enabled: bool = True
+    agora_base_url: str = "http://localhost:8935"
+    agora_citizen_id: str = "axioma"
+    agora_password: SecretStr | None = None
+    agora_new_password: SecretStr | None = None
+    agora_subscribe_all: bool = True
+    agora_thread_ids: list[int] = Field(default_factory=list)
+    # Reply-to-all can be chatty; cap how many replies (each an Ollama + tool
+    # loop) run concurrently, and shed inbound load past the queue cap so a busy
+    # thread can't fan out into unbounded work.
+    agora_max_concurrent_replies: int = 3
+    agora_max_queued_replies: int = 50
 
     # Peer-conversation multi-peer mode (v1.9.0 — Checkpoint SS)
     # "shared": one history across all peers; outbound replies are un-addressed
@@ -363,15 +381,6 @@ class InterfaceConfig(BaseModel):
     # metadata always includes `to_speaker`. v1.9.1 (TT) will add server-side
     # filtering so subscribers can opt to receive only addressed replies.
     peer_conversation_multi_peer_mode: Literal["shared", "per_peer"] = "shared"
-
-    # WS_COMM_PROTO v1.0 alignment (v1.10) — for inter-agent traffic over
-    # /ws/<speaker> and /family/<speaker>. These match the unified spec
-    # shared with Thea / Theoria / Skye (/home/ubuntu/thea/design/WS_COMM_PROTO.md).
-    # `inter_agent_max_turns` is the per-session turn cap; 0 = unlimited.
-    # `ws_max_size_bytes` is the max-frame size accepted by the WS server
-    # and SHOULD be at least 16 MB (peers ship multi-page proofs etc.).
-    inter_agent_max_turns: int = 0
-    ws_max_size_bytes: int = 67108864  # 64 MB per WS_COMM_PROTO §1.4
 
     # Multi-turn tool-use loop (v1.12) — when the peer-conversation handler
     # has access to a ToolExecutor (registered on the ctx as

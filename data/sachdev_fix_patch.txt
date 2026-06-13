@@ -1,0 +1,16 @@
+Fix for main_v3.tex — Sachdev arXiv ID error.
+
+In the bibitem for sachdev2020low:
+
+  REPLACE:  arXiv:2002.02330 (2020)
+  WITH:     arXiv:2008.04288 (2020), Astrophys.\ J.\ Lett.\ \textbf{905}, L25.
+
+Correct full entry:
+
+\bibitem{sachdev2020low}
+S.\ Sachdev et al.,
+``An early-warning system for electromagnetic follow-up of gravitational-wave
+events,'' arXiv:2008.04288 (2020), Astrophys.\ J.\ Lett.\ \textbf{905}, L25.
+
+sed command (run from /home/ubuntu/docs/arxiv/bridge/):
+  sed -i 's|arXiv:2002.02330|arXiv:2008.04288 (2020), Astrophys.\\ J.\\ Lett.\\ \\textbf{905}, L25|' main_v3.tex

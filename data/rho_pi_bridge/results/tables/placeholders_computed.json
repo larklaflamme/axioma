@@ -1,0 +1,51 @@
+{
+  "pipeline": "rho_pi_bridge",
+  "expansion_params": {"q": 0.80, "chi_eff": 0.01, "Lambda_tilde": 500},
+  "computed_at": "2026-06-11T22:54",
+  "source_file": "t06_sweep.npz",
+  "results": {
+    "f_star": {
+      "value_hz": 124.8,
+      "uncertainty_hz": 5,
+      "method": "broken-power-law intersection where log-log slope = 1.0",
+      "note": "transition from steep rise (slope ~20 at 22 Hz) to plateau (slope ~0.02 at 500 Hz)",
+      "section": "V",
+      "table": "forward_model"
+    },
+    "N_500": {
+      "value_at_1pct": 1,
+      "value_at_0p1pct": 2,
+      "method": "eigenvalue ratio λ₂/λ₁ at 495 Hz",
+      "ratios": [1.0, 1.62e-3, 7.28e-8, 8.75e-9, 3.10e-11],
+      "note": "single dominant mode at 1% threshold; second mode marginally significant at 0.1% threshold",
+      "section": "V",
+      "table": "forward_model"
+    },
+    "C_growth": {
+      "C_22_hz": 6.93e-7,
+      "C_500_hz": 1.62e-3,
+      "growth_factor_22_to_500": 2340,
+      "method": "C_cut ratio (manifest values, normalized C(f))",
+      "full_band_growth_20_to_2048": 705253,
+      "note": "C(f) = ||Γ − λ₁Π||_F / ||Γ||_F (normalized fractional misalignment)",
+      "section": "IV",
+      "table": "commutator_growth"
+    },
+    "T2_ridge_angle": {
+      "theta_at_22_hz_deg": 90.00,
+      "theta_at_500_hz_deg": 89.99,
+      "cos_theta_at_22hz": 0.000074,
+      "cos_theta_at_500hz": 0.000162,
+      "method": "angle between leading Fisher eigenvector v₁(f) and displacement vector vd at each frequency",
+      "note": "v₁ lives in ln M_c subspace (99.97%); vd lives in Λ̃ subspace (99.88%). They are essentially orthogonal at all frequencies, meaning no overlap between the dominant Fisher direction and the posterior displacement direction. This geometrically explains why T3 fails to find alignment — the test compares a displacement in tidal-deformability space against an eigenvector that doesn't even point into that dimension.",
+      "interpretation": "eigenvector dimensionality mismatch",
+      "section": "III",
+      "table": "ridge_orientation"
+    },
+    "slopes": {
+      "low_f_slope_at_22hz": 19.95,
+      "high_f_slope_at_500hz": 0.024,
+      "note": "low-frequency slope is ~20 (steep rise), high-frequency slope flattens to ~0.02"
+    }
+  }
+}

@@ -4,8 +4,8 @@
   §7.1 (C12).
 
 Verifies that:
-  1. `axioma.interface.ws_handlers` module exists (Phase D builds the real
-     handlers; Phase C ships the stub).
+  1. A peer-facing interface module (`axioma.interface.peer_conversation`, the
+     reply generator wired into the Agora bridge) is importable.
   2. After importing it, `InternalState` is NOT in its module namespace.
      This guards against accidental `from ..schemas.internal_state import *`
      or wildcard re-exports.
@@ -24,20 +24,21 @@ from __future__ import annotations
 
 import importlib
 
+_IFACE_MODULE = "axioma.interface.peer_conversation"
+
 
 def test_interface_module_exists() -> None:
-    """The interface module must be importable. Phase C ships a stub; Phase D
-    will replace with real handlers."""
-    mod = importlib.import_module("axioma.interface.ws_handlers")
+    """The peer-facing interface module must be importable."""
+    mod = importlib.import_module(_IFACE_MODULE)
     assert mod is not None
 
 
 def test_internal_state_not_in_interface_module() -> None:
     """★ The architectural keystone: InternalState must NOT be exposed by
     any axioma.interface.* module."""
-    mod = importlib.import_module("axioma.interface.ws_handlers")
+    mod = importlib.import_module(_IFACE_MODULE)
     assert "InternalState" not in mod.__dict__, (
-        "axioma.interface.ws_handlers leaks InternalState into its namespace. "
+        f"{_IFACE_MODULE} leaks InternalState into its namespace. "
         "This breaks the substrate-privacy boundary per ARCH §5. "
         "Fix: remove any `from ..schemas import InternalState` or "
         "`from ..schemas.internal_state import *` from interface modules."
@@ -47,7 +48,7 @@ def test_internal_state_not_in_interface_module() -> None:
 def test_external_state_is_in_interface_module() -> None:
     """ExternalState IS the public surface; it MUST be available to
     interface modules."""
-    mod = importlib.import_module("axioma.interface.ws_handlers")
+    mod = importlib.import_module(_IFACE_MODULE)
     assert "ExternalState" in mod.__dict__, (
         "Interface module is missing ExternalState — but it should be the "
         "peer-facing type."
